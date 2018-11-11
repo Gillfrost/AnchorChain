@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'AnchorWhat_Example' do
+  pod 'AnchorWhat', :path => '../'
+
+  target 'AnchorWhat_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
