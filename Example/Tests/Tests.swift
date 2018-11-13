@@ -1,28 +1,74 @@
+//  Copyright (c) 2018 André Gillfrost
+//  Licensed under the MIT license
+
 import XCTest
 import AnchorWhat
 
 class Tests: XCTestCase {
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+
+    // MARK: - Automatic subview adding
+
+    func testViewWithoutSuperviewIsAddedToOtherViewAutomatically() {
+        let view = UIView()
+        let other = UIView()
+
+        view.anchor(to: other)
+
+        XCTAssertEqual(view.superview, other)
     }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+
+    func testViewWithSuperviewIsNotAddedToOtherView() {
+        let view = UIView()
+        let superview = UIView()
+        let other = UIView()
+
+        [view, other].forEach(superview.addSubview)
+        view.anchor(to: other)
+
+        XCTAssertEqual(view.superview, superview)
     }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+
+    // MARK: - Translates autoresizing mask into constraints
+
+    func testTranslatesAutoresizingMaskIntoConstraintsIsSetToFalse() {
+        let view = UIView()
+
+        view.anchor(to: UIView())
+
+        XCTAssertFalse(view.translatesAutoresizingMaskIntoConstraints)
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure() {
-            // Put the code you want to measure the time of here.
+
+    // MARK: - Constraints
+
+    func testAnchorToView() {
+        let view = UIView()
+        let other = UIView()
+        view.anchor(to: other)
+
+        XCTAssertEqual(other.constraints.count, 4)
+
+        expect(view, toMatch: other)
+
+    }
+
+    // MARK: - Helpers
+
+    private func expect(_ view: UIView, toMatch other: UIView) {
+        expect(.top, .leading, .bottom, .trailing, of: view, toMatch: other)
+    }
+
+    private func expect(_ attribute: NSLayoutAttribute,
+                        _ moreAttributes: NSLayoutAttribute...,
+                        of view: UIView,
+                        toMatch other: UIView) {
+
+        for attribute in [attribute] + moreAttributes {
+            XCTAssert(other.constraints.contains {
+                $0.firstItem === view
+                    && $0.secondItem === other
+                    && $0.firstAttribute == attribute
+                    && $0.secondAttribute == attribute
+            })
         }
     }
-    
 }
