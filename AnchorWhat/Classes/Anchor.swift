@@ -5,14 +5,22 @@ import UIKit
 
 public extension UIView {
 
-    func anchor(to other: UIView) {
+    func anchor() {
+        guard let superview = superview else {
+            assertionFailure("View has no superview")
+            return
+        }
+        anchor(to: superview)
+    }
+
+    func anchor(to container: UIView) {
         translatesAutoresizingMaskIntoConstraints = false
         if superview == nil {
-            other.addSubview(self)
+            container.addSubview(self)
         }
-        topAnchor.constraint(equalTo: other.topAnchor).isActive = true
-        leadingAnchor.constraint(equalTo: other.leadingAnchor).isActive = true
-        bottomAnchor.constraint(equalTo: other.bottomAnchor).isActive = true
-        trailingAnchor.constraint(equalTo: other.trailingAnchor).isActive = true
+        topAnchor.constraint(equalTo: container.topAnchor).isActive = true
+        leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive = true
+        bottomAnchor.constraint(equalTo: container.bottomAnchor).isActive = true
+        trailingAnchor.constraint(equalTo: container.trailingAnchor).isActive = true
     }
 }

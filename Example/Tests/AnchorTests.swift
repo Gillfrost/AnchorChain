@@ -40,7 +40,17 @@ class Tests: XCTestCase {
 
     // MARK: - Constraints
 
-    func testAnchorToView() {
+    func testAnchor() {
+        let view = UIView()
+        let superview = UIView()
+
+        superview.addSubview(view)
+        view.anchor()
+
+        expect(view, toMatch: superview)
+    }
+
+    func testAnchorToOther() {
         let view = UIView()
         let other = UIView()
         view.anchor(to: other)
@@ -48,27 +58,26 @@ class Tests: XCTestCase {
         XCTAssertEqual(other.constraints.count, 4)
 
         expect(view, toMatch: other)
-
     }
 
     // MARK: - Helpers
 
-    private func expect(_ view: UIView, toMatch other: UIView) {
+    private func expect(_ view: UIView, toMatch other: UIView, file: StaticString = #file, line: UInt = #line) {
         expect(.top, .leading, .bottom, .trailing, of: view, toMatch: other)
     }
 
     private func expect(_ attribute: NSLayoutAttribute,
                         _ moreAttributes: NSLayoutAttribute...,
                         of view: UIView,
-                        toMatch other: UIView) {
+                        toMatch other: UIView,
+                        file: StaticString = #file,
+                        line: UInt = #line) {
 
         for attribute in [attribute] + moreAttributes {
-            XCTAssert(other.constraints.contains {
-                $0.firstItem === view
-                    && $0.secondItem === other
-                    && $0.firstAttribute == attribute
-                    && $0.secondAttribute == attribute
-            })
+            XCTAssert(other.isAttribute(attribute, constrainedTo: view),
+                      "Attribute \(attribute) doesn't match",
+                      file: file,
+                      line: line)
         }
     }
 }
