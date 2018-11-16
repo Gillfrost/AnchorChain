@@ -60,10 +60,23 @@ class Tests: XCTestCase {
         expect(view, toMatch: other)
     }
 
+    func testAnchorTopToOther() {
+        let view = UIView()
+        let other = UIView()
+
+        view.anchor(.top, to: other)
+        
+        expect(.top, of: view, toMatch: other)
+    }
+
     // MARK: - Helpers
 
     private func expect(_ view: UIView, toMatch other: UIView, file: StaticString = #file, line: UInt = #line) {
-        expect(.top, .leading, .bottom, .trailing, of: view, toMatch: other)
+        expect(.top, .left, .bottom, .right,
+               of: view,
+               toMatch: other,
+               file: file,
+               line: line)
     }
 
     private func expect(_ attribute: NSLayoutAttribute,
@@ -73,7 +86,14 @@ class Tests: XCTestCase {
                         file: StaticString = #file,
                         line: UInt = #line) {
 
-        for attribute in [attribute] + moreAttributes {
+        let attributes = [attribute] + moreAttributes
+
+        XCTAssertEqual(other.constraints.count, attributes.count,
+                       "Unexpected number of constraints",
+                       file: file,
+                       line: line)
+
+        for attribute in attributes {
             XCTAssert(other.isAttribute(attribute, constrainedTo: view),
                       "Attribute \(attribute) doesn't match",
                       file: file,
