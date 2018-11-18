@@ -40,7 +40,16 @@ class Tests: XCTestCase {
 
     // MARK: - Constraints
 
-    func testAnchor() {
+    func testAnchorsDefaultToTopLeftBottomRight() {
+        let view = UIView()
+        let other = UIView()
+
+        view.anchor(to: other)
+
+        expect(.top, .left, .bottom, .right, of: view, toMatch: other)
+    }
+
+    func testTargetDefaultsToSuperview() {
         let view = UIView()
         let superview = UIView()
 
@@ -50,26 +59,48 @@ class Tests: XCTestCase {
         expect(view, toMatch: superview)
     }
 
-    func testAnchorToOther() {
-        let view = UIView()
-        let other = UIView()
-        view.anchor(to: other)
-
-        XCTAssertEqual(other.constraints.count, 4)
-
-        expect(view, toMatch: other)
+    func testAnchorTop() {
+        testAnchor(.top, constrainsAttribute: .top)
     }
 
-    func testAnchorTopToOther() {
-        let view = UIView()
-        let other = UIView()
+    func testAnchorLeft() {
+        testAnchor(.left, constrainsAttribute: .left)
+    }
 
-        view.anchor(.top, to: other)
-        
-        expect(.top, of: view, toMatch: other)
+    func testAnchorBottom() {
+        testAnchor(.bottom, constrainsAttribute: .bottom)
+    }
+
+    func testAnchorRight() {
+        testAnchor(.right, constrainsAttribute: .right)
+    }
+
+    func testAnchorLeading() {
+        testAnchor(.leading, constrainsAttribute: .leading)
+    }
+
+    func testAnchorTrailing() {
+        testAnchor(.trailing, constrainsAttribute: .trailing)
+    }
+
+    func testAnchorCenterX() {
+        testAnchor(.centerX, constrainsAttribute: .centerX)
+    }
+
+    func testAnchorCenterY() {
+        testAnchor(.centerY, constrainsAttribute: .centerY)
     }
 
     // MARK: - Helpers
+
+    private func testAnchor(_ anchor: UIView.Anchor, constrainsAttribute attribute: NSLayoutAttribute) {
+        let view = UIView()
+        let other = UIView()
+
+        view.anchor(anchor, to: other)
+
+        expect(attribute, of: view, toMatch: other)
+    }
 
     private func expect(_ view: UIView, toMatch other: UIView, file: StaticString = #file, line: UInt = #line) {
         expect(.top, .left, .bottom, .right,
