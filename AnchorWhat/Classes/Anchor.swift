@@ -20,18 +20,21 @@ public extension UIView {
     func anchor(_ anchors: Anchor..., to view: UIView) -> [NSLayoutConstraint] {
         return anchor(anchors, to: view)
     }
+}
 
-    private func anchor(_ anchors: [Anchor], to view: UIView) -> [NSLayoutConstraint] {
+private extension UIView {
+
+    func anchor(_ anchors: [Anchor], to view: UIView) -> [NSLayoutConstraint] {
         prepare(for: view)
         let anchors = anchors.isEmpty ? [.top, .left, .bottom, .right] : anchors
         let constraints = anchors.map { ($0, view) }.map(constraint)
-        
+
         NSLayoutConstraint.activate(constraints)
 
         return constraints
     }
 
-    private func prepare(for view: UIView) {
+    func prepare(for view: UIView) {
         if translatesAutoresizingMaskIntoConstraints {
             translatesAutoresizingMaskIntoConstraints = false
         }
@@ -40,7 +43,7 @@ public extension UIView {
         }
     }
 
-    private func constraint(for anchor: Anchor, to view: UIView) -> NSLayoutConstraint {
+    func constraint(for anchor: Anchor, to view: UIView) -> NSLayoutConstraint {
         switch anchor {
         case .top:
             return topAnchor.constraint(equalTo: view.topAnchor)
