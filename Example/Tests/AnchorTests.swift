@@ -38,7 +38,7 @@ class Tests: XCTestCase {
         XCTAssertFalse(view.translatesAutoresizingMaskIntoConstraints)
     }
 
-    // MARK: - Constraints
+    // MARK: - Default parameters
 
     func testAnchorsDefaultToTopLeftBottomRight() {
         let view = UIView()
@@ -59,47 +59,21 @@ class Tests: XCTestCase {
         expect(view, toMatch: superview)
     }
 
-    func testAnchorTop() {
-        testAnchor(.top, constrainsAttribute: .top)
-    }
+    // MARK: - Separate anchors
 
-    func testAnchorLeft() {
-        testAnchor(.left, constrainsAttribute: .left)
-    }
-
-    func testAnchorBottom() {
-        testAnchor(.bottom, constrainsAttribute: .bottom)
-    }
-
-    func testAnchorRight() {
-        testAnchor(.right, constrainsAttribute: .right)
-    }
-
-    func testAnchorLeading() {
-        testAnchor(.leading, constrainsAttribute: .leading)
-    }
-
-    func testAnchorTrailing() {
-        testAnchor(.trailing, constrainsAttribute: .trailing)
-    }
-
-    func testAnchorCenterX() {
-        testAnchor(.centerX, constrainsAttribute: .centerX)
-    }
-
-    func testAnchorCenterY() {
-        testAnchor(.centerY, constrainsAttribute: .centerY)
+    func testSeparateAnchors() {
+        UIView.Anchor.allCases.forEach { testAnchor($0) }
     }
 
     // MARK: - Helpers
 
-    private func testAnchor(_ anchor: UIView.Anchor, constrainsAttribute attribute: NSLayoutAttribute) {
+    private func testAnchor(_ anchor: UIView.Anchor, file: StaticString = #file, line: UInt = #line) {
         let view = UIView()
         let other = UIView()
 
         view.anchor(anchor, to: other)
 
-        expect(attribute, of: view, toMatch: other)
+        expect(anchor.layoutAttribute, of: view, toMatch: other, file: file, line: line)
     }
 
     private func expect(_ view: UIView, toMatch other: UIView, file: StaticString = #file, line: UInt = #line) {

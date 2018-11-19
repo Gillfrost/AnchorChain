@@ -5,7 +5,7 @@ import UIKit
 
 public extension UIView {
 
-    enum Anchor { case top, left, bottom, right, leading, trailing, centerX, centerY }
+    enum Anchor: CaseIterable { case top, left, bottom, right, leading, trailing, centerX, centerY }
 
     @discardableResult
     func anchor(_ anchors: Anchor...) -> [NSLayoutConstraint] {

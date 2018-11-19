@@ -43,3 +43,19 @@ extension NSLayoutAttribute: CustomStringConvertible {
         }
     }
 }
+
+extension UIView.Anchor {
+
+    var layoutAttribute: NSLayoutAttribute {
+        switch self {
+        case .top: return .top
+        case .left: return .left
+        case .bottom: return .bottom
+        case .right: return .right
+        case .leading: return .leading
+        case .trailing: return .trailing
+        case .centerX: return .centerX
+        case .centerY: return .centerY
+        }
+    }
+}
