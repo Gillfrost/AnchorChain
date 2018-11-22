@@ -72,12 +72,28 @@ class Tests: XCTestCase {
         }
     }
 
-    // MARK: - Different directional anchors
+    // MARK: - Horizontal anchors
 
-    func testAnchorAllCombinationsOfHorizontalAnchors() {
+    func testAnchorAllCombinationsOfXAnchors() {
 
-        let validCombinations = [UIView.XAnchor.left, .right, .centerX].allCombinations +
-            [.leading, .trailing, .centerX].allCombinations
+        let validCombinations = [UIView.XAnchor.left, .right, .centerX].allCombinations
+
+        validCombinations.forEach { anchor, otherAnchor in
+
+            let view = UIView()
+            let otherView = UIView()
+            let superview = UIView()
+            [view, otherView].forEach(superview.addSubview)
+
+            view.anchor(anchor, to: otherAnchor, of: otherView)
+
+            expect(anchor.layoutAttribute, of: view, toMatch: otherAnchor.layoutAttribute, of: otherView)
+        }
+    }
+
+    func testAnchorAllCombinationsOfDirectionalXAnchors() {
+
+        let validCombinations = [UIView.DirectionalXAnchor.leading, .trailing, .centerX].allCombinations
 
         validCombinations.forEach { anchor, otherAnchor in
 

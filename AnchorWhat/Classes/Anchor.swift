@@ -6,7 +6,8 @@ import UIKit
 public extension UIView {
 
     enum Anchor: CaseIterable { case top, left, bottom, right, leading, trailing, centerX, centerY }
-    enum XAnchor: CaseIterable { case left, right, leading, trailing, centerX }
+    enum XAnchor: CaseIterable { case left, right, centerX }
+    enum DirectionalXAnchor: CaseIterable { case leading, trailing, centerX }
 
     @discardableResult
     func anchor(_ anchors: Anchor...) -> [NSLayoutConstraint] {
@@ -29,6 +30,16 @@ public extension UIView {
 
         constraint.isActive = true
         
+        return constraint
+    }
+
+    @discardableResult
+    func anchor(_ anchor: DirectionalXAnchor, to otherAnchor: DirectionalXAnchor, of otherView: UIView) -> NSLayoutConstraint {
+        disableAutoresizing()
+        let constraint = self.anchor(for: anchor).constraint(equalTo: otherView.anchor(for: otherAnchor))
+
+        constraint.isActive = true
+
         return constraint
     }
 }
@@ -85,6 +96,13 @@ private extension UIView {
             return leftAnchor
         case .right:
             return rightAnchor
+        case .centerX:
+            return centerXAnchor
+        }
+    }
+
+    func anchor(for anchor: DirectionalXAnchor) -> NSLayoutXAxisAnchor {
+        switch anchor {
         case .leading:
             return leadingAnchor
         case .trailing:

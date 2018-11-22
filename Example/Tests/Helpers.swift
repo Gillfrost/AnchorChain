@@ -80,6 +80,15 @@ extension UIView.XAnchor {
         switch self {
         case .left: return .left
         case .right: return .right
+        case .centerX: return .centerX
+        }
+    }
+}
+
+extension UIView.DirectionalXAnchor {
+
+    var layoutAttribute: NSLayoutAttribute {
+        switch self {
         case .leading: return .leading
         case .trailing: return .trailing
         case .centerX: return .centerX
