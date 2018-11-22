@@ -62,17 +62,13 @@ class Tests: XCTestCase {
     // MARK: - Separate anchors
 
     func testSeparateAnchors() {
-        UIView.Anchor.allCases.forEach { testAnchor($0) }
-    }
+        UIView.Anchor.allCases.forEach { anchor in
+            let view = UIView()
+            let other = UIView()
 
-    // MARK: - Helpers
+            view.anchor(anchor, to: other)
 
-    private func testAnchor(_ anchor: UIView.Anchor, file: StaticString = #file, line: UInt = #line) {
-        let view = UIView()
-        let other = UIView()
-
-        view.anchor(anchor, to: other)
-
-        expect(anchor.layoutAttribute, of: view, toMatch: other, file: file, line: line)
+            expect(anchor.layoutAttribute, of: view, toMatch: other)
+        }
     }
 }
