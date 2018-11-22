@@ -75,34 +75,4 @@ class Tests: XCTestCase {
 
         expect(anchor.layoutAttribute, of: view, toMatch: other, file: file, line: line)
     }
-
-    private func expect(_ view: UIView, toMatch other: UIView, file: StaticString = #file, line: UInt = #line) {
-        expect(.top, .left, .bottom, .right,
-               of: view,
-               toMatch: other,
-               file: file,
-               line: line)
-    }
-
-    private func expect(_ attribute: NSLayoutAttribute,
-                        _ moreAttributes: NSLayoutAttribute...,
-                        of view: UIView,
-                        toMatch other: UIView,
-                        file: StaticString = #file,
-                        line: UInt = #line) {
-
-        let attributes = [attribute] + moreAttributes
-
-        XCTAssertEqual(other.constraints.count, attributes.count,
-                       "Unexpected number of constraints",
-                       file: file,
-                       line: line)
-
-        for attribute in attributes {
-            XCTAssert(other.isAttribute(attribute, constrainedTo: view),
-                      "Attribute \(attribute) doesn't match",
-                      file: file,
-                      line: line)
-        }
-    }
 }
