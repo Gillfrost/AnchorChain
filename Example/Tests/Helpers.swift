@@ -74,6 +74,19 @@ extension UIView.Anchor {
     }
 }
 
+extension UIView.XAnchor {
+
+    var layoutAttribute: NSLayoutAttribute {
+        switch self {
+        case .left: return .left
+        case .right: return .right
+        case .leading: return .leading
+        case .trailing: return .trailing
+        case .centerX: return .centerX
+        }
+    }
+}
+
 func expect(_ view: UIView, toMatch other: UIView, file: StaticString = #file, line: UInt = #line) {
     expect(.top, .left, .bottom, .right,
            of: view,

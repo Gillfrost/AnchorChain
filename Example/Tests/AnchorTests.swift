@@ -74,14 +74,31 @@ class Tests: XCTestCase {
 
     // MARK: - Different directional anchors
 
-    func testAnchorLeadingToTrailingOfOtherView() {
-        let view = UIView()
-        let other = UIView()
-        let superview = UIView()
-        [view, other].forEach(superview.addSubview)
+    func testAnchorAllCombinationsOfHorizontalAnchors() {
 
-        view.anchor(.leading, to: .trailing, of: other)
+        let validCombinations = [UIView.XAnchor.left, .right, .centerX].allCombinations +
+            [.leading, .trailing, .centerX].allCombinations
 
-        expect(.leading, of: view, toMatch: .trailing, of: other)
+        validCombinations.forEach { anchor, otherAnchor in
+
+            let view = UIView()
+            let otherView = UIView()
+            let superview = UIView()
+            [view, otherView].forEach(superview.addSubview)
+
+            view.anchor(anchor, to: otherAnchor, of: otherView)
+
+            expect(anchor.layoutAttribute, of: view, toMatch: otherAnchor.layoutAttribute, of: otherView)
+        }
+    }
+}
+
+extension Collection {
+
+    var allCombinations: [(Element, Element)] {
+
+        return flatMap { element in
+            map { (element, $0) }
+        }
     }
 }
