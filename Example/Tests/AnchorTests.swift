@@ -71,4 +71,17 @@ class Tests: XCTestCase {
             expect(anchor.layoutAttribute, of: view, toMatch: other)
         }
     }
+
+    // MARK: - Different directional anchors
+
+    func testAnchorLeadingToTrailingOfOtherView() {
+        let view = UIView()
+        let other = UIView()
+        let superview = UIView()
+        [view, other].forEach(superview.addSubview)
+
+        view.anchor(.leading, to: .trailing, of: other)
+
+        expect(.leading, of: view, toMatch: .trailing, of: other)
+    }
 }

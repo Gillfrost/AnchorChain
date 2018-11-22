@@ -9,9 +9,22 @@ extension UIView {
     func isAttribute(_ attribute: NSLayoutAttribute, constrainedTo view: UIView) -> Bool {
         return constraints.contains {
             $0.firstItem === view
-                && $0.secondItem === self
                 && $0.firstAttribute == attribute
+                && $0.secondItem === self
                 && $0.secondAttribute == attribute
+        }
+    }
+
+    func isAttribute(_ attribute: NSLayoutAttribute,
+                     of view: UIView,
+                     constrainedTo otherAttribute: NSLayoutAttribute,
+                     of otherView: UIView) -> Bool {
+
+        return constraints.contains {
+            $0.firstItem === view
+                && $0.firstAttribute == attribute
+                && $0.secondItem === otherView
+                && $0.secondAttribute == otherAttribute
         }
     }
 }
@@ -86,7 +99,25 @@ func expect(_ attribute: NSLayoutAttribute,
     for attribute in attributes {
         XCTAssert(other.isAttribute(attribute, constrainedTo: view),
                   "Attribute \(attribute) doesn't match",
-            file: file,
-            line: line)
+                  file: file,
+                  line: line)
     }
+}
+
+func expect(_ attribute: NSLayoutAttribute,
+            of view: UIView,
+            toMatch otherAttribute: NSLayoutAttribute,
+            of otherView: UIView,
+            file: StaticString = #file,
+            line: UInt = #line) {
+
+    guard let superview = view.superview, otherView.superview == superview else {
+        XCTFail("Views do not share superview")
+        return
+    }
+
+    XCTAssert(superview.isAttribute(attribute, of: view, constrainedTo: otherAttribute, of: otherView),
+              "Attribute \(attribute) is not constrained to \(otherAttribute)",
+              file: file,
+              line: line)
 }
