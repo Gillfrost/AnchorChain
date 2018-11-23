@@ -76,7 +76,7 @@ class Tests: XCTestCase {
 
     func testAnchorAllCombinationsOfXAnchors() {
 
-        let validCombinations = [UIView.XAnchor.left, .right, .centerX].allCombinations
+        let validCombinations = UIView.XAnchor.allCases.allCombinations
 
         validCombinations.forEach { anchor, otherAnchor in
 
@@ -93,7 +93,7 @@ class Tests: XCTestCase {
 
     func testAnchorAllCombinationsOfDirectionalXAnchors() {
 
-        let validCombinations = [UIView.DirectionalXAnchor.leading, .trailing, .centerX].allCombinations
+        let validCombinations = UIView.DirectionalXAnchor.allCases.allCombinations
 
         validCombinations.forEach { anchor, otherAnchor in
 
@@ -105,16 +105,6 @@ class Tests: XCTestCase {
             view.anchor(anchor, to: otherAnchor, of: otherView)
 
             expect(anchor.layoutAttribute, of: view, toMatch: otherAnchor.layoutAttribute, of: otherView)
-        }
-    }
-}
-
-extension Collection {
-
-    var allCombinations: [(Element, Element)] {
-
-        return flatMap { element in
-            map { (element, $0) }
         }
     }
 }

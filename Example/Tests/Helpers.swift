@@ -96,7 +96,18 @@ extension UIView.DirectionalXAnchor {
     }
 }
 
+extension Collection {
+
+    var allCombinations: [(Element, Element)] {
+
+        return flatMap { element in
+            map { (element, $0) }
+        }
+    }
+}
+
 func expect(_ view: UIView, toMatch other: UIView, file: StaticString = #file, line: UInt = #line) {
+
     expect(.top, .left, .bottom, .right,
            of: view,
            toMatch: other,
