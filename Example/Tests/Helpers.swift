@@ -9,9 +9,22 @@ extension UIView {
     func isAttribute(_ attribute: NSLayoutAttribute, constrainedTo view: UIView) -> Bool {
         return constraints.contains {
             $0.firstItem === view
-                && $0.secondItem === self
                 && $0.firstAttribute == attribute
+                && $0.secondItem === self
                 && $0.secondAttribute == attribute
+        }
+    }
+
+    func isAttribute(_ attribute: NSLayoutAttribute,
+                     of view: UIView,
+                     constrainedTo otherAttribute: NSLayoutAttribute,
+                     of otherView: UIView) -> Bool {
+
+        return constraints.contains {
+            $0.firstItem === view
+                && $0.firstAttribute == attribute
+                && $0.secondItem === otherView
+                && $0.secondAttribute == otherAttribute
         }
     }
 }
@@ -61,7 +74,51 @@ extension UIView.Anchor {
     }
 }
 
+extension UIView.YAnchor {
+
+    var layoutAttribute: NSLayoutAttribute {
+        switch self {
+        case .top: return .top
+        case .bottom: return .bottom
+        case .centerY: return .centerY
+        }
+    }
+}
+
+extension UIView.XAnchor {
+
+    var layoutAttribute: NSLayoutAttribute {
+        switch self {
+        case .left: return .left
+        case .right: return .right
+        case .centerX: return .centerX
+        }
+    }
+}
+
+extension UIView.DirectionalXAnchor {
+
+    var layoutAttribute: NSLayoutAttribute {
+        switch self {
+        case .leading: return .leading
+        case .trailing: return .trailing
+        case .centerX: return .centerX
+        }
+    }
+}
+
+extension Collection {
+
+    var allCombinations: [(Element, Element)] {
+
+        return flatMap { element in
+            map { (element, $0) }
+        }
+    }
+}
+
 func expect(_ view: UIView, toMatch other: UIView, file: StaticString = #file, line: UInt = #line) {
+
     expect(.top, .left, .bottom, .right,
            of: view,
            toMatch: other,
@@ -86,7 +143,25 @@ func expect(_ attribute: NSLayoutAttribute,
     for attribute in attributes {
         XCTAssert(other.isAttribute(attribute, constrainedTo: view),
                   "Attribute \(attribute) doesn't match",
-            file: file,
-            line: line)
+                  file: file,
+                  line: line)
     }
+}
+
+func expect(_ attribute: NSLayoutAttribute,
+            of view: UIView,
+            toMatch otherAttribute: NSLayoutAttribute,
+            of otherView: UIView,
+            file: StaticString = #file,
+            line: UInt = #line) {
+
+    guard let superview = view.superview, otherView.superview == superview else {
+        XCTFail("Views do not share superview")
+        return
+    }
+
+    XCTAssert(superview.isAttribute(attribute, of: view, constrainedTo: otherAttribute, of: otherView),
+              "Attribute \(attribute) is not constrained to \(otherAttribute)",
+              file: file,
+              line: line)
 }

@@ -62,17 +62,68 @@ class Tests: XCTestCase {
     // MARK: - Separate anchors
 
     func testSeparateAnchors() {
-        UIView.Anchor.allCases.forEach { testAnchor($0) }
+        UIView.Anchor.allCases.forEach { anchor in
+            let view = UIView()
+            let other = UIView()
+
+            view.anchor(anchor, to: other)
+
+            expect(anchor.layoutAttribute, of: view, toMatch: other)
+        }
     }
 
-    // MARK: - Helpers
+    // MARK: - Vertical anchors
 
-    private func testAnchor(_ anchor: UIView.Anchor, file: StaticString = #file, line: UInt = #line) {
-        let view = UIView()
-        let other = UIView()
+    func testAnchorAllCombinationsOfVerticalAnchors() {
 
-        view.anchor(anchor, to: other)
+        let combinations = UIView.YAnchor.allCases.allCombinations
 
-        expect(anchor.layoutAttribute, of: view, toMatch: other, file: file, line: line)
+        combinations.forEach { anchor, otherAnchor in
+
+            let view = UIView()
+            let otherView = UIView()
+            let superview = UIView()
+            [view, otherView].forEach(superview.addSubview)
+
+            view.anchor(anchor, to: otherAnchor, of: otherView)
+
+            expect(anchor.layoutAttribute, of: view, toMatch: otherAnchor.layoutAttribute, of: otherView)
+        }
+    }
+
+    // MARK: - Horizontal anchors
+
+    func testAnchorAllCombinationsOfHorizontalAnchors() {
+
+        let combinations = UIView.XAnchor.allCases.allCombinations
+
+        combinations.forEach { anchor, otherAnchor in
+
+            let view = UIView()
+            let otherView = UIView()
+            let superview = UIView()
+            [view, otherView].forEach(superview.addSubview)
+
+            view.anchor(anchor, to: otherAnchor, of: otherView)
+
+            expect(anchor.layoutAttribute, of: view, toMatch: otherAnchor.layoutAttribute, of: otherView)
+        }
+    }
+
+    func testAnchorAllCombinationsOfDirectionalHorizontalAnchors() {
+
+        let combinations = UIView.DirectionalXAnchor.allCases.allCombinations
+
+        combinations.forEach { anchor, otherAnchor in
+
+            let view = UIView()
+            let otherView = UIView()
+            let superview = UIView()
+            [view, otherView].forEach(superview.addSubview)
+
+            view.anchor(anchor, to: otherAnchor, of: otherView)
+
+            expect(anchor.layoutAttribute, of: view, toMatch: otherAnchor.layoutAttribute, of: otherView)
+        }
     }
 }
