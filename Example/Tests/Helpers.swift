@@ -74,6 +74,17 @@ extension UIView.Anchor {
     }
 }
 
+extension UIView.YAnchor {
+
+    var layoutAttribute: NSLayoutAttribute {
+        switch self {
+        case .top: return .top
+        case .bottom: return .bottom
+        case .centerY: return .centerY
+        }
+    }
+}
+
 extension UIView.XAnchor {
 
     var layoutAttribute: NSLayoutAttribute {

@@ -72,13 +72,13 @@ class Tests: XCTestCase {
         }
     }
 
-    // MARK: - Horizontal anchors
+    // MARK: - Vertical anchors
 
-    func testAnchorAllCombinationsOfXAnchors() {
+    func testAnchorAllCombinationsOfVerticalAnchors() {
 
-        let validCombinations = UIView.XAnchor.allCases.allCombinations
+        let combinations = UIView.YAnchor.allCases.allCombinations
 
-        validCombinations.forEach { anchor, otherAnchor in
+        combinations.forEach { anchor, otherAnchor in
 
             let view = UIView()
             let otherView = UIView()
@@ -91,11 +91,30 @@ class Tests: XCTestCase {
         }
     }
 
-    func testAnchorAllCombinationsOfDirectionalXAnchors() {
+    // MARK: - Horizontal anchors
 
-        let validCombinations = UIView.DirectionalXAnchor.allCases.allCombinations
+    func testAnchorAllCombinationsOfHorizontalAnchors() {
 
-        validCombinations.forEach { anchor, otherAnchor in
+        let combinations = UIView.XAnchor.allCases.allCombinations
+
+        combinations.forEach { anchor, otherAnchor in
+
+            let view = UIView()
+            let otherView = UIView()
+            let superview = UIView()
+            [view, otherView].forEach(superview.addSubview)
+
+            view.anchor(anchor, to: otherAnchor, of: otherView)
+
+            expect(anchor.layoutAttribute, of: view, toMatch: otherAnchor.layoutAttribute, of: otherView)
+        }
+    }
+
+    func testAnchorAllCombinationsOfDirectionalHorizontalAnchors() {
+
+        let combinations = UIView.DirectionalXAnchor.allCases.allCombinations
+
+        combinations.forEach { anchor, otherAnchor in
 
             let view = UIView()
             let otherView = UIView()
