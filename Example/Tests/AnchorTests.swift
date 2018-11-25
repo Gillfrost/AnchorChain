@@ -4,7 +4,7 @@
 import XCTest
 import AnchorWhat
 
-class Tests: XCTestCase {
+class AnchorTests: XCTestCase {
 
     // MARK: - Automatic subview adding
 

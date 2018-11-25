@@ -70,6 +70,8 @@ extension UIView.Anchor {
         case .trailing: return .trailing
         case .centerX: return .centerX
         case .centerY: return .centerY
+        case .width: return .width
+        case .height: return .height
         }
     }
 }

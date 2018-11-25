@@ -5,7 +5,7 @@ import UIKit
 
 public extension UIView {
 
-    enum Anchor: CaseIterable { case top, left, bottom, right, leading, trailing, centerX, centerY }
+    enum Anchor: CaseIterable { case top, left, bottom, right, leading, trailing, centerX, centerY, width, height }
     enum YAnchor: CaseIterable { case top, bottom, centerY }
     enum XAnchor: CaseIterable { case left, right, centerX }
     enum DirectionalXAnchor: CaseIterable { case leading, trailing, centerX }
@@ -98,6 +98,10 @@ private extension UIView {
             return centerXAnchor.constraint(equalTo: view.centerXAnchor)
         case .centerY:
             return centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        case .width:
+            return widthAnchor.constraint(equalTo: view.widthAnchor)
+        case .height:
+            return heightAnchor.constraint(equalTo: view.heightAnchor)
         }
     }
 
