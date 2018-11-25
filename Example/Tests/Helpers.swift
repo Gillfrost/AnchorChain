@@ -27,6 +27,24 @@ extension UIView {
                 && $0.secondAttribute == otherAttribute
         }
     }
+
+    func isAttribute(_ attribute: NSLayoutAttribute, equalTo constant: CGFloat) -> Bool {
+        return constraints.contains {
+            $0.firstItem === self
+                && $0.firstAttribute == attribute
+                && $0.secondItem == nil
+                && $0.secondAttribute == .notAnAttribute
+        }
+    }
+
+    func isAttribute(_ attribute: NSLayoutAttribute, constrainedTo otherAttribute: NSLayoutAttribute) -> Bool {
+        return constraints.contains {
+            $0.firstItem === self
+                && $0.firstAttribute == attribute
+                && $0.secondItem === self
+                && $0.secondAttribute == otherAttribute
+        }
+    }
 }
 
 extension NSLayoutAttribute: CustomStringConvertible {
@@ -70,6 +88,8 @@ extension UIView.Anchor {
         case .trailing: return .trailing
         case .centerX: return .centerX
         case .centerY: return .centerY
+        case .width: return .width
+        case .height: return .height
         }
     }
 }
@@ -156,12 +176,36 @@ func expect(_ attribute: NSLayoutAttribute,
             line: UInt = #line) {
 
     guard let superview = view.superview, otherView.superview == superview else {
-        XCTFail("Views do not share superview")
+        XCTFail("Views do not share superview", file: file, line: line)
         return
     }
 
     XCTAssert(superview.isAttribute(attribute, of: view, constrainedTo: otherAttribute, of: otherView),
               "Attribute \(attribute) is not constrained to \(otherAttribute)",
+              file: file,
+              line: line)
+}
+
+func expect(_ attribute: NSLayoutAttribute,
+            of view: UIView,
+            toMatch constant: CGFloat,
+            file: StaticString = #file,
+            line: UInt = #line) {
+
+    XCTAssert(view.isAttribute(attribute, equalTo: constant),
+              "Attribute \(attribute) not equal to \(constant)",
+              file: file,
+              line: line)
+}
+
+func expect(_ attribute: NSLayoutAttribute,
+            toMatch otherAttribute: NSLayoutAttribute,
+            of view: UIView,
+            file: StaticString = #file,
+            line: UInt = #line) {
+
+    XCTAssert(view.isAttribute(attribute, constrainedTo: otherAttribute),
+              "Attribute \(attribute) not constrained to \(otherAttribute)",
               file: file,
               line: line)
 }
