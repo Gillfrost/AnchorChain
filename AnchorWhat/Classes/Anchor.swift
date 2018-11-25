@@ -5,10 +5,23 @@ import UIKit
 
 public extension UIView {
 
+    enum DimensionalAnchor { case width, height, size }
     enum Anchor: CaseIterable { case top, left, bottom, right, leading, trailing, centerX, centerY, width, height }
     enum YAnchor: CaseIterable { case top, bottom, centerY }
     enum XAnchor: CaseIterable { case left, right, centerX }
     enum DirectionalXAnchor: CaseIterable { case leading, trailing, centerX }
+
+    @discardableResult
+    func anchor(_ anchor: DimensionalAnchor, to constant: CGFloat) -> NSLayoutConstraint {
+        if anchor == .size {
+            widthAnchor.constraint(equalTo: heightAnchor).isActive = true
+        }
+        let constraint = self.anchor(for: anchor).constraint(equalToConstant: constant)
+
+        constraint.isActive = true
+
+        return constraint
+    }
 
     @discardableResult
     func anchor(_ anchors: Anchor...) -> [NSLayoutConstraint] {
@@ -56,6 +69,15 @@ public extension UIView {
 }
 
 private extension UIView {
+
+    func anchor(for anchor: DimensionalAnchor) -> NSLayoutDimension {
+        switch anchor {
+        case .width, .size:
+            return widthAnchor
+        case .height:
+            return heightAnchor
+        }
+    }
 
     func anchor(_ anchors: [Anchor], to view: UIView) -> [NSLayoutConstraint] {
         prepare(for: view)

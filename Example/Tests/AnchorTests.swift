@@ -126,4 +126,34 @@ class AnchorTests: XCTestCase {
             expect(anchor.layoutAttribute, of: view, toMatch: otherAnchor.layoutAttribute, of: otherView)
         }
     }
+
+    // MARK: - Inner anchors
+
+    func testAnchorWidthToConstant() {
+        let constant: CGFloat = 123
+        let view = UIView()
+
+        view.anchor(.width, to: constant)
+
+        expect(.width, of: view, toMatch: constant)
+    }
+
+    func testAnchorHeightToConstant() {
+        let constant: CGFloat = 312
+        let view = UIView()
+
+        view.anchor(.height, to: constant)
+
+        expect(.height, of: view, toMatch: constant)
+    }
+
+    func testAnchorSizeAnchorsWidthToHeight() {
+        let constant: CGFloat = 231
+        let view = UIView()
+
+        view.anchor(.size, to: constant)
+
+        expect(.width, of: view, toMatch: constant)
+        expect(.width, toMatch: .height, of: view)
+    }
 }
