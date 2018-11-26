@@ -16,6 +16,7 @@
 		9EC7A7E3AF00CDED3B6B34BC158637A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
 		A27DF66E18DB06F58855FB9675530DB2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
 		E094E6B7219AA58B00B29AF5 /* Anchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E094E6B6219AA58B00B29AF5 /* Anchor.swift */; };
+		E0B36A6521ABC255008F0D00 /* Anchored.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B36A6421ABC255008F0D00 /* Anchored.swift */; };
 		E18F919DAEBCDB8E5F9368B56BF45930 /* Pods-AnchorWhat_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D7A7F3280189DCACD67C6EA71F911E7 /* Pods-AnchorWhat_Tests-dummy.m */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,7 @@
 		D82EF4DAF26D864C600FC42F0F6E5F66 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC03341ACC703EC12DC17EDCDF5672F7 /* Pods_AnchorWhat_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnchorWhat_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E094E6B6219AA58B00B29AF5 /* Anchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Anchor.swift; path = AnchorWhat/Classes/Anchor.swift; sourceTree = "<group>"; };
+		E0B36A6421ABC255008F0D00 /* Anchored.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Anchored.swift; path = AnchorWhat/Classes/Anchored.swift; sourceTree = "<group>"; };
 		F0D217FAA3493CE64F881B54E58ED5C9 /* Pods-AnchorWhat_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AnchorWhat_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		F408B62A8D5890B00CAC49114F675B44 /* AnchorWhat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AnchorWhat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F65FC685318D3973ECF0E47294DE6979 /* AnchorWhat.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AnchorWhat.xcconfig; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				6F93A1136ACD226E39D87DC099FA9182 /* Pod */,
 				8F5874516FC8E0578A309BF6794408C3 /* Support Files */,
 				E094E6B6219AA58B00B29AF5 /* Anchor.swift */,
+				E0B36A6421ABC255008F0D00 /* Anchored.swift */,
 			);
 			name = AnchorWhat;
 			path = ../..;
@@ -364,6 +367,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0B36A6521ABC255008F0D00 /* Anchored.swift in Sources */,
 				E094E6B7219AA58B00B29AF5 /* Anchor.swift in Sources */,
 				238BD555DB5F0214272CC97DB8B517F2 /* AnchorWhat-dummy.m in Sources */,
 			);

@@ -25,11 +25,7 @@ public extension UIView {
 
     @discardableResult
     func anchor(_ anchors: Anchor...) -> [NSLayoutConstraint] {
-        guard let superview = superview else {
-            assertionFailure("View has no superview")
-            return []
-        }
-        return anchor(anchors, to: superview)
+        return anchor(anchors)
     }
 
     @discardableResult
@@ -68,7 +64,7 @@ public extension UIView {
     }
 }
 
-private extension UIView {
+extension UIView {
 
     func anchor(for anchor: DimensionalAnchor) -> NSLayoutDimension {
         switch anchor {
@@ -77,6 +73,14 @@ private extension UIView {
         case .height:
             return heightAnchor
         }
+    }
+
+    func anchor(_ anchors: [Anchor]) -> [NSLayoutConstraint] {
+        guard let superview = superview else {
+            assertionFailure("View has no superview")
+            return []
+        }
+        return anchor(anchors, to: superview)
     }
 
     func anchor(_ anchors: [Anchor], to view: UIView) -> [NSLayoutConstraint] {

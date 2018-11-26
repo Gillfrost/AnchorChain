@@ -16,6 +16,7 @@
 		607FACEC1AFB9204008FA782 /* AnchorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* AnchorTests.swift */; };
 		72405471430861633F4B4E67 /* Pods_AnchorWhat_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 637D00A6B76D17097A668C67 /* Pods_AnchorWhat_Tests.framework */; };
 		E064E273219E10D60050D8E1 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E064E271219E10720050D8E1 /* Helpers.swift */; };
+		E0B36A6321ABC19C008F0D00 /* AnchoredTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B36A6221ABC19C008F0D00 /* AnchoredTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		6D22D6759406D8D0630AAB74 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		AD6A639EF4CBBFA91CDF7849 /* Pods-AnchorWhat_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnchorWhat_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnchorWhat_Example/Pods-AnchorWhat_Example.release.xcconfig"; sourceTree = "<group>"; };
 		E064E271219E10720050D8E1 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		E0B36A6221ABC19C008F0D00 /* AnchoredTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchoredTests.swift; sourceTree = "<group>"; };
 		EB69357F4BDB69AC9E688DA4 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		F1111068646E752720B947FD /* Pods-AnchorWhat_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnchorWhat_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnchorWhat_Example/Pods-AnchorWhat_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		FA8624C1676AACC5BD1E5069 /* Pods-AnchorWhat_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnchorWhat_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnchorWhat_Tests/Pods-AnchorWhat_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACEB1AFB9204008FA782 /* AnchorTests.swift */,
+				E0B36A6221ABC19C008F0D00 /* AnchoredTests.swift */,
 				E064E271219E10720050D8E1 /* Helpers.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
@@ -348,6 +351,7 @@
 			files = (
 				607FACEC1AFB9204008FA782 /* AnchorTests.swift in Sources */,
 				E064E273219E10D60050D8E1 /* Helpers.swift in Sources */,
+				E0B36A6321ABC19C008F0D00 /* AnchoredTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
