@@ -2,7 +2,7 @@
 //  Licensed under the MIT license
 
 import XCTest
-import AnchorWhat
+import AnchorChain
 
 class AnchoredTests: XCTestCase {
 
