@@ -1,0 +1,6 @@
+framework module AnchorChain {
+  umbrella header "AnchorChain-umbrella.h"
+
+  export *
+  module * { export * }
+}

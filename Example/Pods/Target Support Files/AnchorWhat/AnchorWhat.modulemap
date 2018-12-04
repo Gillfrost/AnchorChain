@@ -1,6 +1,0 @@
-framework module AnchorWhat {
-  umbrella header "AnchorWhat-umbrella.h"
-
-  export *
-  module * { export * }
-}
