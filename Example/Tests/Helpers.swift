@@ -47,6 +47,17 @@ extension UIView {
     }
 }
 
+extension NSLayoutRelation: CustomStringConvertible {
+
+    public var description: String {
+        switch self {
+        case .equal: return "equal"
+        case .greaterThanOrEqual: return "greaterThanOrEqual"
+        case .lessThanOrEqual: return "lessThanOrEqual"
+        }
+    }
+}
+
 extension NSLayoutAttribute: CustomStringConvertible {
 
     public var description: String {
@@ -135,6 +146,14 @@ extension Collection {
             map { (element, $0) }
         }
     }
+}
+
+func siblings(file: StaticString = #file, line: UInt = #line, block: (UIView, UIView) -> Void) {
+    let superview = UIView()
+    let one = UIView()
+    let two = UIView()
+    [one, two].forEach(superview.addSubview)
+    block(one, two)
 }
 
 func expect(_ view: UIView, toMatch other: UIView, file: StaticString = #file, line: UInt = #line) {

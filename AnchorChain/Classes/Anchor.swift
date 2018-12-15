@@ -34,9 +34,9 @@ public extension UIView {
     }
 
     @discardableResult
-    func anchor(_ anchor: XAnchor, to otherAnchor: XAnchor, of otherView: UIView) -> NSLayoutConstraint {
+    func anchor(_ anchor: XAnchor, _ relation: NSLayoutRelation = .equal, to otherAnchor: XAnchor, of otherView: UIView) -> NSLayoutConstraint {
         disableAutoresizing()
-        let constraint = self.anchor(for: anchor).constraint(equalTo: otherView.anchor(for: otherAnchor))
+        let constraint = self.anchor(for: anchor).constraint(with: relation, to: otherView.anchor(for: otherAnchor))
 
         constraint.isActive = true
 
@@ -44,9 +44,9 @@ public extension UIView {
     }
 
     @discardableResult
-    func anchor(_ anchor: YAnchor, to otherAnchor: YAnchor, of otherView: UIView) -> NSLayoutConstraint {
+    func anchor(_ anchor: YAnchor, _ relation: NSLayoutRelation = .equal, to otherAnchor: YAnchor, of otherView: UIView) -> NSLayoutConstraint {
         disableAutoresizing()
-        let constraint = self.anchor(for: anchor).constraint(equalTo: otherView.anchor(for: otherAnchor))
+        let constraint = self.anchor(for: anchor).constraint(with: relation, to: otherView.anchor(for: otherAnchor))
 
         constraint.isActive = true
         
@@ -54,9 +54,9 @@ public extension UIView {
     }
 
     @discardableResult
-    func anchor(_ anchor: DirectionalXAnchor, to otherAnchor: DirectionalXAnchor, of otherView: UIView) -> NSLayoutConstraint {
+    func anchor(_ anchor: DirectionalXAnchor, _ relation: NSLayoutRelation = .equal, to otherAnchor: DirectionalXAnchor, of otherView: UIView) -> NSLayoutConstraint {
         disableAutoresizing()
-        let constraint = self.anchor(for: anchor).constraint(equalTo: otherView.anchor(for: otherAnchor))
+        let constraint = self.anchor(for: anchor).constraint(with: relation, to: otherView.anchor(for: otherAnchor))
 
         constraint.isActive = true
 
@@ -161,6 +161,20 @@ extension UIView {
             return trailingAnchor
         case .centerX:
             return centerXAnchor
+        }
+    }
+}
+
+extension NSLayoutAnchor {
+
+    @objc func constraint(with relation: NSLayoutRelation, to anchor: NSLayoutAnchor<AnchorType>) -> NSLayoutConstraint {
+        switch relation {
+        case .equal:
+            return constraint(equalTo: anchor)
+        case .greaterThanOrEqual:
+            return constraint(greaterThanOrEqualTo: anchor)
+        case .lessThanOrEqual:
+            return constraint(lessThanOrEqualTo: anchor)
         }
     }
 }

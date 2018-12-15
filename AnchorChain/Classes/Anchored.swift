@@ -20,18 +20,18 @@ public extension UIView {
         return self
     }
 
-    func anchored(_ anchor: YAnchor, to otherAnchor: YAnchor, of otherView: UIView) -> Self {
-        self.anchor(anchor, to: otherAnchor, of: otherView)
+    func anchored(_ anchor: YAnchor, _ relation: NSLayoutRelation = .equal, to otherAnchor: YAnchor, of otherView: UIView) -> Self {
+        self.anchor(anchor, relation, to: otherAnchor, of: otherView)
         return self
     }
 
-    func anchored(_ anchor: XAnchor, to otherAnchor: XAnchor, of otherView: UIView) -> Self {
-        self.anchor(anchor, to: otherAnchor, of: otherView)
+    func anchored(_ anchor: XAnchor, _ relation: NSLayoutRelation = .equal, to otherAnchor: XAnchor, of otherView: UIView) -> Self {
+        self.anchor(anchor, relation, to: otherAnchor, of: otherView)
         return self
     }
 
-    func anchored(_ anchor: DirectionalXAnchor, to otherAnchor: DirectionalXAnchor, of otherView: UIView) -> Self {
-        self.anchor(anchor, to: otherAnchor, of: otherView)
+    func anchored(_ anchor: DirectionalXAnchor, _ relation: NSLayoutRelation = .equal, to otherAnchor: DirectionalXAnchor, of otherView: UIView) -> Self {
+        self.anchor(anchor, relation, to: otherAnchor, of: otherView)
         return self
     }
 }
