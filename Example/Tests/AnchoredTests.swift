@@ -137,5 +137,43 @@ class AnchoredTests: XCTestCase {
         expect(.width, of: view, toMatch: constant)
         expect(.width, toMatch: .height, of: view)
     }
+
+    // MARK: - Relations
+
+    func testEqualRelation() {
+        siblings { one, two in
+            
+            let constraint = one.anchored(.left, .equal, to: .right, of: two)
+                .superview?
+                .constraints
+                .first
+
+            XCTAssertEqual(constraint?.relation, .equal)
+        }
+    }
+
+    func testGreaterThanOrEqualRelation() {
+        siblings { one, two in
+
+            let constraint = one.anchored(.top, .greaterThanOrEqual, to: .bottom, of: two)
+                .superview?
+                .constraints
+                .first
+
+            XCTAssertEqual(constraint?.relation, .greaterThanOrEqual)
+        }
+    }
+
+    func testLessThanOrEqualRelation() {
+        siblings { one, two in
+
+            let constraint = one.anchored(.leading, .lessThanOrEqual, to: .trailing, of: two)
+                .superview?
+                .constraints
+                .first
+
+            XCTAssertEqual(constraint?.relation, .lessThanOrEqual)
+        }
+    }
 }
 

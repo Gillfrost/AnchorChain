@@ -75,55 +75,46 @@ class AnchorTests: XCTestCase {
     // MARK: - Vertical anchors
 
     func testAnchorAllCombinationsOfVerticalAnchors() {
+        UIView.YAnchor
+            .allCases
+            .allCombinations
+            .forEach { anchor, otherAnchor in
+                siblings { view, otherView in
 
-        let combinations = UIView.YAnchor.allCases.allCombinations
+                    view.anchor(anchor, to: otherAnchor, of: otherView)
 
-        combinations.forEach { anchor, otherAnchor in
-
-            let view = UIView()
-            let otherView = UIView()
-            let superview = UIView()
-            [view, otherView].forEach(superview.addSubview)
-
-            view.anchor(anchor, to: otherAnchor, of: otherView)
-
-            expect(anchor.layoutAttribute, of: view, toMatch: otherAnchor.layoutAttribute, of: otherView)
+                    expect(anchor.layoutAttribute, of: view, toMatch: otherAnchor.layoutAttribute, of: otherView)
+                }
         }
     }
 
     // MARK: - Horizontal anchors
 
     func testAnchorAllCombinationsOfHorizontalAnchors() {
+        UIView.XAnchor
+            .allCases
+            .allCombinations
+            .forEach { anchor, otherAnchor in
+                siblings { view, otherView in
 
-        let combinations = UIView.XAnchor.allCases.allCombinations
+                    view.anchor(anchor, to: otherAnchor, of: otherView)
 
-        combinations.forEach { anchor, otherAnchor in
-
-            let view = UIView()
-            let otherView = UIView()
-            let superview = UIView()
-            [view, otherView].forEach(superview.addSubview)
-
-            view.anchor(anchor, to: otherAnchor, of: otherView)
-
-            expect(anchor.layoutAttribute, of: view, toMatch: otherAnchor.layoutAttribute, of: otherView)
+                    expect(anchor.layoutAttribute, of: view, toMatch: otherAnchor.layoutAttribute, of: otherView)
+                }
         }
     }
 
     func testAnchorAllCombinationsOfDirectionalHorizontalAnchors() {
+        UIView.DirectionalXAnchor
+            .allCases
+            .allCombinations
+            .forEach { anchor, otherAnchor in
+                siblings { view, otherView in
 
-        let combinations = UIView.DirectionalXAnchor.allCases.allCombinations
+                    view.anchor(anchor, to: otherAnchor, of: otherView)
 
-        combinations.forEach { anchor, otherAnchor in
-
-            let view = UIView()
-            let otherView = UIView()
-            let superview = UIView()
-            [view, otherView].forEach(superview.addSubview)
-
-            view.anchor(anchor, to: otherAnchor, of: otherView)
-
-            expect(anchor.layoutAttribute, of: view, toMatch: otherAnchor.layoutAttribute, of: otherView)
+                    expect(anchor.layoutAttribute, of: view, toMatch: otherAnchor.layoutAttribute, of: otherView)
+                }
         }
     }
 
@@ -155,5 +146,34 @@ class AnchorTests: XCTestCase {
 
         expect(.width, of: view, toMatch: constant)
         expect(.width, toMatch: .height, of: view)
+    }
+
+    // MARK: - Relations
+
+    func testEqualRelation() {
+        siblings { one, two in
+
+            let constraint = one.anchor(.left, .equal, to: .right, of: two)
+
+            XCTAssertEqual(constraint.relation, .equal)
+        }
+    }
+
+    func testGreaterThanOrEqualRelation() {
+        siblings { one, two in
+
+            let constraint = one.anchor(.top, .greaterThanOrEqual, to: .bottom, of: two)
+
+            XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
+        }
+    }
+
+    func testLessThanOrEqualRelation() {
+        siblings { one, two in
+            
+            let constraint = one.anchor(.leading, .lessThanOrEqual, to: .trailing, of: two)
+
+            XCTAssertEqual(constraint.relation, .lessThanOrEqual)
+        }
     }
 }
