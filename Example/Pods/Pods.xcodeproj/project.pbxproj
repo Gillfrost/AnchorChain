@@ -16,6 +16,7 @@
 		AB18ECE2517ACC708709086B19BCE300 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
 		C9197FC5C5034687CE06CC0DE2A953F9 /* Pods-AnchorChain_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D5626334E0F141BAF8D24DB606545B4 /* Pods-AnchorChain_Example-dummy.m */; };
 		CC4EDAD18A294BEEA6F48FFFA9853179 /* Anchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF302AD0E3FA476A4692A16B9051DBB /* Anchor.swift */; };
+		E054854521C69830006BBFAD /* Anchoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = E054854421C69830006BBFAD /* Anchoring.swift */; };
 		EB1D19249297CCD8DE52557F3C897508 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
 		FDDB09E3D52D3BD7EAE64BDB8DC986CA /* Pods-AnchorChain_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F2E6FC2B2D2C77A73951C2C4814E224 /* Pods-AnchorChain_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -41,34 +42,35 @@
 		0A43F67410B0AD79E0049077640B49C0 /* AnchorChain.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AnchorChain.xcconfig; sourceTree = "<group>"; };
 		0CE8173751E70ED6EE416B68F4BC9D38 /* Pods-AnchorChain_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AnchorChain_Example.release.xcconfig"; sourceTree = "<group>"; };
 		188798D13E197239B1CC76FDE56A364B /* AnchorChain-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AnchorChain-prefix.pch"; sourceTree = "<group>"; };
-		22FB5AAF9BADE92DCDFE3C49DA3F2256 /* AnchorChain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = AnchorChain.framework; path = AnchorChain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		23417E783C78BA4E60EFBA2B5A7216A4 /* Pods_AnchorChain_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_AnchorChain_Tests.framework; path = "Pods-AnchorChain_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D1D15337BF3D79A9663FA1A90443CF1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		22FB5AAF9BADE92DCDFE3C49DA3F2256 /* AnchorChain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AnchorChain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		23417E783C78BA4E60EFBA2B5A7216A4 /* Pods_AnchorChain_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnchorChain_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D1D15337BF3D79A9663FA1A90443CF1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		3689651E41EA82FB699C31C903785DC0 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3DABA331063A2F0B388EEA6214954BA5 /* Pods-AnchorChain_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AnchorChain_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		4264F35E8AC7A3A4262E9BD8E4158485 /* Pods-AnchorChain_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-AnchorChain_Tests.modulemap"; sourceTree = "<group>"; };
 		499E65C2535C7EFFD3598DE999384C71 /* AnchorChain-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AnchorChain-umbrella.h"; sourceTree = "<group>"; };
 		513ADF2C1479E173F7995A617EDBBDF4 /* Pods-AnchorChain_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AnchorChain_Example-resources.sh"; sourceTree = "<group>"; };
 		5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		6D4A8F17A0F3179C30BA60CA84ACE3EF /* Pods_AnchorChain_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_AnchorChain_Example.framework; path = "Pods-AnchorChain_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D4A8F17A0F3179C30BA60CA84ACE3EF /* Pods_AnchorChain_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnchorChain_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D5626334E0F141BAF8D24DB606545B4 /* Pods-AnchorChain_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AnchorChain_Example-dummy.m"; sourceTree = "<group>"; };
 		7124910F3CCDE93E163B5F8379141CAC /* AnchorChain-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AnchorChain-dummy.m"; sourceTree = "<group>"; };
 		760D9E6BBEA4ADE81DA058D903D4403D /* Pods-AnchorChain_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AnchorChain_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		764FEE811258D1BFBB4D3733A4FA4634 /* Pods-AnchorChain_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AnchorChain_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		86010FD1D0E4242B61305D6631C8CD2A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		909414A05B188E18A42E915AE8F3EE79 /* Pods-AnchorChain_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AnchorChain_Tests-resources.sh"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9DF302AD0E3FA476A4692A16B9051DBB /* Anchor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Anchor.swift; path = AnchorChain/Classes/Anchor.swift; sourceTree = "<group>"; };
 		9F2E6FC2B2D2C77A73951C2C4814E224 /* Pods-AnchorChain_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AnchorChain_Tests-umbrella.h"; sourceTree = "<group>"; };
 		A92724B3E049B67A58876C1D404B5B80 /* Anchored.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Anchored.swift; path = AnchorChain/Classes/Anchored.swift; sourceTree = "<group>"; };
 		AB79C73B88260424A9611A5F402500D1 /* Pods-AnchorChain_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AnchorChain_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		B1980FCA2AA06DDC76FE0B9398507422 /* Pods-AnchorChain_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AnchorChain_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		B558C2E1E44BA236075A45CE35BDA8B0 /* Pods-AnchorChain_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AnchorChain_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		C041ACC59D34FA3583BFAB1F71CAAD53 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		C041ACC59D34FA3583BFAB1F71CAAD53 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C12560CEECCCCDAFAFDCEE69771828AE /* Pods-AnchorChain_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AnchorChain_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		CDB9E0F8730DF1255226713071E42EE9 /* Pods-AnchorChain_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-AnchorChain_Example.modulemap"; sourceTree = "<group>"; };
+		E054854421C69830006BBFAD /* Anchoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Anchoring.swift; path = AnchorChain/Classes/Anchoring.swift; sourceTree = "<group>"; };
 		E6A7C53FB6C95C5028492C941C948F67 /* Pods-AnchorChain_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AnchorChain_Example-frameworks.sh"; sourceTree = "<group>"; };
-		E744FAAE636265719DA56D6FE188CA69 /* AnchorChain.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = AnchorChain.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		E744FAAE636265719DA56D6FE188CA69 /* AnchorChain.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = AnchorChain.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		EE26EDC62B976108DDA54533845B7897 /* AnchorChain.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = AnchorChain.modulemap; sourceTree = "<group>"; };
 		F1C1C8AE5604C22A809021DBB04C6791 /* Pods-AnchorChain_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AnchorChain_Tests-dummy.m"; sourceTree = "<group>"; };
 		F59DD1D49B211FFF3AB5A3C22A0F47CE /* Pods-AnchorChain_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AnchorChain_Example-umbrella.h"; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			children = (
 				9DF302AD0E3FA476A4692A16B9051DBB /* Anchor.swift */,
 				A92724B3E049B67A58876C1D404B5B80 /* Anchored.swift */,
+				E054854421C69830006BBFAD /* Anchoring.swift */,
 				83EB9698FA157CBB7A505F35A6A08189 /* Pod */,
 				3BBE654FDF478321D78836F0E966A58E /* Support Files */,
 			);
@@ -357,6 +360,7 @@
 				CC4EDAD18A294BEEA6F48FFFA9853179 /* Anchor.swift in Sources */,
 				825A5101E7EA01E1F3DFFAA1488494DD /* AnchorChain-dummy.m in Sources */,
 				A4EF13D6356A471B6AE6A52973A25EFA /* Anchored.swift in Sources */,
+				E054854521C69830006BBFAD /* Anchoring.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

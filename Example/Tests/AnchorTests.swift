@@ -59,6 +59,15 @@ class AnchorTests: XCTestCase {
         expect(view, toMatch: superview)
     }
 
+    func testRelationDefaultsToEqual() {
+        siblings { view, otherView in
+
+            let defaultRelation = view.anchor(.left, to: .right, of: otherView).relation
+
+            XCTAssertEqual(defaultRelation, .equal)
+        }
+    }
+
     // MARK: - Separate anchors
 
     func testSeparateAnchors() {
@@ -171,7 +180,7 @@ class AnchorTests: XCTestCase {
     func testLessThanOrEqualRelation() {
         siblings { one, two in
             
-            let constraint = one.anchor(.leading, .lessThanOrEqual, to: .trailing, of: two)
+            let constraint = one.anchor(.centerX, .lessThanOrEqual, to: .right, of: two)
 
             XCTAssertEqual(constraint.relation, .lessThanOrEqual)
         }
