@@ -54,9 +54,9 @@ public extension UIView {
     }
 
     @discardableResult
-    func anchor(_ anchor: DirectionalXAnchor, _ relation: NSLayoutRelation = .equal, to otherAnchor: DirectionalXAnchor, of otherView: UIView) -> NSLayoutConstraint {
+    func anchor(_ anchor: DirectionalXAnchor, to otherAnchor: DirectionalXAnchor, of otherView: UIView) -> NSLayoutConstraint {
         disableAutoresizing()
-        let constraint = self.anchor(for: anchor).constraint(with: relation, to: otherView.anchor(for: otherAnchor))
+        let constraint = self.anchor(for: anchor).constraint(equalTo: otherView.anchor(for: otherAnchor))
 
         constraint.isActive = true
 
