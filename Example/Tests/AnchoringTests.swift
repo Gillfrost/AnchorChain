@@ -69,28 +69,6 @@ class AnchoringTests: XCTestCase {
         }
     }
 
-    // MARK: - Inner anchors
-
-    func testAnchoringWidthToConstant() {
-        let constant: CGFloat = 123
-
-        expect(.width, of: UIView().anchoring(.width, to: constant), toMatch: constant)
-    }
-
-    func testAnchoringHeightToConstant() {
-        let constant: CGFloat = 312
-
-        expect(.height, of: UIView().anchoring(.height, to: constant), toMatch: constant)
-    }
-
-    func testAnchoringSizeAnchorsWidthToHeight() {
-        let constant: CGFloat = 231
-        let view = UIView().anchoring(.size, to: constant)
-
-        expect(.width, of: view, toMatch: constant)
-        expect(.width, toMatch: .height, of: view)
-    }
-
     // MARK: - Vertical anchors
 
     func testAnchorAllCombinationsOfVerticalAnchors() {
@@ -138,6 +116,28 @@ class AnchoringTests: XCTestCase {
                            of: otherView)
                 }
         }
+    }
+
+    // MARK: - Dimensional anchors
+
+    func testAnchoringWidthToConstant() {
+        let constant: CGFloat = 123
+
+        expect(.width, of: UIView().anchoring(.width, to: constant), toMatch: constant)
+    }
+
+    func testAnchoringHeightToConstant() {
+        let constant: CGFloat = 312
+
+        expect(.height, of: UIView().anchoring(.height, to: constant), toMatch: constant)
+    }
+
+    func testAnchoringSizeAnchorsWidthToHeight() {
+        let constant: CGFloat = 231
+        let view = UIView().anchoring(.size, to: constant)
+
+        expect(.width, of: view, toMatch: constant)
+        expect(.width, toMatch: .height, of: view)
     }
 
     // MARK: - Relations
