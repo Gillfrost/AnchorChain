@@ -127,7 +127,7 @@ class AnchorTests: XCTestCase {
         }
     }
 
-    // MARK: - Inner anchors
+    // MARK: - Dimensional anchors
 
     func testAnchorWidthToConstant() {
         let constant: CGFloat = 123
