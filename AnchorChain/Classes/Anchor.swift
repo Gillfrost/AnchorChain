@@ -12,11 +12,16 @@ public extension UIView {
     enum DirectionalXAnchor: CaseIterable { case leading, trailing, centerX }
 
     @discardableResult
-    func anchor(_ anchor: DimensionalAnchor, to constant: CGFloat) -> NSLayoutConstraint {
+    func anchor(_ anchor: DimensionalAnchor,
+                to constant: CGFloat,
+                priority: UILayoutPriority = .required) -> NSLayoutConstraint {
+
         if anchor == .size {
             widthAnchor.constraint(equalTo: heightAnchor).isActive = true
         }
-        let constraint = self.anchor(for: anchor).constraint(equalToConstant: constant)
+        let constraint = self.anchor(for: anchor)
+            .constraint(equalToConstant: constant)
+            .priority(priority)
 
         constraint.isActive = true
 
@@ -34,9 +39,16 @@ public extension UIView {
     }
 
     @discardableResult
-    func anchor(_ anchor: XAnchor, _ relation: NSLayoutRelation = .equal, to otherAnchor: XAnchor, of otherView: UIView) -> NSLayoutConstraint {
+    func anchor(_ anchor: XAnchor,
+                _ relation: NSLayoutRelation = .equal,
+                to otherAnchor: XAnchor,
+                of otherView: UIView,
+                priority: UILayoutPriority = .required) -> NSLayoutConstraint {
+
         disableAutoresizing()
-        let constraint = self.anchor(for: anchor).constraint(with: relation, to: otherView.anchor(for: otherAnchor))
+        let constraint = self.anchor(for: anchor)
+            .constraint(with: relation, to: otherView.anchor(for: otherAnchor))
+            .priority(priority)
 
         constraint.isActive = true
 
@@ -44,9 +56,16 @@ public extension UIView {
     }
 
     @discardableResult
-    func anchor(_ anchor: YAnchor, _ relation: NSLayoutRelation = .equal, to otherAnchor: YAnchor, of otherView: UIView) -> NSLayoutConstraint {
+    func anchor(_ anchor: YAnchor,
+                _ relation: NSLayoutRelation = .equal,
+                to otherAnchor: YAnchor,
+                of otherView: UIView,
+                priority: UILayoutPriority = .required) -> NSLayoutConstraint {
+
         disableAutoresizing()
-        let constraint = self.anchor(for: anchor).constraint(with: relation, to: otherView.anchor(for: otherAnchor))
+        let constraint = self.anchor(for: anchor)
+            .constraint(with: relation, to: otherView.anchor(for: otherAnchor))
+            .priority(priority)
 
         constraint.isActive = true
         
@@ -54,9 +73,15 @@ public extension UIView {
     }
 
     @discardableResult
-    func anchor(_ anchor: DirectionalXAnchor, to otherAnchor: DirectionalXAnchor, of otherView: UIView) -> NSLayoutConstraint {
+    func anchor(_ anchor: DirectionalXAnchor,
+                to otherAnchor: DirectionalXAnchor,
+                of otherView: UIView,
+                priority: UILayoutPriority = .required) -> NSLayoutConstraint {
+
         disableAutoresizing()
-        let constraint = self.anchor(for: anchor).constraint(equalTo: otherView.anchor(for: otherAnchor))
+        let constraint = self.anchor(for: anchor)
+            .constraint(equalTo: otherView.anchor(for: otherAnchor))
+            .priority(priority)
 
         constraint.isActive = true
 
@@ -176,5 +201,13 @@ extension NSLayoutAnchor {
         case .lessThanOrEqual:
             return constraint(lessThanOrEqualTo: anchor)
         }
+    }
+}
+
+extension NSLayoutConstraint {
+
+    func priority(_ priority: UILayoutPriority) -> Self {
+        self.priority = priority
+        return self
     }
 }

@@ -5,8 +5,12 @@ import UIKit
 
 public extension UIView {
 
-    func anchoring(_ anchor: DimensionalAnchor, to constant: CGFloat) -> Self {
-        self.anchor(anchor, to: constant)
+    func anchoring(_ anchor: DimensionalAnchor,
+                   to constant: CGFloat,
+                   priority: UILayoutPriority = .required) -> Self {
+
+        self.anchor(anchor, to: constant, priority: priority)
+        
         return self
     }
 
@@ -15,18 +19,35 @@ public extension UIView {
         return self
     }
 
-    func anchoring(_ anchor: YAnchor, _ relation: NSLayoutRelation = .equal, to otherAnchor: YAnchor, of otherView: UIView) -> Self {
-        self.anchor(anchor, relation, to: otherAnchor, of: otherView)
+    func anchoring(_ anchor: YAnchor,
+                   _ relation: NSLayoutRelation = .equal,
+                   to otherAnchor: YAnchor,
+                   of otherView: UIView,
+                   priority: UILayoutPriority = .required) -> Self {
+
+        self.anchor(anchor, relation, to: otherAnchor, of: otherView, priority: priority)
+
         return self
     }
 
-    func anchoring(_ anchor: XAnchor, _ relation: NSLayoutRelation = .equal, to otherAnchor: XAnchor, of otherView: UIView) -> Self {
-        self.anchor(anchor, relation, to: otherAnchor, of: otherView)
+    func anchoring(_ anchor: XAnchor,
+                   _ relation: NSLayoutRelation = .equal,
+                   to otherAnchor: XAnchor,
+                   of otherView: UIView,
+                   priority: UILayoutPriority = .required) -> Self {
+
+        self.anchor(anchor, relation, to: otherAnchor, of: otherView, priority: priority)
+
         return self
     }
 
-    func anchoring(_ anchor: DirectionalXAnchor, to otherAnchor: DirectionalXAnchor, of otherView: UIView) -> Self {
-        self.anchor(anchor, to: otherAnchor, of: otherView)
+    func anchoring(_ anchor: DirectionalXAnchor,
+                   to otherAnchor: DirectionalXAnchor,
+                   of otherView: UIView,
+                   priority: UILayoutPriority = .required) -> Self {
+
+        self.anchor(anchor, to: otherAnchor, of: otherView, priority: priority)
+
         return self
     }
 }

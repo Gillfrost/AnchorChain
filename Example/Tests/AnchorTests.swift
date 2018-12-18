@@ -185,4 +185,39 @@ class AnchorTests: XCTestCase {
             XCTAssertEqual(constraint.relation, .lessThanOrEqual)
         }
     }
+
+    // MARK: - Priority
+
+    func testDimensionalAnchorPriority() {
+        let constraint = UIView().anchor(.width, to: 123, priority: .defaultLow)
+
+        XCTAssertEqual(constraint.priority, .defaultLow)
+    }
+
+    func testXAnchorPriority() {
+        siblings { one, two in
+
+            let constraint = one.anchor(.left, to: .right, of: two, priority: .defaultHigh)
+
+            XCTAssertEqual(constraint.priority, .defaultHigh)
+        }
+    }
+
+    func testYAnchorPriority() {
+        siblings { one, two in
+
+            let constraint = one.anchor(.top, to: .bottom, of: two, priority: .defaultLow)
+
+            XCTAssertEqual(constraint.priority, .defaultLow)
+        }
+    }
+
+    func testDirectionalXAnchorPriority() {
+        siblings { one, two in
+
+            let constraint = one.anchor(.leading, to: .trailing, of: two, priority: .defaultHigh)
+
+            XCTAssertEqual(constraint.priority, .defaultHigh)
+        }
+    }
 }
