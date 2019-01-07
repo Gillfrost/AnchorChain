@@ -17,15 +17,12 @@ public extension UIView {
                 priority: UILayoutPriority = .required) -> NSLayoutConstraint {
 
         if anchor == .size {
-            widthAnchor.constraint(equalTo: heightAnchor).isActive = true
+            widthAnchor.constraint(equalTo: heightAnchor).activate()
         }
-        let constraint = self.anchor(for: anchor)
+        return self.anchor(for: anchor)
             .constraint(equalToConstant: constant)
             .priority(priority)
-
-        constraint.isActive = true
-
-        return constraint
+            .activated()
     }
 
     @discardableResult
@@ -46,13 +43,11 @@ public extension UIView {
                 priority: UILayoutPriority = .required) -> NSLayoutConstraint {
 
         disableAutoresizing()
-        let constraint = self.anchor(for: anchor)
+
+        return self.anchor(for: anchor)
             .constraint(with: relation, to: otherView.anchor(for: otherAnchor))
             .priority(priority)
-
-        constraint.isActive = true
-
-        return constraint
+            .activated()
     }
 
     @discardableResult
@@ -63,13 +58,10 @@ public extension UIView {
                 priority: UILayoutPriority = .required) -> NSLayoutConstraint {
 
         disableAutoresizing()
-        let constraint = self.anchor(for: anchor)
+        return self.anchor(for: anchor)
             .constraint(with: relation, to: otherView.anchor(for: otherAnchor))
             .priority(priority)
-
-        constraint.isActive = true
-        
-        return constraint
+            .activated()
     }
 
     @discardableResult
@@ -79,13 +71,11 @@ public extension UIView {
                 priority: UILayoutPriority = .required) -> NSLayoutConstraint {
 
         disableAutoresizing()
-        let constraint = self.anchor(for: anchor)
+        return self.anchor(for: anchor)
             .constraint(equalTo: otherView.anchor(for: otherAnchor))
             .priority(priority)
+            .activated()
 
-        constraint.isActive = true
-
-        return constraint
     }
 }
 
@@ -208,6 +198,15 @@ extension NSLayoutConstraint {
 
     func priority(_ priority: UILayoutPriority) -> Self {
         self.priority = priority
+        return self
+    }
+
+    func activate() {
+        isActive = true
+    }
+
+    func activated() -> Self {
+        activate()
         return self
     }
 }
