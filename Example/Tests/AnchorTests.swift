@@ -220,4 +220,40 @@ class AnchorTests: XCTestCase {
             XCTAssertEqual(constraint.priority, .defaultHigh)
         }
     }
+
+    // MARK: - Inactive constraints
+
+    func testDimensionalAnchorIsActiveFalse() {
+        let view = UIView()
+        let constraint = view.anchor(.width, to: 123, isActive: false)
+
+        XCTAssertFalse(constraint.isActive)
+    }
+
+    func testXAnchorIsActiveFalse() {
+        siblings { one, two in
+
+            let constraint = one.anchor(.left, to: .right, of: two, isActive: false)
+
+            XCTAssertFalse(constraint.isActive)
+        }
+    }
+
+    func testYAnchorIsActiveFalse() {
+        siblings { one, two in
+
+            let constraint = one.anchor(.top, to: .bottom, of: two, isActive: false)
+
+            XCTAssertFalse(constraint.isActive)
+        }
+    }
+
+    func testDimensionalXAnchorIsActiveFalse() {
+        siblings { one, two in
+
+            let constraint = one.anchor(.leading, to: .centerX, of: two, isActive: false)
+
+            XCTAssertFalse(constraint.isActive)
+        }
+    }
 }
