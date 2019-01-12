@@ -58,14 +58,12 @@ public extension UIView {
 
     @discardableResult
     func anchor(_ anchor: Anchor, isActive: Bool = true) -> NSLayoutConstraint {
-        return (self.anchor([anchor]).first ?? .init())
-            .isActive(isActive)
+        return self.anchor([anchor], activate: isActive).first ?? .init()
     }
 
     @discardableResult
     func anchor(_ anchor: Anchor, to view: UIView, isActive: Bool = true) -> NSLayoutConstraint {
-        return self.anchor([anchor], to: view)[0]
-            .isActive(isActive)
+        return self.anchor([anchor], to: view, activate: isActive)[0]
     }
 
     @discardableResult
@@ -80,20 +78,22 @@ public extension UIView {
 
     // MARK: - Internal
 
-    func anchor(_ anchors: [Anchor]) -> [NSLayoutConstraint] {
+    func anchor(_ anchors: [Anchor], activate: Bool = true) -> [NSLayoutConstraint] {
         guard let superview = superview else {
             assertionFailure("View has no superview")
             return []
         }
-        return anchor(anchors, to: superview)
+        return anchor(anchors, to: superview, activate: activate)
     }
 
-    func anchor(_ anchors: [Anchor], to view: UIView) -> [NSLayoutConstraint] {
+    func anchor(_ anchors: [Anchor], to view: UIView, activate: Bool = true) -> [NSLayoutConstraint] {
         prepare(for: view)
         let anchors = anchors.isEmpty ? [.top, .left, .bottom, .right] : anchors
         let constraints = anchors.map { ($0, view) }.map(constraint)
 
-        NSLayoutConstraint.activate(constraints)
+        if activate {
+            NSLayoutConstraint.activate(constraints)
+        }
 
         return constraints
     }
