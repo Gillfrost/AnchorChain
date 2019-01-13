@@ -15,7 +15,7 @@ public extension UIView {
      Constrains one dimension to a constant.
 
      Passing `.size` as anchor will constrain width to height, and
-     return a single constraint to represents both dimensions.
+     return a single constraint to represent both dimensions.
 
      - Parameters:
        - anchor:    The dimension to constrain, `width`, `height` or `size`.
@@ -79,10 +79,10 @@ public extension UIView {
      Constrains edges to given view.
 
      - Note:
-       **Reciever is automatically added as subview to given view, if reciever is without superview.**
+       **Receiver is automatically added as subview to given view, if receiver is without superview.**
 
      - Parameter view:
-       The view whose edges should match reciever.
+       The view whose edges should match receiver.
 
      - Returns: The created array of constraints. Discardable.
      */
@@ -109,7 +109,7 @@ public extension UIView {
      Constrains one anchor to match given view.
 
      - Note:
-       **Reciever is automatically added as subview to given view, if reciever is without superview.**
+       **Receiver is automatically added as subview to given view, if receiver is without superview.**
 
      - Parameters:
        - anchor:    The anchor to match.
@@ -142,7 +142,7 @@ public extension UIView {
     Constrains two or more anchors to match given view.
 
      - Note:
-       **Reciever is automatically added as subview to given view, if reciever is without superview.**
+       **Receiver is automatically added as subview to given view, if receiver is without superview.**
 
      - Parameters:
        - a1:    An anchor.
@@ -232,9 +232,9 @@ public extension UIView {
      Constrains an anchor to given anchor in given view.
 
      - Parameters:
-       - anchor:        A horizontal anchor in reciever.
+       - anchor:        The horizontal anchor in the receiver.
        - relation:      `equal` by default.
-       - otherAnchor:   A horizontal anchor to align with.
+       - otherAnchor:   The horizontal anchor to align with.
        - otherView:     The view to align with.
        - priority:      `required` by default.
        - isActive:      `true` by default.
@@ -283,9 +283,9 @@ public extension UIView {
      Constrains an anchor to given anchor in given view.
 
      - Parameters:
-     - anchor:        A vertical anchor in reciever.
+     - anchor:        The vertical anchor in the receiver.
      - relation:      `equal` by default.
-     - otherAnchor:   A vertical anchor to align with.
+     - otherAnchor:   The vertical anchor to align with.
      - otherView:     The view to align with.
      - priority:      `required` by default.
      - isActive:      `true` by default.
@@ -332,9 +332,9 @@ public extension UIView {
      Constrains an anchor to given anchor in given view.
 
      - Parameters:
-     - anchor:        A directional horizontal anchor in reciever.
+     - anchor:        The directional horizontal anchor in the receiver.
      - relation:      `equal` by default.
-     - otherAnchor:   A directional horizontal anchor to align with.
+     - otherAnchor:   The directional horizontal anchor to align with.
      - otherView:     The view to align with.
      - priority:      `required` by default.
      - isActive:      `true` by default.
