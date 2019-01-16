@@ -21,11 +21,11 @@ public extension UIView {
      Constrains a variable number of anchors to match given view.
 
      - Note:
-     **Receiver is automatically added as subview to given view, if receiver is without superview.**
+       **Receiver is automatically added as subview to given view, if receiver is without superview.**
 
      - Parameters:
        - anchors: `.top, .left, .bottom, .right` by default.
-       - view: The view to match.
+       - view:    The view to match.
 
      - Returns: The receiver.
      */
