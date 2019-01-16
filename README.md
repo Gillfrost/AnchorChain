@@ -15,7 +15,7 @@ A wrapper around the NSLayoutAnchor system, driven by the following set of desig
 - Chainability to promote a little more declarative layout code. Constraining a view at its declaration point should be as easy as **let view = UIView().anchoring(.width, to: 100)**, and indeed it is.
 
 - Be a little pro-active with the view hierarchy. When constraining anchors to match another view, such as this: **UIActivityIndicatorView().anchor(.centerX, .centerY, to: view)**, it could be assumed that the receiver, if it is without superview, should be added as subview to the other view, and indeed it is.
-  - Trade-off: it's a pretty severe side effect, but it makes a lot of sense, since constraining views outside the view hierarchy constitutes a programmer error anyway.
+  - Trade-off: it's a pretty severe side effect, but it makes a lot of sense, since creating (activated) constraints between two views with no common ancestor constitutes a programmer error anyway.
 
 ## License
 
