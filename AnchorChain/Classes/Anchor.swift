@@ -18,9 +18,9 @@ public extension UIView {
      return a single constraint to represent both dimensions.
 
      - Parameters:
-       - anchor:    The dimension to constrain, `width`, `height` or `size`.
-       - to:        The constant.
-       - priority:  `required` by default.
+       - anchor:    The dimension to constrain, `.width`, `.height` or `.size`.
+       - constant:  The constant.
+       - priority:  `.required` by default.
        - isActive:  `true` by default.
 
      - Returns: The created constraint. Discardable.
@@ -233,10 +233,10 @@ public extension UIView {
 
      - Parameters:
        - anchor:        The horizontal anchor in the receiver.
-       - relation:      `equal` by default.
+       - relation:      `.equal` by default.
        - otherAnchor:   The horizontal anchor to align with.
        - otherView:     The view to align with.
-       - priority:      `required` by default.
+       - priority:      `.required` by default.
        - isActive:      `true` by default.
 
      - Returns: The created constraint.
@@ -284,10 +284,10 @@ public extension UIView {
 
      - Parameters:
      - anchor:        The vertical anchor in the receiver.
-     - relation:      `equal` by default.
+     - relation:      `.equal` by default.
      - otherAnchor:   The vertical anchor to align with.
      - otherView:     The view to align with.
-     - priority:      `required` by default.
+     - priority:      `.required` by default.
      - isActive:      `true` by default.
 
      - Returns: The created constraint.
@@ -333,10 +333,10 @@ public extension UIView {
 
      - Parameters:
      - anchor:        The directional horizontal anchor in the receiver.
-     - relation:      `equal` by default.
+     - relation:      `.equal` by default.
      - otherAnchor:   The directional horizontal anchor to align with.
      - otherView:     The view to align with.
-     - priority:      `required` by default.
+     - priority:      `.required` by default.
      - isActive:      `true` by default.
 
      - Returns: The created constraint.
