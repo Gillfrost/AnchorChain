@@ -10,12 +10,19 @@ public extension UIView {
                    priority: UILayoutPriority = .required) -> Self {
 
         self.anchor(anchor, to: constant, priority: priority)
-        
+
         return self
     }
 
-    func anchoring(_ anchors: Anchor..., to view: UIView) -> Self {
-        _ = view.anchor(anchors, to: self)
+    func anchoring(_ view: UIView) -> Self {
+        _ = view.anchor([], to: self)
+
+        return self
+    }
+
+    func anchoring(_ a1: Anchor, _ aX: Anchor..., of view: UIView) -> Self {
+        _ = view.anchor([a1] + aX, to: self)
+
         return self
     }
 
