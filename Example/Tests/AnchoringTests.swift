@@ -8,33 +8,34 @@ class AnchoringTests: XCTestCase {
 
     // MARK: - Automatic subview adding
 
-    func testViewWithoutSuperviewIsAddedToOtherViewAutomatically() {
-        let view = UIView()
-        let other = UIView().anchoring(to: view)
+    func testAnchoringOtherViewWithoutSuperviewAddsOtherToReceiverAutomatically() {
+        let other = UIView()
+        let view = UIView().anchoring(other)
 
-        XCTAssertEqual(view.superview, other)
+        XCTAssertEqual(other.superview, view)
     }
 
-    func testViewWithSuperviewIsNotAddedToOtherView() {
+    func testAnchoringOtherViewWithSuperviewDoesNotAddOtherToReceiver() {
         let view = UIView()
         let superview = UIView()
         let other = UIView()
 
         [view, other].forEach(superview.addSubview)
 
-        _ = other.anchoring(to: view)
+        _ = view.anchoring(other)
 
         XCTAssertEqual(view.superview, superview)
+        XCTAssertNotEqual(other.superview, view)
     }
 
     // MARK: - Translates autoresizing mask into constraints
 
     func testTranslatesAutoresizingMaskIntoConstraintsIsSetToFalse() {
-        let view = UIView()
-        let other = UIView().anchoring(to: view)
+        let other = UIView()
+        let view = UIView().anchoring(other)
 
-        XCTAssertTrue(other.translatesAutoresizingMaskIntoConstraints)
-        XCTAssertFalse(view.translatesAutoresizingMaskIntoConstraints)
+        XCTAssertTrue(view.translatesAutoresizingMaskIntoConstraints)
+        XCTAssertFalse(other.translatesAutoresizingMaskIntoConstraints)
     }
 
     // MARK: - Default parameters
@@ -42,7 +43,7 @@ class AnchoringTests: XCTestCase {
     func testAnchorsDefaultToTopLeftBottomRight() {
         let other = UIView()
 
-        expect(.top, .left, .bottom, .right, of: other, toMatch: UIView().anchoring(to: other))
+        expect(.top, .left, .bottom, .right, of: other, toMatch: UIView().anchoring(other))
     }
 
     func testRelationDefaultsToEqual() {
@@ -63,7 +64,7 @@ class AnchoringTests: XCTestCase {
     func testSeparateAnchors() {
         UIView.Anchor.allCases.forEach { anchor in
             let other = UIView()
-            let view = UIView().anchoring(anchor, to: other)
+            let view = UIView().anchoring(anchor, of: other)
 
             expect(anchor.layoutAttribute, of: other, toMatch: view)
         }
