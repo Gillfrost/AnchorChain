@@ -210,10 +210,11 @@ func expect(_ attribute: NSLayoutAttribute,
 
     let attributes = [attribute] + moreAttributes
 
-//    XCTAssertEqual(other.constraints.count, attributes.count,
-//                   "Unexpected number of constraints",
-//                   file: file,
-//                   line: line)
+    let count = other.constraints.filter { $0.firstItem === view }.count
+    XCTAssertEqual(count, attributes.count,
+                   "Unexpected number of constraints",
+                   file: file,
+                   line: line)
 
     for attribute in attributes {
         XCTAssert(other.isAttribute(attribute, of: layoutGuide, constrainedTo: view),
