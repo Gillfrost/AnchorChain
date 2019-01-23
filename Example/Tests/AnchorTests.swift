@@ -221,111 +221,82 @@ class AnchorTests: XCTestCase {
         }
     }
 
-    // MARK: - Inactive constraints
+    // MARK: - Layout guides
 
-    func testActiveDimensionalAnchor() {
+    func testAnchorToSafeArea() {
         let view = UIView()
-        let constraint = view.anchor(.width, to: 123, isActive: true)
-
-        XCTAssertTrue(constraint.isActive)
-    }
-
-    func testInactiveDimensionalAnchor() {
-        let view = UIView()
-        let constraint = view.anchor(.width, to: 123, isActive: false)
-
-        XCTAssertFalse(constraint.isActive)
-    }
-
-    func testActiveAnchorToImplicitSuperview() {
         let superview = UIView()
-        let view = UIView()
 
         superview.addSubview(view)
-        let constraint = view.anchor(.centerX, isActive: true)
+        view.anchor(to: .safeArea)
 
-        XCTAssertTrue(constraint.isActive)
+        expect(view, toMatch: superview.safeAreaLayoutGuide)
     }
 
-    func testInactiveAnchorToImplicitSuperview() {
-        let superview = UIView()
+    func testAnchorToLayoutMargins() {
         let view = UIView()
+        let superview = UIView()
 
         superview.addSubview(view)
-        let constraint = view.anchor(.centerX, isActive: false)
+        view.anchor(to: .layoutMargins)
 
-        XCTAssertFalse(constraint.isActive)
+        expect(view, toMatch: superview.layoutMarginsGuide)
     }
 
-    func testActiveAnchorToExplicitSuperview() {
+    func testAnchorToReadableContentGuide() {
         let view = UIView()
         let superview = UIView()
 
-        let constraint = view.anchor(.centerY, to: superview, isActive: true)
+        superview.addSubview(view)
+        view.anchor(to: .readableContent)
 
-        XCTAssertTrue(constraint.isActive)
+        expect(view, toMatch: superview.readableContentGuide)
     }
 
-    func testInactiveAnchorToExplicitSuperview() {
+    func testAnchorToLayoutGuideOfOther() {
+        let view = UIView()
+        let other = UIView()
+
+        view.anchor(to: .safeArea, of: other)
+
+        expect(view, toMatch: other.safeAreaLayoutGuide)
+    }
+
+    func testAnchorOneAnchorToLayoutGuide() {
         let view = UIView()
         let superview = UIView()
 
-        let constraint = view.anchor(.centerY, to: superview, isActive: false)
+        superview.addSubview(view)
+        view.anchor(.top, to: .layoutMargins)
 
-        XCTAssertFalse(constraint.isActive)
+        expect(.top, of: view, toMatch: superview.layoutMarginsGuide)
     }
 
-    func testActiveXAnchor() {
-        siblings { one, two in
+    func testAnchorOneAnchorToLayoutGuideOfOther() {
+        let view = UIView()
+        let other = UIView()
 
-            let constraint = one.anchor(.left, to: .right, of: two, isActive: true)
+        view.anchor(.left, to: .readableContent, of: other)
 
-            XCTAssertTrue(constraint.isActive)
-        }
+        expect(.left, of: view, toMatch: other.readableContentGuide)
     }
 
-    func testInactiveXAnchor() {
-        siblings { one, two in
+    func testAnchorMultipleAnchorsToLayoutGuide() {
+        let view = UIView()
+        let superview = UIView()
 
-            let constraint = one.anchor(.left, to: .right, of: two, isActive: false)
+        superview.addSubview(view)
+        view.anchor(.leading, .bottom, to: .safeArea)
 
-            XCTAssertFalse(constraint.isActive)
-        }
+        expect(.leading, .bottom, of: view, toMatch: superview.safeAreaLayoutGuide)
     }
 
-    func testActiveYAnchor() {
-        siblings { one, two in
+    func testAnchorMultipleAnchorsToLayoutGuideOfOther() {
+        let view = UIView()
+        let other = UIView()
 
-            let constraint = one.anchor(.top, to: .bottom, of: two, isActive: true)
+        view.anchor(.trailing, .centerY, to: .layoutMargins, of: other)
 
-            XCTAssertTrue(constraint.isActive)
-        }
-    }
-
-    func testInactiveYAnchor() {
-        siblings { one, two in
-
-            let constraint = one.anchor(.top, to: .bottom, of: two, isActive: false)
-
-            XCTAssertFalse(constraint.isActive)
-        }
-    }
-
-    func testActiveDimensionalXAnchor() {
-        siblings { one, two in
-
-            let constraint = one.anchor(.leading, to: .centerX, of: two, isActive: true)
-
-            XCTAssertTrue(constraint.isActive)
-        }
-    }
-
-    func testInactiveDimensionalXAnchor() {
-        siblings { one, two in
-
-            let constraint = one.anchor(.leading, to: .centerX, of: two, isActive: false)
-
-            XCTAssertFalse(constraint.isActive)
-        }
+        expect(.trailing, .centerY, of: view, toMatch: other.layoutMarginsGuide)
     }
 }

@@ -6,11 +6,11 @@ import XCTest
 
 extension UIView {
 
-    func isAttribute(_ attribute: NSLayoutAttribute, constrainedTo view: UIView) -> Bool {
+    func isAttribute(_ attribute: NSLayoutAttribute, of layoutGuide: UILayoutGuide? = nil, constrainedTo view: UIView) -> Bool {
         return constraints.contains {
             $0.firstItem === view
                 && $0.firstAttribute == attribute
-                && $0.secondItem === self
+                && $0.secondItem === layoutGuide ?? self
                 && $0.secondAttribute == attribute
         }
     }
@@ -165,12 +165,21 @@ func expect(_ view: UIView, toMatch other: UIView, file: StaticString = #file, l
            line: line)
 }
 
+func expect(_ view: UIView, toMatch layoutGuide: UILayoutGuide, file: StaticString = #file, line: UInt = #line) {
+
+    expect(.top, .left, .bottom, .right,
+           of: view,
+           toMatch: layoutGuide,
+           file: file,
+           line: line)
+}
+
 func expect(_ attribute: NSLayoutAttribute,
             _ moreAttributes: NSLayoutAttribute...,
-    of view: UIView,
-    toMatch other: UIView,
-    file: StaticString = #file,
-    line: UInt = #line) {
+            of view: UIView,
+            toMatch other: UIView,
+            file: StaticString = #file,
+            line: UInt = #line) {
 
     let attributes = [attribute] + moreAttributes
 
@@ -184,6 +193,34 @@ func expect(_ attribute: NSLayoutAttribute,
                   "Attribute \(attribute) doesn't match",
                   file: file,
                   line: line)
+    }
+}
+
+func expect(_ attribute: NSLayoutAttribute,
+            _ moreAttributes: NSLayoutAttribute...,
+    of view: UIView,
+    toMatch layoutGuide: UILayoutGuide,
+    file: StaticString = #file,
+    line: UInt = #line) {
+
+    guard let other = layoutGuide.owningView else {
+        XCTFail("Layout guide has no owning view")
+        return
+    }
+
+    let attributes = [attribute] + moreAttributes
+
+    let count = other.constraints.filter { $0.firstItem === view }.count
+    XCTAssertEqual(count, attributes.count,
+                   "Unexpected number of constraints",
+                   file: file,
+                   line: line)
+
+    for attribute in attributes {
+        XCTAssert(other.isAttribute(attribute, of: layoutGuide, constrainedTo: view),
+                  "Attribute \(attribute) doesn't match",
+            file: file,
+            line: line)
     }
 }
 

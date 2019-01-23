@@ -3,57 +3,6 @@
 
 import UIKit
 
-// MARK: - Dimensioning
-
-public extension UIView {
-
-    enum DimensionalAnchor { case width, height, size }
-
-    // MARK: - Interface
-
-    /**
-     Constrains one dimension to a constant.
-
-     Passing `.size` as anchor will constrain width to height, and
-     return a single constraint to represent both dimensions.
-
-     - Parameters:
-       - anchor:    The dimension to constrain, `.width`, `.height` or `.size`.
-       - constant:  The constant.
-       - priority:  `.required` by default.
-       - isActive:  `true` by default.
-
-     - Returns: The created constraint. Discardable.
-    */
-    @discardableResult
-    func anchor(_ anchor: DimensionalAnchor,
-                to constant: CGFloat,
-                priority: UILayoutPriority = .required,
-                isActive: Bool = true) -> NSLayoutConstraint {
-
-        if anchor == .size {
-            widthAnchor.constraint(equalTo: heightAnchor).isActive = true
-        }
-        return self.anchor(for: anchor)
-            .constraint(equalToConstant: constant)
-            .priority(priority)
-            .isActive(isActive)
-    }
-
-    // MARK: - Private
-
-    private func anchor(for anchor: DimensionalAnchor) -> NSLayoutDimension {
-        switch anchor {
-        case .width, .size:
-            return widthAnchor
-        case .height:
-            return heightAnchor
-        }
-    }
-}
-
-// MARK: -  Matching
-
 public extension UIView {
 
     enum Anchor: CaseIterable {
@@ -63,8 +12,6 @@ public extension UIView {
         case width, height
     }
 
-    // MARK: - Interface
-
     /**
      Constrains edges to superview.
 
@@ -73,6 +20,19 @@ public extension UIView {
     @discardableResult
     func anchor() -> [NSLayoutConstraint] {
         return anchor([])
+    }
+
+    /**
+     Constrains edges to given layout guide of superview.
+
+     - Parameter layoutGuide:
+       The layout guide whose edges should match receiver.
+
+     - Returns: The created array of constraints. Discardable.
+     */
+    @discardableResult
+    func anchor(to layoutGuide: LayoutGuide) -> [NSLayoutConstraint] {
+        return anchor([], to: layoutGuide)
     }
 
     /**
@@ -92,6 +52,23 @@ public extension UIView {
     }
 
     /**
+     Constrains edges to given layout guide of given view.
+
+     - Note:
+     **Receiver is automatically added as subview to given view, if receiver is without superview.**
+
+     - Parameters:
+       - layoutGuide: The layout guide to match.
+       - view:        The view to match.
+
+     - Returns: The created array of constraints. Discardable.
+     */
+    @discardableResult
+    func anchor(to layoutGuide: LayoutGuide, of view: UIView) -> [NSLayoutConstraint] {
+        return anchor([], to: layoutGuide, of: view)
+    }
+
+    /**
      Constrains one anchor to match superview.
 
      - Parameters:
@@ -103,6 +80,21 @@ public extension UIView {
     @discardableResult
     func anchor(_ anchor: Anchor, isActive: Bool = true) -> NSLayoutConstraint {
         return self.anchor([anchor], activate: isActive).first ?? .init()
+    }
+
+    /**
+     Constrains one anchor to match given layout guide of superview.
+
+     - Parameters:
+     - anchor:      The anchor to match.
+     - layoutGuide: The layout guide to match.
+     - isActive:    `true` by default.
+
+     - Returns: The created constraint. Discardable.
+     */
+    @discardableResult
+    func anchor(_ anchor: Anchor, to layoutGuide: LayoutGuide, isActive: Bool = true) -> NSLayoutConstraint {
+        return self.anchor([anchor], to: layoutGuide, activate: isActive).first ?? .init()
     }
 
     /**
@@ -124,6 +116,25 @@ public extension UIView {
     }
 
     /**
+     Constrains one anchor to match given layout guide of given view.
+
+     - Note:
+     **Receiver is automatically added as subview to given view, if receiver is without superview.**
+
+     - Parameters:
+     - anchor:      The anchor to match.
+     - layoutGuide: The layout guide to match.
+     - view:        The view to match.
+     - isActive:    `true` by default.
+
+     - Returns: The created constraint. Discardable.
+     */
+    @discardableResult
+    func anchor(_ anchor: Anchor, to layoutGuide: LayoutGuide, of view: UIView, isActive: Bool = true) -> NSLayoutConstraint {
+        return self.anchor([anchor], to: layoutGuide, of: view, activate: isActive)[0]
+    }
+
+    /**
      Constrains two or more anchors to match superview.
 
      - Parameters:
@@ -136,6 +147,22 @@ public extension UIView {
     @discardableResult
     func anchor(_ a1: Anchor, _ a2: Anchor, _ aX: Anchor...) -> [NSLayoutConstraint] {
         return anchor([a1, a2] + aX)
+    }
+
+    /**
+     Constrains two or more anchors to match given layout guide of superview.
+
+     - Parameters:
+     - a1:          An anchor.
+     - a2:          Another anchor.
+     - aX:          More anchors.
+     - layoutGuide: The layout guide to match.
+
+     - Returns: The created array of constraints. Discardable.
+     */
+    @discardableResult
+    func anchor(_ a1: Anchor, _ a2: Anchor, _ aX: Anchor..., to layoutGuide: LayoutGuide) -> [NSLayoutConstraint] {
+        return anchor([a1, a2] + aX, to: layoutGuide)
     }
 
     /**
@@ -157,20 +184,46 @@ public extension UIView {
         return anchor([a1, a2] + aX, to: view)
     }
 
-    // MARK: - Internal
+    /**
+     Constrains two or more anchors to match given layout guide of given view.
 
-    func anchor(_ anchors: [Anchor], activate: Bool = true) -> [NSLayoutConstraint] {
+     - Note:
+     **Receiver is automatically added as subview to given view, if receiver is without superview.**
+
+     - Parameters:
+     - a1:          An anchor.
+     - a2:          Another anchor.
+     - aX:          More anchors.
+     - layoutGuide: The layout guide to match.
+     - view:        The view to match.
+
+     - Returns: The created array of constraints. Discardable.
+     */
+    @discardableResult
+    func anchor(_ a1: Anchor, _ a2: Anchor, _ aX: Anchor..., to layoutGuide: LayoutGuide, of view: UIView) -> [NSLayoutConstraint] {
+        return anchor([a1, a2] + aX, to: layoutGuide, of: view)
+    }
+}
+
+extension UIView {
+
+    func anchor(_ anchors: [Anchor], to layoutGuide: LayoutGuide? = nil, activate: Bool = true) -> [NSLayoutConstraint] {
         guard let superview = superview else {
             assertionFailure("View has no superview")
             return []
         }
-        return anchor(anchors, to: superview, activate: activate)
+        return anchor(anchors, to: layoutGuide, of: superview, activate: activate)
     }
 
     func anchor(_ anchors: [Anchor], to view: UIView, activate: Bool = true) -> [NSLayoutConstraint] {
+        return anchor(anchors, to: Optional<LayoutGuide>.none, of: view, activate: activate)
+    }
+
+    func anchor(_ anchors: [Anchor], to layoutGuide: LayoutGuide?, of view: UIView, activate: Bool = true) -> [NSLayoutConstraint] {
         prepare(for: view)
         let anchors = anchors.isEmpty ? [.top, .left, .bottom, .right] : anchors
-        let constraints = anchors.map { ($0, view) }.map(constraint)
+        let anchorable = layoutGuide.map(view.anchorable) ?? view
+        let constraints = anchors.map { ($0, anchorable) }.map(constraint)
 
         if activate {
             NSLayoutConstraint.activate(constraints)
@@ -179,192 +232,47 @@ public extension UIView {
         return constraints
     }
 
-    // MARK: - Private
+    func disableAutoresizing() {
+        if translatesAutoresizingMaskIntoConstraints {
+            translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
+}
 
-    private func prepare(for view: UIView) {
+private extension UIView {
+
+    func prepare(for view: UIView) {
         disableAutoresizing()
         if superview == nil {
             view.addSubview(self)
         }
     }
+}
 
-    private func disableAutoresizing() {
-        if translatesAutoresizingMaskIntoConstraints {
-            translatesAutoresizingMaskIntoConstraints = false
-        }
-    }
+private extension Anchorable {
 
-    private func constraint(for anchor: Anchor, to view: UIView) -> NSLayoutConstraint {
+    func constraint(for anchor: UIView.Anchor, to anchorable: Anchorable) -> NSLayoutConstraint {
         switch anchor {
         case .top:
-            return topAnchor.constraint(equalTo: view.topAnchor)
+            return topAnchor.constraint(equalTo: anchorable.topAnchor)
         case .left:
-            return leftAnchor.constraint(equalTo: view.leftAnchor)
+            return leftAnchor.constraint(equalTo: anchorable.leftAnchor)
         case .bottom:
-            return bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            return bottomAnchor.constraint(equalTo: anchorable.bottomAnchor)
         case .right:
-            return rightAnchor.constraint(equalTo: view.rightAnchor)
+            return rightAnchor.constraint(equalTo: anchorable.rightAnchor)
         case .leading:
-            return leadingAnchor.constraint(equalTo: view.leadingAnchor)
+            return leadingAnchor.constraint(equalTo: anchorable.leadingAnchor)
         case .trailing:
-            return trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            return trailingAnchor.constraint(equalTo: anchorable.trailingAnchor)
         case .centerX:
-            return centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            return centerXAnchor.constraint(equalTo: anchorable.centerXAnchor)
         case .centerY:
-            return centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            return centerYAnchor.constraint(equalTo: anchorable.centerYAnchor)
         case .width:
-            return widthAnchor.constraint(equalTo: view.widthAnchor)
+            return widthAnchor.constraint(equalTo: anchorable.widthAnchor)
         case .height:
-            return heightAnchor.constraint(equalTo: view.heightAnchor)
-        }
-    }
-}
-
-// MARK: - Horizontal alignment
-
-public extension UIView {
-
-    enum XAnchor: CaseIterable { case left, right, centerX }
-
-    // MARK: - Interface
-
-    /**
-     Constrains an anchor to given anchor in given view.
-
-     - Parameters:
-       - anchor:        The horizontal anchor in the receiver.
-       - relation:      `.equal` by default.
-       - otherAnchor:   The horizontal anchor to align with.
-       - otherView:     The view to align with.
-       - priority:      `.required` by default.
-       - isActive:      `true` by default.
-
-     - Returns: The created constraint.
-     */
-    @discardableResult
-    func anchor(_ anchor: XAnchor,
-                _ relation: NSLayoutRelation = .equal,
-                to otherAnchor: XAnchor,
-                of otherView: UIView,
-                priority: UILayoutPriority = .required,
-                isActive: Bool = true) -> NSLayoutConstraint {
-
-        disableAutoresizing()
-
-        return self.anchor(for: anchor)
-            .constraint(with: relation, to: otherView.anchor(for: otherAnchor))
-            .priority(priority)
-            .isActive(isActive)
-    }
-
-    // MARK: - Private
-
-    private func anchor(for anchor: XAnchor) -> NSLayoutXAxisAnchor {
-        switch anchor {
-        case .left:
-            return leftAnchor
-        case .right:
-            return rightAnchor
-        case .centerX:
-            return centerXAnchor
-        }
-    }
-
-}
-
-// MARK: - Vertical alignment
-
-public extension UIView {
-    enum YAnchor: CaseIterable { case top, bottom, centerY }
-
-    // MARK: - Interface
-
-    /**
-     Constrains an anchor to given anchor in given view.
-
-     - Parameters:
-     - anchor:        The vertical anchor in the receiver.
-     - relation:      `.equal` by default.
-     - otherAnchor:   The vertical anchor to align with.
-     - otherView:     The view to align with.
-     - priority:      `.required` by default.
-     - isActive:      `true` by default.
-
-     - Returns: The created constraint.
-     */
-    @discardableResult
-    func anchor(_ anchor: YAnchor,
-                _ relation: NSLayoutRelation = .equal,
-                to otherAnchor: YAnchor,
-                of otherView: UIView,
-                priority: UILayoutPriority = .required,
-                isActive: Bool = true) -> NSLayoutConstraint {
-
-        disableAutoresizing()
-        return self.anchor(for: anchor)
-            .constraint(with: relation, to: otherView.anchor(for: otherAnchor))
-            .priority(priority)
-            .isActive(isActive)
-    }
-
-    // MARK: - Private
-
-    private func anchor(for anchor: YAnchor) -> NSLayoutYAxisAnchor {
-        switch anchor {
-        case .top:
-            return topAnchor
-        case .bottom:
-            return bottomAnchor
-        case .centerY:
-            return centerYAnchor
-        }
-    }
-}
-
-// MARK: - Directional horizontal alignment
-
-public extension UIView {
-    enum DirectionalXAnchor: CaseIterable { case leading, trailing, centerX }
-
-    // MARK: - Interface
-
-    /**
-     Constrains an anchor to given anchor in given view.
-
-     - Parameters:
-     - anchor:        The directional horizontal anchor in the receiver.
-     - relation:      `.equal` by default.
-     - otherAnchor:   The directional horizontal anchor to align with.
-     - otherView:     The view to align with.
-     - priority:      `.required` by default.
-     - isActive:      `true` by default.
-
-     - Returns: The created constraint.
-     */
-    @discardableResult
-    func anchor(_ anchor: DirectionalXAnchor,
-                to otherAnchor: DirectionalXAnchor,
-                of otherView: UIView,
-                priority: UILayoutPriority = .required,
-                isActive: Bool = true) -> NSLayoutConstraint {
-
-        disableAutoresizing()
-        return self.anchor(for: anchor)
-            .constraint(equalTo: otherView.anchor(for: otherAnchor))
-            .priority(priority)
-            .isActive(isActive)
-    }
-
-    // MARK: - Private
-
-    private func anchor(for anchor: DirectionalXAnchor) -> NSLayoutXAxisAnchor {
-        switch anchor {
-        case .leading:
-            return leadingAnchor
-        case .trailing:
-            return trailingAnchor
-        case .centerX:
-            return centerXAnchor
+            return heightAnchor.constraint(equalTo: anchorable.heightAnchor)
         }
     }
 }
