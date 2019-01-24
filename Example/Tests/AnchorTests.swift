@@ -50,13 +50,12 @@ class AnchorTests: XCTestCase {
     }
 
     func testTargetDefaultsToSuperview() {
-        let view = UIView()
-        let superview = UIView()
+        viewAndSuperview { view, superview in
 
-        superview.addSubview(view)
-        view.anchor()
+            view.anchor()
 
-        expect(view, toMatch: superview)
+            expect(view, toMatch: superview)
+        }
     }
 
     func testRelationDefaultsToEqual() {
@@ -224,33 +223,30 @@ class AnchorTests: XCTestCase {
     // MARK: - Layout guides
 
     func testAnchorToSafeArea() {
-        let view = UIView()
-        let superview = UIView()
+        viewAndSuperview { view, superview in
 
-        superview.addSubview(view)
-        view.anchor(to: .safeArea)
+            view.anchor(to: .safeArea)
 
-        expect(view, toMatch: superview.safeAreaLayoutGuide)
+            expect(view, toMatch: superview.safeAreaLayoutGuide)
+        }
     }
 
     func testAnchorToLayoutMargins() {
-        let view = UIView()
-        let superview = UIView()
+        viewAndSuperview { view, superview in
 
-        superview.addSubview(view)
-        view.anchor(to: .layoutMargins)
+            view.anchor(to: .layoutMargins)
 
-        expect(view, toMatch: superview.layoutMarginsGuide)
+            expect(view, toMatch: superview.layoutMarginsGuide)
+        }
     }
 
     func testAnchorToReadableContentGuide() {
-        let view = UIView()
-        let superview = UIView()
+        viewAndSuperview { view, superview in
 
-        superview.addSubview(view)
-        view.anchor(to: .readableContent)
+            view.anchor(to: .readableContent)
 
-        expect(view, toMatch: superview.readableContentGuide)
+            expect(view, toMatch: superview.readableContentGuide)
+        }
     }
 
     func testAnchorToLayoutGuideOfOther() {
@@ -263,13 +259,12 @@ class AnchorTests: XCTestCase {
     }
 
     func testAnchorOneAnchorToLayoutGuide() {
-        let view = UIView()
-        let superview = UIView()
+        viewAndSuperview { view, superview in
 
-        superview.addSubview(view)
-        view.anchor(.top, to: .layoutMargins)
+            view.anchor(.top, to: .layoutMargins)
 
-        expect(.top, of: view, toMatch: superview.layoutMarginsGuide)
+            expect(.top, of: view, toMatch: superview.layoutMarginsGuide)
+        }
     }
 
     func testAnchorOneAnchorToLayoutGuideOfOther() {
@@ -282,13 +277,12 @@ class AnchorTests: XCTestCase {
     }
 
     func testAnchorMultipleAnchorsToLayoutGuide() {
-        let view = UIView()
-        let superview = UIView()
+        viewAndSuperview { view, superview in
 
-        superview.addSubview(view)
-        view.anchor(.leading, .bottom, to: .safeArea)
+            view.anchor(.leading, .bottom, to: .safeArea)
 
-        expect(.leading, .bottom, of: view, toMatch: superview.safeAreaLayoutGuide)
+            expect(.leading, .bottom, of: view, toMatch: superview.safeAreaLayoutGuide)
+        }
     }
 
     func testAnchorMultipleAnchorsToLayoutGuideOfOther() {

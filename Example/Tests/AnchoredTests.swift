@@ -39,12 +39,9 @@ class AnchoredTests: XCTestCase {
     }
 
     func testTargetDefaultsToSuperview() {
-        let view = UIView()
-        let superview = UIView()
-
-        superview.addSubview(view)
-
-        expect(view.anchored(), toMatch: superview)
+        viewAndSuperview { view, superview in
+            expect(view.anchored(), toMatch: superview)
+        }
     }
 
     // MARK: - Separate anchors
@@ -56,5 +53,20 @@ class AnchoredTests: XCTestCase {
 
             expect(anchor.layoutAttribute, of: view, toMatch: other)
         }
+    }
+
+    // MARK: - Layout guides
+
+    func testAnchoredToLayoutGuide() {
+        viewAndSuperview { view, superview in
+            expect(view.anchored(to: .safeArea), toMatch: superview.safeAreaLayoutGuide)
+        }
+    }
+
+    func testAnchoredToLayoutGuideOfOther() {
+        let other = UIView()
+        let view = UIView().anchored(to: .layoutMargins, of: other)
+
+        expect(view, toMatch: other.layoutMarginsGuide)
     }
 }

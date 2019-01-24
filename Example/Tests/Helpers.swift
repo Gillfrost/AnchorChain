@@ -156,6 +156,13 @@ func siblings(file: StaticString = #file, line: UInt = #line, block: (UIView, UI
     block(one, two)
 }
 
+func viewAndSuperview(file: StaticString = #file, line: UInt = #line, block: (UIView, UIView) -> Void) {
+    let view = UIView()
+    let superview = UIView()
+    superview.addSubview(view)
+    block(view, superview)
+}
+
 func expect(_ view: UIView, toMatch other: UIView, file: StaticString = #file, line: UInt = #line) {
 
     expect(.top, .left, .bottom, .right,
