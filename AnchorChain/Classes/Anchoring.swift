@@ -5,6 +5,18 @@ import UIKit
 
 public extension UIView {
 
+    /**
+     Constrains one dimension to a constant.
+
+     Passing `.size` as anchor will constrain both width and height to given constant.
+
+     - Parameters:
+     - anchor:    The dimension to constrain, `.width`, `.height` or `.size`.
+     - constant:  The constant.
+     - priority:  `.required` by default.
+
+     - Returns: The receiver.
+     */
     func anchoring(_ anchor: DimensionalAnchor,
                    to constant: CGFloat,
                    priority: UILayoutPriority = .required) -> Self {

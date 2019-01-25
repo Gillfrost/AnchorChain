@@ -11,7 +11,7 @@ public extension UIView {
      Constrains one dimension to a constant.
 
      Passing `.size` as anchor will constrain width to height, and
-     return a single constraint to represent both dimensions.
+     return a single constraint whose constant represents both dimensions.
 
      - Parameters:
      - anchor:    The dimension to constrain, `.width`, `.height` or `.size`.
