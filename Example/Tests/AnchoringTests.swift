@@ -229,4 +229,18 @@ class AnchoringTests: XCTestCase {
             XCTAssertEqual(constraint?.priority, .defaultHigh)
         }
     }
+
+    // MARK: - Layout guides
+
+    func testAnchoringViewToLayoutGuide() {
+        let view = UIView()
+
+        expect(view, toMatch: UIView().anchoring(view, to: .safeArea).safeAreaLayoutGuide)
+    }
+
+    func testAnchoringSpecificAnchorsOfViewToLayoutGuide() {
+        let view = UIView()
+
+        expect(.top, .centerX, of: view, toMatch: UIView().anchoring(.top, .centerX, of: view, to: .layoutMargins).layoutMarginsGuide)
+    }
 }
