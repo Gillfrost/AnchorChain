@@ -26,6 +26,16 @@ public extension UIView {
         return self
     }
 
+    /**
+     Constrains edges of given view to receiver.
+
+     - Note:
+       **Given view is automatically added as subview to receiver, if it is without superview.**
+
+     - Parameter view: The view whose edges should match receiver.
+
+     - Returns: The receiver.
+     */
     func anchoring(_ view: UIView) -> Self {
 
         _ = view.anchor([], to: self)
@@ -34,7 +44,7 @@ public extension UIView {
     }
 
     /**
-     Constrains given view to given layout guide of receiver.
+     Constrains edges of given view to given layout guide of receiver.
 
      - Note:
        **Given view is automatically added as subview to receiver, if it is without superview.**
@@ -52,6 +62,19 @@ public extension UIView {
         return self
     }
 
+    /**
+     Constrains one or more anchors of given view to match receiver.
+
+     - Note:
+       **Given view is automatically added as subview to receiver, if it is without superview.**
+
+     - Parameters:
+     - a1:          An anchor.
+     - aX:          More anchors.
+     - view:        The view to match.
+
+     - Returns: The receiver.
+     */
     func anchoring(_ a1: Anchor, _ aX: Anchor..., of view: UIView) -> Self {
 
         _ = view.anchor([a1] + aX, to: self)
