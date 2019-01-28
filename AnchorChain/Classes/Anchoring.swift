@@ -69,9 +69,9 @@ public extension UIView {
        **Given view is automatically added as subview to receiver, if it is without superview.**
 
      - Parameters:
-     - a1:          An anchor.
-     - aX:          More anchors.
-     - view:        The view to match.
+       - a1:          An anchor.
+       - aX:          More anchors.
+       - view:        The view to match.
 
      - Returns: The receiver.
      */
@@ -103,6 +103,18 @@ public extension UIView {
         return self
     }
 
+    /**
+     Constrains an anchor to given anchor in given view.
+
+     - Parameters:
+       - anchor:        The vertical anchor in the receiver.
+       - relation:      `.equal` by default.
+       - otherAnchor:   The vertical anchor to align with.
+       - otherView:     The view to align with.
+       - priority:      `.required` by default.
+
+     - Returns: The receiver.
+     */
     func anchoring(_ anchor: YAnchor,
                    _ relation: NSLayoutRelation = .equal,
                    to otherAnchor: YAnchor,
@@ -114,6 +126,18 @@ public extension UIView {
         return self
     }
 
+    /**
+     Constrains an anchor to given anchor in given view.
+
+     - Parameters:
+       - anchor:        The horizontal anchor in the receiver.
+       - relation:      `.equal` by default.
+       - otherAnchor:   The horizontal anchor to align with.
+       - otherView:     The view to align with.
+       - priority:      `.required` by default.
+
+     - Returns: The receiver.
+     */
     func anchoring(_ anchor: XAnchor,
                    _ relation: NSLayoutRelation = .equal,
                    to otherAnchor: XAnchor,
@@ -125,6 +149,18 @@ public extension UIView {
         return self
     }
 
+    /**
+     Constrains an anchor to given anchor in given view.
+
+     - Parameters:
+       - anchor:        The directional horizontal anchor in the receiver.
+       - relation:      `.equal` by default.
+       - otherAnchor:   The directional horizontal anchor to align with.
+       - otherView:     The view to align with.
+       - priority:      `.required` by default.
+
+     - Returns: The receiver.
+     */
     func anchoring(_ anchor: DirectionalXAnchor,
                    to otherAnchor: DirectionalXAnchor,
                    of otherView: UIView,
