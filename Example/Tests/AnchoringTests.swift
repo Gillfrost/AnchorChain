@@ -143,39 +143,42 @@ class AnchoringTests: XCTestCase {
 
     // MARK: - Relations
 
-    func testEqualRelation() {
-        siblings { one, two in
+    func testXAnchorWithRelation() {
+        NSLayoutRelation.all.forEach { relation in
+            siblings { one, two in
 
-            let constraint = one.anchoring(.left, .equal, to: .right, of: two)
-                .superview?
-                .constraints
-                .first
+                let constraint = one.anchoring(.left, relation, to: .right, of: two)
+                    .superview?
+                    .constraints
+                    .first
 
-            XCTAssertEqual(constraint?.relation, .equal)
+                XCTAssertEqual(constraint?.relation, relation)
+            }
         }
     }
 
-    func testGreaterThanOrEqualRelation() {
-        siblings { one, two in
+    func testYAnchorWithRelation() {
+        NSLayoutRelation.all.forEach { relation in
+            siblings { one, two in
 
-            let constraint = one.anchoring(.top, .greaterThanOrEqual, to: .bottom, of: two)
-                .superview?
-                .constraints
-                .first
+                let constraint = one.anchoring(.top, relation, to: .bottom, of: two)
+                    .superview?
+                    .constraints
+                    .first
 
-            XCTAssertEqual(constraint?.relation, .greaterThanOrEqual)
+                XCTAssertEqual(constraint?.relation, relation)
+            }
         }
     }
 
-    func testLessThanOrEqualRelation() {
-        siblings { one, two in
+    func testDimensionalAnchorWithRelation() {
+        NSLayoutRelation.all.forEach { relation in
 
-            let constraint = one.anchoring(.centerX, .lessThanOrEqual, to: .right, of: two)
-                .superview?
+            let constraint = UIView().anchoring(.height, relation, to: 123)
                 .constraints
                 .first
 
-            XCTAssertEqual(constraint?.relation, .lessThanOrEqual)
+            XCTAssertEqual(constraint?.relation, relation)
         }
     }
 

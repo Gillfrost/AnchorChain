@@ -15,6 +15,7 @@ public extension UIView {
 
      - Parameters:
      - anchor:    The dimension to constrain, `.width`, `.height` or `.size`.
+     - relation:  `.equal` by default.
      - constant:  The constant.
      - priority:  `.required` by default.
      - isActive:  `true` by default.
@@ -23,6 +24,7 @@ public extension UIView {
      */
     @discardableResult
     func anchor(_ anchor: DimensionalAnchor,
+                _ relation: NSLayoutRelation = .equal,
                 to constant: CGFloat,
                 priority: UILayoutPriority = .required,
                 isActive: Bool = true) -> NSLayoutConstraint {
@@ -31,7 +33,7 @@ public extension UIView {
             widthAnchor.constraint(equalTo: heightAnchor).isActive = true
         }
         return self.anchor(for: anchor)
-            .constraint(equalToConstant: constant)
+            .constraint(relation, to: constant)
             .priority(priority)
             .isActive(isActive)
     }
@@ -45,6 +47,20 @@ private extension Anchorable {
             return widthAnchor
         case .height:
             return heightAnchor
+        }
+    }
+}
+
+private extension NSLayoutDimension {
+
+    func constraint(_ relation: NSLayoutRelation, to constant: CGFloat) -> NSLayoutConstraint {
+        switch relation {
+        case .equal:
+            return constraint(equalToConstant: constant)
+        case .lessThanOrEqual:
+            return constraint(lessThanOrEqualToConstant: constant)
+        case .greaterThanOrEqual:
+            return constraint(greaterThanOrEqualToConstant: constant)
         }
     }
 }
