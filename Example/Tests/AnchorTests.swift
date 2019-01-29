@@ -158,30 +158,34 @@ class AnchorTests: XCTestCase {
 
     // MARK: - Relations
 
-    func testEqualRelation() {
-        siblings { one, two in
+    func testXAnchorWithRelation() {
+        NSLayoutRelation.all.forEach { relation in
+            siblings { one, two in
 
-            let constraint = one.anchor(.left, .equal, to: .right, of: two)
+                let constraint = one.anchor(.left, relation, to: .right, of: two)
 
-            XCTAssertEqual(constraint.relation, .equal)
+                XCTAssertEqual(constraint.relation, relation)
+            }
         }
     }
 
-    func testGreaterThanOrEqualRelation() {
-        siblings { one, two in
+    func testYAnchorWithRelation() {
+        NSLayoutRelation.all.forEach { relation in
+            siblings { one, two in
 
-            let constraint = one.anchor(.top, .greaterThanOrEqual, to: .bottom, of: two)
+                let constraint = one.anchor(.top, relation, to: .bottom, of: two)
 
-            XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
+                XCTAssertEqual(constraint.relation, relation)
+            }
         }
     }
 
-    func testLessThanOrEqualRelation() {
-        siblings { one, two in
-            
-            let constraint = one.anchor(.centerX, .lessThanOrEqual, to: .right, of: two)
+    func testDimensionalAnchorWithRelation() {
+        NSLayoutRelation.all.forEach { relation in
 
-            XCTAssertEqual(constraint.relation, .lessThanOrEqual)
+            let constraint = UIView().anchor(.height, relation, to: 123)
+
+            XCTAssertEqual(constraint.relation, relation)
         }
     }
 

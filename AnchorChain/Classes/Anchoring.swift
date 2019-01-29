@@ -12,16 +12,18 @@ public extension UIView {
 
      - Parameters:
        - anchor:    The dimension to constrain, `.width`, `.height` or `.size`.
+       - relation: `.equal` by default.
        - constant:  The constant.
        - priority:  `.required` by default.
 
      - Returns: The receiver.
      */
     func anchoring(_ anchor: DimensionalAnchor,
+                   _ relation: NSLayoutRelation = .equal,
                    to constant: CGFloat,
                    priority: UILayoutPriority = .required) -> Self {
 
-        self.anchor(anchor, to: constant, priority: priority)
+        self.anchor(anchor, relation, to: constant, priority: priority)
 
         return self
     }

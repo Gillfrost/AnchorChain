@@ -58,6 +58,13 @@ extension NSLayoutRelation: CustomStringConvertible {
     }
 }
 
+extension NSLayoutRelation {
+
+    static var all: [NSLayoutRelation] {
+        return [.equal, .lessThanOrEqual, .greaterThanOrEqual]
+    }
+}
+
 extension NSLayoutAttribute: CustomStringConvertible {
 
     public var description: String {
