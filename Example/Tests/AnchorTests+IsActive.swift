@@ -20,6 +20,24 @@ class AnchorTests_IsActive: XCTestCase {
         XCTAssertFalse(constraint.isActive)
     }
 
+    func testActiveDimensionalAnchorToOther() {
+        siblings { one, two in
+
+            let constraint = one.anchor(.width, to: .width, of: two, isActive: true)
+
+            XCTAssertTrue(constraint.isActive)
+        }
+    }
+
+    func testInactiveDimensionalAnchorToOther() {
+        siblings { one, two in
+
+            let constraint = one.anchor(.height, to: .height, of: two, isActive: false)
+
+            XCTAssertFalse(constraint.isActive)
+        }
+    }
+
     func testActiveAnchorToImplicitSuperview() {
         let superview = UIView()
         let view = UIView()
@@ -94,7 +112,7 @@ class AnchorTests_IsActive: XCTestCase {
         }
     }
 
-    func testActiveDimensionalXAnchor() {
+    func testActiveDirectionalXAnchor() {
         siblings { one, two in
 
             let constraint = one.anchor(.leading, to: .centerX, of: two, isActive: true)
@@ -103,7 +121,7 @@ class AnchorTests_IsActive: XCTestCase {
         }
     }
 
-    func testInactiveDimensionalXAnchor() {
+    func testInactiveDirectionalXAnchor() {
         siblings { one, two in
 
             let constraint = one.anchor(.leading, to: .centerX, of: two, isActive: false)
