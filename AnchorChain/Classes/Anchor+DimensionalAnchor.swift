@@ -15,11 +15,11 @@ public extension UIView {
      return a single constraint whose constant represents both dimensions.
 
      - Parameters:
-     - anchor:    The dimension to constrain, `.width`, `.height` or `.size`.
-     - relation:  `.equal` by default.
-     - constant:  The constant.
-     - priority:  `.required` by default.
-     - isActive:  `true` by default.
+       - anchor:    The dimension to constrain, `.width`, `.height` or `.size`.
+       - relation:  `.equal` by default.
+       - constant:  The constant.
+       - priority:  `.required` by default.
+       - isActive:  `true` by default.
 
      - Returns: The created constraint. Discardable.
      */

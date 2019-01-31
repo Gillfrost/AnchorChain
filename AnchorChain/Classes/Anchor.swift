@@ -55,7 +55,7 @@ public extension UIView {
      Constrains edges to given layout guide of given view.
 
      - Note:
-     **Receiver is automatically added as subview to given view, if receiver is without superview.**
+       **Receiver is automatically added as subview to given view, if receiver is without superview.**
 
      - Parameters:
        - layoutGuide: The layout guide to match.
@@ -86,9 +86,9 @@ public extension UIView {
      Constrains one anchor to match given layout guide of superview.
 
      - Parameters:
-     - anchor:      The anchor to match.
-     - layoutGuide: The layout guide to match.
-     - isActive:    `true` by default.
+       - anchor:      The anchor to match.
+       - layoutGuide: The layout guide to match.
+       - isActive:    `true` by default.
 
      - Returns: The created constraint. Discardable.
      */
@@ -119,13 +119,13 @@ public extension UIView {
      Constrains one anchor to match given layout guide of given view.
 
      - Note:
-     **Receiver is automatically added as subview to given view, if receiver is without superview.**
+       **Receiver is automatically added as subview to given view, if receiver is without superview.**
 
      - Parameters:
-     - anchor:      The anchor to match.
-     - layoutGuide: The layout guide to match.
-     - view:        The view to match.
-     - isActive:    `true` by default.
+       - anchor:      The anchor to match.
+       - layoutGuide: The layout guide to match.
+       - view:        The view to match.
+       - isActive:    `true` by default.
 
      - Returns: The created constraint. Discardable.
      */
@@ -153,10 +153,10 @@ public extension UIView {
      Constrains two or more anchors to match given layout guide of superview.
 
      - Parameters:
-     - a1:          An anchor.
-     - a2:          Another anchor.
-     - aX:          More anchors.
-     - layoutGuide: The layout guide to match.
+       - a1:          An anchor.
+       - a2:          Another anchor.
+       - aX:          More anchors.
+       - layoutGuide: The layout guide to match.
 
      - Returns: The created array of constraints. Discardable.
      */
@@ -188,14 +188,14 @@ public extension UIView {
      Constrains two or more anchors to match given layout guide of given view.
 
      - Note:
-     **Receiver is automatically added as subview to given view, if receiver is without superview.**
+       **Receiver is automatically added as subview to given view, if receiver is without superview.**
 
      - Parameters:
-     - a1:          An anchor.
-     - a2:          Another anchor.
-     - aX:          More anchors.
-     - layoutGuide: The layout guide to match.
-     - view:        The view to match.
+       - a1:          An anchor.
+       - a2:          Another anchor.
+       - aX:          More anchors.
+       - layoutGuide: The layout guide to match.
+       - view:        The view to match.
 
      - Returns: The created array of constraints. Discardable.
      */
