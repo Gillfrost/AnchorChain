@@ -156,6 +156,15 @@ class AnchorTests: XCTestCase {
         expect(.width, toMatch: .height, of: view)
     }
 
+    func testAnchorDifferentDimensionalAnchors() {
+        siblings { one, two in
+
+            one.anchor(.width, to: .height, of: two)
+
+            expect(.width, of: one, toMatch: .height, of: two)
+        }
+    }
+
     // MARK: - Relations
 
     func testXAnchorWithRelation() {
@@ -189,12 +198,32 @@ class AnchorTests: XCTestCase {
         }
     }
 
+    func testDimensionalAnchorToOtherWithRelation() {
+        NSLayoutRelation.all.forEach { relation in
+            siblings { one, two in
+
+                let constraint = one.anchor(.width, relation, to: .height, of: two)
+
+                XCTAssertEqual(constraint.relation, relation)
+            }
+        }
+    }
+
     // MARK: - Priority
 
     func testDimensionalAnchorPriority() {
         let constraint = UIView().anchor(.width, to: 123, priority: .defaultLow)
 
         XCTAssertEqual(constraint.priority, .defaultLow)
+    }
+
+    func testDimensionalAnchorToOtherPriority() {
+        siblings { one, two in
+
+            let constraint = one.anchor(.width, to: .height, of: two, priority: .defaultLow)
+
+            XCTAssertEqual(constraint.priority, .defaultLow)
+        }
     }
 
     func testXAnchorPriority() {
