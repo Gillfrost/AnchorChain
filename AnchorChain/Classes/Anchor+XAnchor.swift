@@ -11,12 +11,12 @@ public extension UIView {
      Constrains an anchor to given anchor in given view.
 
      - Parameters:
-     - anchor:        The horizontal anchor in the receiver.
-     - relation:      `.equal` by default.
-     - otherAnchor:   The horizontal anchor to align with.
-     - otherView:     The view to align with.
-     - priority:      `.required` by default.
-     - isActive:      `true` by default.
+       - anchor:        The horizontal anchor in the receiver.
+       - relation:      `.equal` by default.
+       - otherAnchor:   The horizontal anchor to align with.
+       - otherView:     The view to align with.
+       - priority:      `.required` by default.
+       - isActive:      `true` by default.
 
      - Returns: The created constraint.
      */
