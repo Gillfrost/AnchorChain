@@ -6,14 +6,39 @@ import UIKit
 public extension UIView {
 
     /**
+     Constrains edges to superview.
+
+     - Returns: The receiver.
+     */
+    func anchored() -> Self {
+        anchor()
+        return self
+    }
+
+    /**
      Constrains a variable number of anchors to match superview.
 
-     - Parameter anchors: `.top, .left, .bottom, .right` by default.
+     - Parameters:
+       -  a1: An anchor.
+       -  aX: More anchors.
 
      - Returns: The receiver.
     */
-    func anchored(_ anchors: Anchor...) -> Self {
-        _ = anchor(anchors)
+    func anchored(_ a1: Anchor, _ aX: Anchor...) -> Self {
+        _ = anchor([a1] + aX)
+        return self
+    }
+
+    /**
+     Constrains edges to given layout guide of superview.
+
+     - Parameter layoutGuide:
+       The layout guide in superview whose edges receiver should match.
+
+     - Returns: The receiver.
+     */
+    func anchored(to layoutGuide: LayoutGuide) -> Self {
+        anchor(to: layoutGuide)
         return self
     }
 
@@ -21,13 +46,29 @@ public extension UIView {
      Constrains a variable number of anchors to match given layout guide of superview.
 
      - Parameters:
-       - anchors:     `.top, .left, .bottom, .right` by default.
+       - a1:          An anchor.
+       - aX:          More anchors.
        - layoutGuide: The layout guide to match.
 
      - Returns: The receiver.
      */
-    func anchored(_ anchors: Anchor..., to layoutGuide: LayoutGuide) -> Self {
-        _ = anchor(anchors, to: layoutGuide)
+    func anchored(_ a1: Anchor,_ aX: Anchor..., to layoutGuide: LayoutGuide) -> Self {
+        _ = anchor([a1] + aX, to: layoutGuide)
+        return self
+    }
+
+    /**
+     Constrains edges to given view.
+
+     - Note:
+       **Receiver is automatically added as subview to given view, if receiver is without superview.**
+
+     - Parameter view: The view to match.
+
+     - Returns: The receiver.
+     */
+    func anchored(to view: UIView) -> Self {
+        anchor(to: view)
         return self
     }
 
@@ -38,13 +79,31 @@ public extension UIView {
        **Receiver is automatically added as subview to given view, if receiver is without superview.**
 
      - Parameters:
-       - anchors: `.top, .left, .bottom, .right` by default.
-       - view:    The view to match.
+       - a1:   An anchor.
+       - aX:   More anchors.
+       - view: The view to match.
 
      - Returns: The receiver.
      */
-    func anchored(_ anchors: Anchor..., to view: UIView) -> Self {
-        _ = anchor(anchors, to: view)
+    func anchored(_ a1: Anchor, _ aX: Anchor..., to view: UIView) -> Self {
+        _ = anchor([a1] + aX, to: view)
+        return self
+    }
+
+    /**
+     Constrains edges to given layout guide of given view.
+
+     - Note:
+       **Receiver is automatically added as subview to given view, if receiver is without superview.**
+
+     - Parameters:
+       - layoutGuide: The layout guide to match.
+       - view:        The view to match.
+
+     - Returns: The receiver.
+     */
+    func anchored(to layoutGuide: LayoutGuide, of view: UIView) -> Self {
+        anchor(to: layoutGuide, of: view)
         return self
     }
 
@@ -55,14 +114,15 @@ public extension UIView {
        **Receiver is automatically added as subview to given view, if receiver is without superview.**
 
      - Parameters:
-       - anchors:     `.top, .left, .bottom, .right` by default.
+       - a1:          An anchor.
+       - aX:          More anchors.
        - layoutGuide: The layout guide to match.
        - view:        The view to match.
 
      - Returns: The receiver.
      */
-    func anchored(_ anchors: Anchor..., to layoutGuide: LayoutGuide, of view: UIView) -> Self {
-        _ = anchor(anchors, to: layoutGuide, of: view)
+    func anchored(_ a1: Anchor, _ aX: Anchor..., to layoutGuide: LayoutGuide, of view: UIView) -> Self {
+        _ = anchor([a1] + aX, to: layoutGuide, of: view)
         return self
     }
 }

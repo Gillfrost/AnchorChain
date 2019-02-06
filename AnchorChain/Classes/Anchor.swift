@@ -26,7 +26,7 @@ public extension UIView {
      Constrains edges to given layout guide of superview.
 
      - Parameter layoutGuide:
-       The layout guide whose edges should match receiver.
+       The layout guide in superview whose edges receiver should match.
 
      - Returns: The created array of constraints. Discardable.
      */
@@ -42,7 +42,7 @@ public extension UIView {
        **Receiver is automatically added as subview to given view, if receiver is without superview.**
 
      - Parameter view:
-       The view whose edges should match receiver.
+       The view whose edges receiver should match.
 
      - Returns: The created array of constraints. Discardable.
      */

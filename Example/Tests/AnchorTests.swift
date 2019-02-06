@@ -40,15 +40,6 @@ class AnchorTests: XCTestCase {
 
     // MARK: - Default parameters
 
-    func testAnchorsDefaultToTopLeftBottomRight() {
-        let view = UIView()
-        let other = UIView()
-
-        view.anchor(to: other)
-
-        expect(.top, .left, .bottom, .right, of: view, toMatch: other)
-    }
-
     func testTargetDefaultsToSuperview() {
         viewAndSuperview { view, superview in
 
@@ -65,6 +56,26 @@ class AnchorTests: XCTestCase {
 
             XCTAssertEqual(defaultRelation, .equal)
         }
+    }
+
+    // MARK: - Edge anchoring
+
+    func testAnchorToImplicitSuperview() {
+        viewAndSuperview { view, superview in
+
+            view.anchor()
+
+            expect(.top, .left, .bottom, .right, of: view, toMatch: superview)
+        }
+    }
+
+    func testAnchorToOther() {
+        let view = UIView()
+        let other = UIView()
+
+        view.anchor(to: other)
+
+        expect(.top, .left, .bottom, .right, of: view, toMatch: other)
     }
 
     // MARK: - Separate anchors
