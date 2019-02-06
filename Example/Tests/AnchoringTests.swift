@@ -40,12 +40,6 @@ class AnchoringTests: XCTestCase {
 
     // MARK: - Default parameters
 
-    func testAnchorsDefaultToTopLeftBottomRight() {
-        let other = UIView()
-
-        expect(.top, .left, .bottom, .right, of: other, toMatch: UIView().anchoring(other))
-    }
-
     func testRelationDefaultsToEqual() {
         siblings { view, otherView in
 
@@ -57,6 +51,14 @@ class AnchoringTests: XCTestCase {
 
             XCTAssertEqual(defaultRelation, .equal)
         }
+    }
+
+    // MARK: - Edge anchoring
+
+    func testAnchoringOther() {
+        let other = UIView()
+
+        expect(.top, .left, .bottom, .right, of: other, toMatch: UIView().anchoring(other))
     }
 
     // MARK: - Separate anchors
