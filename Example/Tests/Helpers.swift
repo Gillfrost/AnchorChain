@@ -18,13 +18,15 @@ extension UIView {
     func isAttribute(_ attribute: NSLayoutAttribute,
                      of view: UIView,
                      constrainedTo otherAttribute: NSLayoutAttribute,
-                     of otherView: UIView) -> Bool {
+                     of other: AnyObject,
+                     withConstant constant: CGFloat) -> Bool {
 
         return constraints.contains {
             $0.firstItem === view
                 && $0.firstAttribute == attribute
-                && $0.secondItem === otherView
+                && $0.secondItem === other
                 && $0.secondAttribute == otherAttribute
+                && $0.constant == constant
         }
     }
 
@@ -238,20 +240,33 @@ func expect(_ attribute: NSLayoutAttribute,
     }
 }
 
-func expect(_ attribute: NSLayoutAttribute,
-            of view: UIView,
-            toMatch otherAttribute: NSLayoutAttribute,
-            of otherView: UIView,
+func expect(_ view: UIView,
+            toMatch other: AnyObject,
+            withInsets insets: UIEdgeInsets,
             file: StaticString = #file,
             line: UInt = #line) {
 
-    guard let superview = view.superview, otherView.superview == superview else {
-        XCTFail("Views do not share superview", file: file, line: line)
+    expect(.top, of: view, toMatch: .top, of: other, withConstant: insets.top, file: file, line: line)
+    expect(.left, of: view, toMatch: .left, of: other, withConstant: insets.left, file: file, line: line)
+    expect(.bottom, of: view, toMatch: .bottom, of: other, withConstant: -insets.bottom, file: file, line: line)
+    expect(.right, of: view, toMatch: .right, of: other, withConstant: -insets.right, file: file, line: line)
+}
+
+func expect(_ attribute: NSLayoutAttribute,
+            of view: UIView,
+            toMatch otherAttribute: NSLayoutAttribute,
+            of other: AnyObject,
+            withConstant constant: CGFloat = 0,
+            file: StaticString = #file,
+            line: UInt = #line) {
+
+    guard let superview = view.superview else {
+        XCTFail("View has no superview", file: file, line: line)
         return
     }
 
-    XCTAssert(superview.isAttribute(attribute, of: view, constrainedTo: otherAttribute, of: otherView),
-              "Attribute \(attribute) is not constrained to \(otherAttribute)",
+    XCTAssert(superview.isAttribute(attribute, of: view, constrainedTo: otherAttribute, of: other, withConstant: constant),
+              "Attribute \(attribute) is not constrained to \(otherAttribute) with constant \(constant)",
               file: file,
               line: line)
 }
