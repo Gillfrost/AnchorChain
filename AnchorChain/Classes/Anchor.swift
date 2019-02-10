@@ -30,8 +30,8 @@ public extension UIView {
      - Returns: The created array of constraints. Discardable.
      */
     @discardableResult
-    func anchor(insets: UIEdgeInsets) -> [NSLayoutConstraint] {
-        return anchor([], insets: insets)
+    func anchor(with insets: UIEdgeInsets) -> [NSLayoutConstraint] {
+        return anchor([], with: insets)
     }
 
     /**
@@ -57,8 +57,8 @@ public extension UIView {
      - Returns: The created array of constraints. Discardable.
      */
     @discardableResult
-    func anchor(to layoutGuide: LayoutGuide, insets: UIEdgeInsets) -> [NSLayoutConstraint] {
-        return anchor([], to: layoutGuide, insets: insets)
+    func anchor(to layoutGuide: LayoutGuide, with insets: UIEdgeInsets) -> [NSLayoutConstraint] {
+        return anchor([], to: layoutGuide, with: insets)
     }
 
     /**
@@ -90,8 +90,8 @@ public extension UIView {
      - Returns: The created array of constraints. Discardable.
      */
     @discardableResult
-    func anchor(to view: UIView, insets: UIEdgeInsets) -> [NSLayoutConstraint] {
-        return anchor([], to: view, insets: insets)
+    func anchor(to view: UIView, with insets: UIEdgeInsets) -> [NSLayoutConstraint] {
+        return anchor([], to: view, with: insets)
     }
 
     /**
@@ -125,8 +125,8 @@ public extension UIView {
      - Returns: The created array of constraints. Discardable.
      */
     @discardableResult
-    func anchor(to layoutGuide: LayoutGuide, of view: UIView, insets: UIEdgeInsets) -> [NSLayoutConstraint] {
-        return anchor([], to: layoutGuide, of: view, insets: insets)
+    func anchor(to layoutGuide: LayoutGuide, of view: UIView, with insets: UIEdgeInsets) -> [NSLayoutConstraint] {
+        return anchor([], to: layoutGuide, of: view, with: insets)
     }
 
     /**
@@ -270,28 +270,28 @@ extension UIView {
 
     func anchor(_ anchors: [Anchor],
                 to layoutGuide: LayoutGuide? = nil,
-                insets: UIEdgeInsets = .zero,
+                with insets: UIEdgeInsets = .zero,
                 activate: Bool = true) -> [NSLayoutConstraint] {
 
         guard let superview = superview else {
             assertionFailure("View has no superview")
             return []
         }
-        return anchor(anchors, to: layoutGuide, of: superview, insets: insets, activate: activate)
+        return anchor(anchors, to: layoutGuide, of: superview, with: insets, activate: activate)
     }
 
     func anchor(_ anchors: [Anchor],
                 to view: UIView,
-                insets: UIEdgeInsets = .zero,
+                with insets: UIEdgeInsets = .zero,
                 activate: Bool = true) -> [NSLayoutConstraint] {
 
-        return anchor(anchors, to: Optional<LayoutGuide>.none, of: view, insets: insets, activate: activate)
+        return anchor(anchors, to: Optional<LayoutGuide>.none, of: view, with: insets, activate: activate)
     }
 
     func anchor(_ anchors: [Anchor],
                 to layoutGuide: LayoutGuide?,
                 of view: UIView,
-                insets: UIEdgeInsets = .zero,
+                with insets: UIEdgeInsets = .zero,
                 activate: Bool = true) -> [NSLayoutConstraint] {
         prepare(for: view)
 
