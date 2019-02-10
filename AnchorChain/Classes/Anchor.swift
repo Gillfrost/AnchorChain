@@ -23,6 +23,18 @@ public extension UIView {
     }
 
     /**
+     Constrains edges to superview with insets.
+
+     - Parameter insets: The insets to use.
+
+     - Returns: The created array of constraints. Discardable.
+     */
+    @discardableResult
+    func anchor(with insets: UIEdgeInsets) -> [NSLayoutConstraint] {
+        return anchor([], with: insets)
+    }
+
+    /**
      Constrains edges to given layout guide of superview.
 
      - Parameter layoutGuide:
@@ -33,6 +45,20 @@ public extension UIView {
     @discardableResult
     func anchor(to layoutGuide: LayoutGuide) -> [NSLayoutConstraint] {
         return anchor([], to: layoutGuide)
+    }
+
+    /**
+     Constrains edges to given layout guide of superview with insets.
+
+     - Parameters:
+       - layoutGuide: The layout guide in superview whose edges receiver should match.
+       - insets:      The insets to use.
+
+     - Returns: The created array of constraints. Discardable.
+     */
+    @discardableResult
+    func anchor(to layoutGuide: LayoutGuide, with insets: UIEdgeInsets) -> [NSLayoutConstraint] {
+        return anchor([], to: layoutGuide, with: insets)
     }
 
     /**
@@ -52,6 +78,23 @@ public extension UIView {
     }
 
     /**
+     Constrains edges to given view with insets.
+
+     - Note:
+       **Receiver is automatically added as subview to given view, if receiver is without superview.**
+
+     - Parameters:
+       - view:   The view whose edges receiver should match.
+       - insets: The insets to use.
+
+     - Returns: The created array of constraints. Discardable.
+     */
+    @discardableResult
+    func anchor(to view: UIView, with insets: UIEdgeInsets) -> [NSLayoutConstraint] {
+        return anchor([], to: view, with: insets)
+    }
+
+    /**
      Constrains edges to given layout guide of given view.
 
      - Note:
@@ -66,6 +109,24 @@ public extension UIView {
     @discardableResult
     func anchor(to layoutGuide: LayoutGuide, of view: UIView) -> [NSLayoutConstraint] {
         return anchor([], to: layoutGuide, of: view)
+    }
+
+    /**
+     Constrains edges to given layout guide of given view with insets.
+
+     - Note:
+       **Receiver is automatically added as subview to given view, if receiver is without superview.**
+
+     - Parameters:
+       - layoutGuide: The layout guide to match.
+       - view:        The view to match.
+       - insets:      The insets to use.
+
+     - Returns: The created array of constraints. Discardable.
+     */
+    @discardableResult
+    func anchor(to layoutGuide: LayoutGuide, of view: UIView, with insets: UIEdgeInsets) -> [NSLayoutConstraint] {
+        return anchor([], to: layoutGuide, of: view, with: insets)
     }
 
     /**
@@ -207,23 +268,39 @@ public extension UIView {
 
 extension UIView {
 
-    func anchor(_ anchors: [Anchor], to layoutGuide: LayoutGuide? = nil, activate: Bool = true) -> [NSLayoutConstraint] {
+    func anchor(_ anchors: [Anchor],
+                to layoutGuide: LayoutGuide? = nil,
+                with insets: UIEdgeInsets = .zero,
+                activate: Bool = true) -> [NSLayoutConstraint] {
+
         guard let superview = superview else {
             assertionFailure("View has no superview")
             return []
         }
-        return anchor(anchors, to: layoutGuide, of: superview, activate: activate)
+        return anchor(anchors, to: layoutGuide, of: superview, with: insets, activate: activate)
     }
 
-    func anchor(_ anchors: [Anchor], to view: UIView, activate: Bool = true) -> [NSLayoutConstraint] {
-        return anchor(anchors, to: Optional<LayoutGuide>.none, of: view, activate: activate)
+    func anchor(_ anchors: [Anchor],
+                to view: UIView,
+                with insets: UIEdgeInsets = .zero,
+                activate: Bool = true) -> [NSLayoutConstraint] {
+
+        return anchor(anchors, to: Optional<LayoutGuide>.none, of: view, with: insets, activate: activate)
     }
 
-    func anchor(_ anchors: [Anchor], to layoutGuide: LayoutGuide?, of view: UIView, activate: Bool = true) -> [NSLayoutConstraint] {
+    func anchor(_ anchors: [Anchor],
+                to layoutGuide: LayoutGuide?,
+                of view: UIView,
+                with insets: UIEdgeInsets = .zero,
+                activate: Bool = true) -> [NSLayoutConstraint] {
         prepare(for: view)
-        let anchors = anchors.isEmpty ? [.top, .left, .bottom, .right] : anchors
+
+        let anchorsWithConstants = anchors.isEmpty
+            ? Array(zip([.top, .left, .bottom, .right],
+                        [insets.top, insets.left, -insets.bottom, -insets.right]))
+            : anchors.map { ($0, CGFloat(0)) }
         let anchorable = layoutGuide.map(view.anchorable) ?? view
-        let constraints = anchors.map { ($0, anchorable) }.map(constraint)
+        let constraints = anchorsWithConstants.map { ($0, anchorable, $1) }.map(constraint)
 
         if activate {
             NSLayoutConstraint.activate(constraints)
@@ -251,28 +328,28 @@ private extension UIView {
 
 private extension Anchorable {
 
-    func constraint(for anchor: UIView.Anchor, to anchorable: Anchorable) -> NSLayoutConstraint {
+    func constraint(for anchor: UIView.Anchor, to anchorable: Anchorable, constant: CGFloat) -> NSLayoutConstraint {
         switch anchor {
         case .top:
-            return topAnchor.constraint(equalTo: anchorable.topAnchor)
+            return topAnchor.constraint(equalTo: anchorable.topAnchor, constant: constant)
         case .left:
-            return leftAnchor.constraint(equalTo: anchorable.leftAnchor)
+            return leftAnchor.constraint(equalTo: anchorable.leftAnchor, constant: constant)
         case .bottom:
-            return bottomAnchor.constraint(equalTo: anchorable.bottomAnchor)
+            return bottomAnchor.constraint(equalTo: anchorable.bottomAnchor, constant: constant)
         case .right:
-            return rightAnchor.constraint(equalTo: anchorable.rightAnchor)
+            return rightAnchor.constraint(equalTo: anchorable.rightAnchor, constant: constant)
         case .leading:
-            return leadingAnchor.constraint(equalTo: anchorable.leadingAnchor)
+            return leadingAnchor.constraint(equalTo: anchorable.leadingAnchor, constant: constant)
         case .trailing:
-            return trailingAnchor.constraint(equalTo: anchorable.trailingAnchor)
+            return trailingAnchor.constraint(equalTo: anchorable.trailingAnchor, constant: constant)
         case .centerX:
-            return centerXAnchor.constraint(equalTo: anchorable.centerXAnchor)
+            return centerXAnchor.constraint(equalTo: anchorable.centerXAnchor, constant: constant)
         case .centerY:
-            return centerYAnchor.constraint(equalTo: anchorable.centerYAnchor)
+            return centerYAnchor.constraint(equalTo: anchorable.centerYAnchor, constant: constant)
         case .width:
-            return widthAnchor.constraint(equalTo: anchorable.widthAnchor)
+            return widthAnchor.constraint(equalTo: anchorable.widthAnchor, constant: constant)
         case .height:
-            return heightAnchor.constraint(equalTo: anchorable.heightAnchor)
+            return heightAnchor.constraint(equalTo: anchorable.heightAnchor, constant: constant)
         }
     }
 }
