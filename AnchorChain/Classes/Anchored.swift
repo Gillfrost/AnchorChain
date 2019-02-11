@@ -16,6 +16,18 @@ public extension UIView {
     }
 
     /**
+     Constrains edges to superview with insets.
+
+     - Parameter insets: The insets to use.
+
+     - Returns: The receiver.
+     */
+    func anchored(with insets: UIEdgeInsets) -> Self {
+        anchor(with: insets)
+        return self
+    }
+
+    /**
      Constrains a variable number of anchors to match superview.
 
      - Parameters:
@@ -39,6 +51,20 @@ public extension UIView {
      */
     func anchored(to layoutGuide: LayoutGuide) -> Self {
         anchor(to: layoutGuide)
+        return self
+    }
+
+    /**
+     Constrains edges to given layout guide of superview with insets.
+
+     - Parameters:
+       - layoutGuide: The layout guide in superview whose edges receiver should match.
+       - insets:      The insets to use.
+
+     - Returns: The receiver.
+     */
+    func anchored(to layoutGuide: LayoutGuide, with insets: UIEdgeInsets) -> Self {
+        anchor(to: layoutGuide, with: insets)
         return self
     }
 
@@ -69,6 +95,23 @@ public extension UIView {
      */
     func anchored(to view: UIView) -> Self {
         anchor(to: view)
+        return self
+    }
+
+    /**
+     Constrains edges to given view with insets.
+
+     - Note:
+       **Receiver is automatically added as subview to given view, if receiver is without superview.**
+
+     - Parameters:
+       - view:   The view to match.
+       - insets: The insets to use.
+
+     - Returns: The receiver.
+     */
+    func anchored(to view: UIView, with insets: UIEdgeInsets) -> Self {
+        anchor(to: view, with: insets)
         return self
     }
 
@@ -104,6 +147,24 @@ public extension UIView {
      */
     func anchored(to layoutGuide: LayoutGuide, of view: UIView) -> Self {
         anchor(to: layoutGuide, of: view)
+        return self
+    }
+
+    /**
+     Constrains edges to given layout guide of given view with insets.
+
+     - Note:
+       **Receiver is automatically added as subview to given view, if receiver is without superview.**
+
+     - Parameters:
+       - layoutGuide: The layout guide to match.
+       - view:        The view to match.
+       - insets:      The insets to use.
+
+     - Returns: The receiver.
+     */
+    func anchored(to layoutGuide: LayoutGuide, of view: UIView, with insets: UIEdgeInsets) -> Self {
+        anchor(to: layoutGuide, of: view, with: insets)
         return self
     }
 
