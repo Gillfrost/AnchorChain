@@ -6,7 +6,7 @@ import XCTest
 
 extension UIView {
 
-    func isAttribute(_ attribute: NSLayoutAttribute, of layoutGuide: UILayoutGuide? = nil, constrainedTo view: UIView) -> Bool {
+    func isAttribute(_ attribute: NSLayoutConstraint.Attribute, of layoutGuide: UILayoutGuide? = nil, constrainedTo view: UIView) -> Bool {
         return constraints.contains {
             $0.firstItem === view
                 && $0.firstAttribute == attribute
@@ -15,9 +15,9 @@ extension UIView {
         }
     }
 
-    func isAttribute(_ attribute: NSLayoutAttribute,
+    func isAttribute(_ attribute: NSLayoutConstraint.Attribute,
                      of view: UIView,
-                     constrainedTo otherAttribute: NSLayoutAttribute,
+                     constrainedTo otherAttribute: NSLayoutConstraint.Attribute,
                      of other: AnyObject,
                      withConstant constant: CGFloat) -> Bool {
 
@@ -30,7 +30,7 @@ extension UIView {
         }
     }
 
-    func isAttribute(_ attribute: NSLayoutAttribute, equalTo constant: CGFloat) -> Bool {
+    func isAttribute(_ attribute: NSLayoutConstraint.Attribute, equalTo constant: CGFloat) -> Bool {
         return constraints.contains {
             $0.firstItem === self
                 && $0.firstAttribute == attribute
@@ -39,7 +39,7 @@ extension UIView {
         }
     }
 
-    func isAttribute(_ attribute: NSLayoutAttribute, constrainedTo otherAttribute: NSLayoutAttribute) -> Bool {
+    func isAttribute(_ attribute: NSLayoutConstraint.Attribute, constrainedTo otherAttribute: NSLayoutConstraint.Attribute) -> Bool {
         return constraints.contains {
             $0.firstItem === self
                 && $0.firstAttribute == attribute
@@ -49,7 +49,7 @@ extension UIView {
     }
 }
 
-extension NSLayoutRelation: CustomStringConvertible {
+extension NSLayoutConstraint.Relation: CustomStringConvertible {
 
     public var description: String {
         switch self {
@@ -60,14 +60,14 @@ extension NSLayoutRelation: CustomStringConvertible {
     }
 }
 
-extension NSLayoutRelation {
+extension NSLayoutConstraint.Relation {
 
-    static var all: [NSLayoutRelation] {
+    static var all: [NSLayoutConstraint.Relation] {
         return [.equal, .lessThanOrEqual, .greaterThanOrEqual]
     }
 }
 
-extension NSLayoutAttribute: CustomStringConvertible {
+extension NSLayoutConstraint.Attribute: CustomStringConvertible {
 
     public var description: String {
         switch self {
@@ -98,7 +98,7 @@ extension NSLayoutAttribute: CustomStringConvertible {
 
 extension UIView.Anchor {
 
-    var layoutAttribute: NSLayoutAttribute {
+    var layoutAttribute: NSLayoutConstraint.Attribute {
         switch self {
         case .top: return .top
         case .left: return .left
@@ -116,7 +116,7 @@ extension UIView.Anchor {
 
 extension UIView.YAnchor {
 
-    var layoutAttribute: NSLayoutAttribute {
+    var layoutAttribute: NSLayoutConstraint.Attribute {
         switch self {
         case .top: return .top
         case .bottom: return .bottom
@@ -127,7 +127,7 @@ extension UIView.YAnchor {
 
 extension UIView.XAnchor {
 
-    var layoutAttribute: NSLayoutAttribute {
+    var layoutAttribute: NSLayoutConstraint.Attribute {
         switch self {
         case .left: return .left
         case .right: return .right
@@ -138,7 +138,7 @@ extension UIView.XAnchor {
 
 extension UIView.DirectionalXAnchor {
 
-    var layoutAttribute: NSLayoutAttribute {
+    var layoutAttribute: NSLayoutConstraint.Attribute {
         switch self {
         case .leading: return .leading
         case .trailing: return .trailing
@@ -190,8 +190,8 @@ func expect(_ view: UIView, toMatch layoutGuide: UILayoutGuide, file: StaticStri
            line: line)
 }
 
-func expect(_ attribute: NSLayoutAttribute,
-            _ moreAttributes: NSLayoutAttribute...,
+func expect(_ attribute: NSLayoutConstraint.Attribute,
+            _ moreAttributes: NSLayoutConstraint.Attribute...,
             of view: UIView,
             toMatch other: UIView,
             file: StaticString = #file,
@@ -212,8 +212,8 @@ func expect(_ attribute: NSLayoutAttribute,
     }
 }
 
-func expect(_ attribute: NSLayoutAttribute,
-            _ moreAttributes: NSLayoutAttribute...,
+func expect(_ attribute: NSLayoutConstraint.Attribute,
+            _ moreAttributes: NSLayoutConstraint.Attribute...,
     of view: UIView,
     toMatch layoutGuide: UILayoutGuide,
     file: StaticString = #file,
@@ -252,9 +252,9 @@ func expect(_ view: UIView,
     expect(.right, of: view, toMatch: .right, of: other, withConstant: -insets.right, file: file, line: line)
 }
 
-func expect(_ attribute: NSLayoutAttribute,
+func expect(_ attribute: NSLayoutConstraint.Attribute,
             of view: UIView,
-            toMatch otherAttribute: NSLayoutAttribute,
+            toMatch otherAttribute: NSLayoutConstraint.Attribute,
             of other: AnyObject,
             withConstant constant: CGFloat = 0,
             file: StaticString = #file,
@@ -271,7 +271,7 @@ func expect(_ attribute: NSLayoutAttribute,
               line: line)
 }
 
-func expect(_ attribute: NSLayoutAttribute,
+func expect(_ attribute: NSLayoutConstraint.Attribute,
             of view: UIView,
             toMatch constant: CGFloat,
             file: StaticString = #file,
@@ -283,8 +283,8 @@ func expect(_ attribute: NSLayoutAttribute,
               line: line)
 }
 
-func expect(_ attribute: NSLayoutAttribute,
-            toMatch otherAttribute: NSLayoutAttribute,
+func expect(_ attribute: NSLayoutConstraint.Attribute,
+            toMatch otherAttribute: NSLayoutConstraint.Attribute,
             of view: UIView,
             file: StaticString = #file,
             line: UInt = #line) {

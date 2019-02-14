@@ -179,7 +179,7 @@ class AnchorTests: XCTestCase {
     // MARK: - Relations
 
     func testXAnchorWithRelation() {
-        NSLayoutRelation.all.forEach { relation in
+        NSLayoutConstraint.Relation.all.forEach { relation in
             siblings { one, two in
 
                 let constraint = one.anchor(.left, relation, to: .right, of: two)
@@ -190,7 +190,7 @@ class AnchorTests: XCTestCase {
     }
 
     func testYAnchorWithRelation() {
-        NSLayoutRelation.all.forEach { relation in
+        NSLayoutConstraint.Relation.all.forEach { relation in
             siblings { one, two in
 
                 let constraint = one.anchor(.top, relation, to: .bottom, of: two)
@@ -201,7 +201,7 @@ class AnchorTests: XCTestCase {
     }
 
     func testDimensionalAnchorWithRelation() {
-        NSLayoutRelation.all.forEach { relation in
+        NSLayoutConstraint.Relation.all.forEach { relation in
 
             let constraint = UIView().anchor(.height, relation, to: 123)
 
@@ -210,7 +210,7 @@ class AnchorTests: XCTestCase {
     }
 
     func testDimensionalAnchorToOtherWithRelation() {
-        NSLayoutRelation.all.forEach { relation in
+        NSLayoutConstraint.Relation.all.forEach { relation in
             siblings { one, two in
 
                 let constraint = one.anchor(.width, relation, to: .height, of: two)

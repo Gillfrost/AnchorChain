@@ -78,7 +78,8 @@ class AnchoringTests: XCTestCase {
         UIView.YAnchor
             .allCases
             .allCombinations
-            .forEach { anchor, otherAnchor in
+            .forEach { combination in
+                let (anchor, otherAnchor) = combination
                 siblings { view, otherView in
 
                     expect(anchor.layoutAttribute,
@@ -95,7 +96,8 @@ class AnchoringTests: XCTestCase {
         UIView.XAnchor
             .allCases
             .allCombinations
-            .forEach { anchor, otherAnchor in
+            .forEach { combination in
+                let (anchor, otherAnchor) = combination
                 siblings { view, otherView in
 
                     expect(anchor.layoutAttribute,
@@ -110,7 +112,8 @@ class AnchoringTests: XCTestCase {
         UIView.DirectionalXAnchor
             .allCases
             .allCombinations
-            .forEach { anchor, otherAnchor in
+            .forEach { combination in
+                let (anchor, otherAnchor) = combination
                 siblings { view, otherView in
 
                     expect(anchor.layoutAttribute,
@@ -146,7 +149,7 @@ class AnchoringTests: XCTestCase {
     // MARK: - Relations
 
     func testXAnchorWithRelation() {
-        NSLayoutRelation.all.forEach { relation in
+        NSLayoutConstraint.Relation.all.forEach { relation in
             siblings { one, two in
 
                 let constraint = one.anchoring(.left, relation, to: .right, of: two)
@@ -160,7 +163,7 @@ class AnchoringTests: XCTestCase {
     }
 
     func testYAnchorWithRelation() {
-        NSLayoutRelation.all.forEach { relation in
+        NSLayoutConstraint.Relation.all.forEach { relation in
             siblings { one, two in
 
                 let constraint = one.anchoring(.top, relation, to: .bottom, of: two)
@@ -174,7 +177,7 @@ class AnchoringTests: XCTestCase {
     }
 
     func testDimensionalAnchorWithRelation() {
-        NSLayoutRelation.all.forEach { relation in
+        NSLayoutConstraint.Relation.all.forEach { relation in
 
             let constraint = UIView().anchoring(.height, relation, to: 123)
                 .constraints

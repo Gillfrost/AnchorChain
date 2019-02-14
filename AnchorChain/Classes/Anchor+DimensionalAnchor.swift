@@ -25,7 +25,7 @@ public extension UIView {
      */
     @discardableResult
     func anchor(_ anchor: DimensionalAnchor,
-                _ relation: NSLayoutRelation = .equal,
+                _ relation: NSLayoutConstraint.Relation = .equal,
                 to constant: CGFloat,
                 priority: UILayoutPriority = .required,
                 isActive: Bool = true) -> NSLayoutConstraint {
@@ -54,7 +54,7 @@ public extension UIView {
      */
     @discardableResult
     func anchor(_ anchor: OneDimensionalAnchor,
-                _ relation: NSLayoutRelation = .equal,
+                _ relation: NSLayoutConstraint.Relation = .equal,
                 to otherAnchor: OneDimensionalAnchor,
                 of otherView: UIView,
                 priority: UILayoutPriority = .required,
@@ -81,7 +81,7 @@ private extension Anchorable {
 
 private extension NSLayoutDimension {
 
-    func constraint(_ relation: NSLayoutRelation, to constant: CGFloat) -> NSLayoutConstraint {
+    func constraint(_ relation: NSLayoutConstraint.Relation, to constant: CGFloat) -> NSLayoutConstraint {
         switch relation {
         case .equal:
             return constraint(equalToConstant: constant)
@@ -92,7 +92,7 @@ private extension NSLayoutDimension {
         }
     }
 
-    func constraint(_ relation: NSLayoutRelation, to dimension: NSLayoutDimension) -> NSLayoutConstraint {
+    func constraint(_ relation: NSLayoutConstraint.Relation, to dimension: NSLayoutDimension) -> NSLayoutConstraint {
         switch relation {
         case .equal:
             return constraint(equalTo: dimension)
