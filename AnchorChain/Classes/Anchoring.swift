@@ -19,7 +19,7 @@ public extension UIView {
      - Returns: The receiver.
      */
     func anchoring(_ anchor: DimensionalAnchor,
-                   _ relation: NSLayoutRelation = .equal,
+                   _ relation: NSLayoutConstraint.Relation = .equal,
                    to constant: CGFloat,
                    priority: UILayoutPriority = .required) -> Self {
 
@@ -118,7 +118,7 @@ public extension UIView {
      - Returns: The receiver.
      */
     func anchoring(_ anchor: YAnchor,
-                   _ relation: NSLayoutRelation = .equal,
+                   _ relation: NSLayoutConstraint.Relation = .equal,
                    to otherAnchor: YAnchor,
                    of otherView: UIView,
                    priority: UILayoutPriority = .required) -> Self {
@@ -141,7 +141,7 @@ public extension UIView {
      - Returns: The receiver.
      */
     func anchoring(_ anchor: XAnchor,
-                   _ relation: NSLayoutRelation = .equal,
+                   _ relation: NSLayoutConstraint.Relation = .equal,
                    to otherAnchor: XAnchor,
                    of otherView: UIView,
                    priority: UILayoutPriority = .required) -> Self {

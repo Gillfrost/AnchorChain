@@ -22,7 +22,7 @@ public extension UIView {
      */
     @discardableResult
     func anchor(_ anchor: XAnchor,
-                _ relation: NSLayoutRelation = .equal,
+                _ relation: NSLayoutConstraint.Relation = .equal,
                 to otherAnchor: XAnchor,
                 of otherView: UIView,
                 priority: UILayoutPriority = .required,
