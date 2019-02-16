@@ -1,6 +1,6 @@
 # AnchorChain
 
-[![Build Status](https://travis-ci.com/gillfrost/AnchorChain.svg?branch=master)](https://travis-ci.com/gillfrost/AnchorChain)
+[![Build Status](https://travis-ci.com/Gillfrost/AnchorChain.svg?branch=master)](https://travis-ci.com/Gillfrost/AnchorChain)
 [![Version](https://img.shields.io/cocoapods/v/AnchorChain.svg?style=flat)](https://cocoapods.org/pods/AnchorChain)
 [![License](https://img.shields.io/cocoapods/l/AnchorChain.svg?style=flat)](https://cocoapods.org/pods/AnchorChain)
 [![Platform](https://img.shields.io/cocoapods/p/AnchorChain.svg?style=flat)](https://cocoapods.org/pods/AnchorChain)
@@ -16,6 +16,17 @@ A wrapper around the NSLayoutAnchor system, driven by the following set of desig
 
 - Be a little pro-active with the view hierarchy. When constraining anchors to match another view, such as this: **UIActivityIndicatorView().anchor(.centerX, .centerY, to: view)**, it could be assumed that the receiver, if it is without superview, should be added as subview to the other view, and indeed it is.
   - Trade-off: it's a pretty severe side effect, but it makes sense, since creating (activated) constraints between two views with no common ancestor constitutes a programmer error anyway.
+
+## Installation
+
+### CocoaPods
+
+To integrate AnchorChain to your XCode project using [CocoaPods](https://cocoapods.org),
+add the following to your Podfile:
+
+```ruby
+pod 'AnchorChain'
+```
 
 ## License
 
