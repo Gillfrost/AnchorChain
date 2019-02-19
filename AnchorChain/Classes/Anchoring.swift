@@ -46,6 +46,25 @@ public extension UIView {
     }
 
     /**
+     Constrains edges of given view to receiver with insets.
+
+     - Note:
+       **Given view is automatically added as subview to receiver, if it is without superview.**
+
+     - Parameters:
+       - view:   The view whose edges should match receiver.
+       - insets: The insets to use.
+
+     - Returns: The receiver.
+     */
+    func anchoring(_ view: UIView, with insets: UIEdgeInsets) -> Self {
+
+        _ = view.anchor([], to: self, with: insets)
+
+        return self
+    }
+
+    /**
      Constrains edges of given view to given layout guide of receiver.
 
      - Note:
@@ -60,6 +79,26 @@ public extension UIView {
     func anchoring(_ view: UIView, to layoutGuide: LayoutGuide) -> Self {
 
         _ = view.anchor([], to: layoutGuide, of: self)
+
+        return self
+    }
+
+    /**
+     Constrains edges of given view to given layout guide of receiver with insets.
+
+     - Note:
+       **Given view is automatically added as subview to receiver, if it is without superview.**
+
+     - Parameters:
+       - view:        The view whose edges should match given layout guide of receiver.
+       - layoutGuide: The layout guide in receiver to match.
+       - insets:      The insets to use.
+
+     - Returns: The receiver.
+     */
+    func anchoring(_ view: UIView, to layoutGuide: LayoutGuide, with insets: UIEdgeInsets) -> Self {
+
+        _ = view.anchor([], to: layoutGuide, of: self, with: insets)
 
         return self
     }

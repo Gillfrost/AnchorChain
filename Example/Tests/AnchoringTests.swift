@@ -251,4 +251,20 @@ class AnchoringTests: XCTestCase {
 
         expect(.top, .centerX, of: view, toMatch: UIView().anchoring(.top, .centerX, of: view, to: .layoutMargins).layoutMarginsGuide)
     }
+
+    // MARK: - Edge anchoring insets
+
+    func testAnchoringViewWithInsets() {
+        let view = UIView()
+        let insets = UIEdgeInsets(top: 1, left: 2, bottom: 3, right: 4)
+
+        expect(view, toMatch: UIView().anchoring(view, with: insets), withInsets: insets)
+    }
+
+    func testAnchoringViewToLayoutGuideWithInsets() {
+        let view = UIView()
+        let insets = UIEdgeInsets(top: 11, left: 22, bottom: 33, right: 44)
+
+        expect(view, toMatch: UIView().anchoring(view, to: .safeArea, with: insets).safeAreaLayoutGuide, withInsets: insets)
+    }
 }
