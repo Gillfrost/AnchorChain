@@ -271,13 +271,14 @@ extension UIView {
     func anchor(_ anchors: [Anchor],
                 to layoutGuide: LayoutGuide? = nil,
                 with insets: UIEdgeInsets = .zero,
+                priority: UILayoutPriority = .required,
                 activate: Bool = true) -> [NSLayoutConstraint] {
 
         guard let superview = superview else {
             assertionFailure("View has no superview")
             return []
         }
-        return anchor(anchors, to: layoutGuide, of: superview, with: insets, activate: activate)
+        return anchor(anchors, to: layoutGuide, of: superview, with: insets, priority: priority, activate: activate)
     }
 
     func anchor(_ anchors: [Anchor],
@@ -292,6 +293,7 @@ extension UIView {
                 to layoutGuide: LayoutGuide?,
                 of view: UIView,
                 with insets: UIEdgeInsets = .zero,
+                priority: UILayoutPriority = .required,
                 activate: Bool = true) -> [NSLayoutConstraint] {
         prepare(for: view)
 
@@ -301,6 +303,10 @@ extension UIView {
             : anchors.map { ($0, CGFloat(0)) }
         let anchorable = layoutGuide.map(view.anchorable) ?? view
         let constraints = anchorsWithConstants.map { ($0, anchorable, $1) }.map(constraint)
+
+        if priority != .required {
+            constraints.forEach { $0.priority = priority }
+        }
 
         if activate {
             NSLayoutConstraint.activate(constraints)

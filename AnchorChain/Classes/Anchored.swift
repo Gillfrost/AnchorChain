@@ -28,6 +28,20 @@ public extension UIView {
     }
 
     /**
+     Constrains one anchor to match superview with priority.
+
+     - Parameters:
+       -  anchor:   An anchor.
+       -  priority: The priority for the constraint.
+
+     - Returns: The receiver.
+     */
+    func anchored(_ anchor: Anchor, priority: UILayoutPriority) -> Self {
+        _ = self.anchor([], priority: priority)
+        return self
+    }
+
+    /**
      Constrains a variable number of anchors to match superview.
 
      - Parameters:
