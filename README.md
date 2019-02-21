@@ -28,6 +28,43 @@ add the following to your Podfile:
 pod 'AnchorChain'
 ```
 
+## Usage
+
+### Matching attributes
+
+#### ...to superview
+```swift
+// All edges
+view.anchor()
+
+// Some edges
+view.anchor(.top, .left, .right)
+
+// To safe area
+view.anchor(to: .safeArea)
+
+// With insets
+view.anchor(with: UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
+
+// Save constraint for later use
+let constraint = view.anchor(.top)
+
+// Inactive constraint
+let constraint = view.anchor(.top, isActive: false)
+
+// Prioritized like a complete refactoring in your backlog
+view.anchor(.top, priority: .defaultLow)
+```
+
+### Sizing
+
+```swift
+view.anchor(.width, to: 100)
+view.anchor(.height, to: 100)
+// or just
+view.anchor(.size, to: 100)
+```
+
 ## License
 
 AnchorChain is available under the MIT license. See the LICENSE file for more info.
