@@ -83,6 +83,21 @@ public extension UIView {
     }
 
     /**
+     Constrains one anchor to match given layout guide of superview with priority.
+
+     - Parameters:
+       - anchor:      The anchor to match.
+       - layoutGuide: The layout guide in superview to match.
+       - priority:    The priority for the constraint.
+
+     - Returns: The receiver.
+     */
+    func anchored(_ anchor: Anchor, to layoutGuide: LayoutGuide, priority: UILayoutPriority) -> Self {
+        _ = self.anchor([anchor], to: layoutGuide, priority: priority)
+        return self
+    }
+
+    /**
      Constrains a variable number of anchors to match given layout guide of superview.
 
      - Parameters:
@@ -126,6 +141,24 @@ public extension UIView {
      */
     func anchored(to view: UIView, with insets: UIEdgeInsets) -> Self {
         anchor(to: view, with: insets)
+        return self
+    }
+
+    /**
+     Constrains one anchor to match given view with priority.
+
+     - Note:
+       **Receiver is automatically added as subview to given view, if receiver is without superview.**
+
+     - Parameters:
+       - anchor:   The anchor to match.
+       - view:     The view to match.
+       - priority: The priority for the constraint.
+
+     - Returns: The receiver.
+     */
+    func anchored(_ anchor: Anchor, to view: UIView, priority: UILayoutPriority) -> Self {
+        _ = self.anchor([anchor], to: view, priority: priority)
         return self
     }
 
@@ -179,6 +212,25 @@ public extension UIView {
      */
     func anchored(to layoutGuide: LayoutGuide, of view: UIView, with insets: UIEdgeInsets) -> Self {
         anchor(to: layoutGuide, of: view, with: insets)
+        return self
+    }
+
+    /**
+     Constrains one anchor to match given layout guide of given view with priority.
+
+     - Note:
+       **Receiver is automatically added as subview to given view, if receiver is without superview.**
+
+     - Parameters:
+       - anchor:      The anchor to match.
+       - layoutGuide: The layout guide to match.
+       - view:        The view to match.
+       - priority:    The priority of the constraint.
+
+     - Returns: The receiver.
+     */
+    func anchored(_ anchor: Anchor, to layoutGuide: LayoutGuide, of view: UIView, priority: UILayoutPriority) -> Self {
+        _ = self.anchor([anchor], to: layoutGuide, of: view, priority: priority)
         return self
     }
 

@@ -284,9 +284,10 @@ extension UIView {
     func anchor(_ anchors: [Anchor],
                 to view: UIView,
                 with insets: UIEdgeInsets = .zero,
+                priority: UILayoutPriority = .required,
                 activate: Bool = true) -> [NSLayoutConstraint] {
 
-        return anchor(anchors, to: Optional<LayoutGuide>.none, of: view, with: insets, activate: activate)
+        return anchor(anchors, to: Optional<LayoutGuide>.none, of: view, with: insets, priority: priority, activate: activate)
     }
 
     func anchor(_ anchors: [Anchor],
