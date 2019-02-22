@@ -190,7 +190,7 @@ class AnchoringTests: XCTestCase {
 
     // MARK: - Priority
 
-    func testDimensionalAnchoringPriority() {
+    func testDimensionalAnchoringWithPriority() {
         let constraint = UIView()
             .anchoring(.width, to: 123, priority: .defaultLow)
             .constraints
@@ -199,7 +199,7 @@ class AnchoringTests: XCTestCase {
         XCTAssertEqual(constraint?.priority, .defaultLow)
     }
 
-    func testXAnchoringPriority() {
+    func testXAnchoringWithPriority() {
         siblings { one, two in
 
             let constraint = one
@@ -212,7 +212,7 @@ class AnchoringTests: XCTestCase {
         }
     }
 
-    func testYAnchoringPriority() {
+    func testYAnchoringWithPriority() {
         siblings { one, two in
 
             let constraint = one
@@ -225,7 +225,7 @@ class AnchoringTests: XCTestCase {
         }
     }
 
-    func testDirectionalXAnchoringPriority() {
+    func testDirectionalXAnchoringWithPriority() {
         siblings { one, two in
 
             let constraint = one

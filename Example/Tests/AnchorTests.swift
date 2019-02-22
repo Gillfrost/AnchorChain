@@ -222,13 +222,43 @@ class AnchorTests: XCTestCase {
 
     // MARK: - Priority
 
-    func testDimensionalAnchorPriority() {
+    func testAnchorWithPriority() {
+        viewAndSuperview { view, superview in
+
+            let constraint = view.anchor(.random, priority: .defaultLow)
+
+            XCTAssertEqual(constraint.priority, .defaultLow)
+        }
+    }
+
+    func testAnchorToLayoutGuideWithPriority() {
+        viewAndSuperview { view, superview in
+
+            let constraint = view.anchor(.random, to: .safeArea, priority: .defaultHigh)
+
+            XCTAssertEqual(constraint.priority, .defaultHigh)
+        }
+    }
+
+    func testAnchorToOtherWithPriority() {
+        let constraint = UIView().anchor(.random, to: UIView(), priority: .defaultLow)
+
+        XCTAssertEqual(constraint.priority, .defaultLow)
+    }
+
+    func testAnchorToLayoutGuideOfOtherWithPriority() {
+        let constraint = UIView().anchor(.random, to: .layoutMargins, of: UIView(), priority: .defaultHigh)
+
+        XCTAssertEqual(constraint.priority, .defaultHigh)
+    }
+
+    func testDimensionalAnchorWithPriority() {
         let constraint = UIView().anchor(.width, to: 123, priority: .defaultLow)
 
         XCTAssertEqual(constraint.priority, .defaultLow)
     }
 
-    func testDimensionalAnchorToOtherPriority() {
+    func testDimensionalAnchorToOtherWithPriority() {
         siblings { one, two in
 
             let constraint = one.anchor(.width, to: .height, of: two, priority: .defaultLow)
@@ -237,7 +267,7 @@ class AnchorTests: XCTestCase {
         }
     }
 
-    func testXAnchorPriority() {
+    func testXAnchorWithPriority() {
         siblings { one, two in
 
             let constraint = one.anchor(.left, to: .right, of: two, priority: .defaultHigh)
@@ -246,7 +276,7 @@ class AnchorTests: XCTestCase {
         }
     }
 
-    func testYAnchorPriority() {
+    func testYAnchorWithPriority() {
         siblings { one, two in
 
             let constraint = one.anchor(.top, to: .bottom, of: two, priority: .defaultLow)
@@ -255,7 +285,7 @@ class AnchorTests: XCTestCase {
         }
     }
 
-    func testDirectionalXAnchorPriority() {
+    func testDirectionalXAnchorWithPriority() {
         siblings { one, two in
 
             let constraint = one.anchor(.leading, to: .trailing, of: two, priority: .defaultHigh)
