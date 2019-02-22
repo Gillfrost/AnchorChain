@@ -112,6 +112,10 @@ extension UIView.Anchor {
         case .height: return .height
         }
     }
+
+    static var random: UIView.Anchor {
+        return UIView.Anchor.allCases.randomElement()!
+    }
 }
 
 extension UIView.YAnchor {
