@@ -133,14 +133,15 @@ public extension UIView {
      Constrains one anchor to match superview.
 
      - Parameters:
-       - anchor:    The anchor to match.
-       - isActive:  `true` by default.
+       - anchor:   The anchor to match.
+       - priority: `required`by default.
+       - isActive: `true` by default.
 
      - Returns: The created constraint. Discardable.
      */
     @discardableResult
-    func anchor(_ anchor: Anchor, isActive: Bool = true) -> NSLayoutConstraint {
-        return self.anchor([anchor], activate: isActive).first ?? .init()
+    func anchor(_ anchor: Anchor, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
+        return self.anchor([anchor], priority: priority, activate: isActive).first ?? .init()
     }
 
     /**
@@ -149,13 +150,14 @@ public extension UIView {
      - Parameters:
        - anchor:      The anchor to match.
        - layoutGuide: The layout guide to match.
+       - priority:    `required`by default.
        - isActive:    `true` by default.
 
      - Returns: The created constraint. Discardable.
      */
     @discardableResult
-    func anchor(_ anchor: Anchor, to layoutGuide: LayoutGuide, isActive: Bool = true) -> NSLayoutConstraint {
-        return self.anchor([anchor], to: layoutGuide, activate: isActive).first ?? .init()
+    func anchor(_ anchor: Anchor, to layoutGuide: LayoutGuide, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
+        return self.anchor([anchor], to: layoutGuide, priority: priority, activate: isActive).first ?? .init()
     }
 
     /**
@@ -167,13 +169,14 @@ public extension UIView {
      - Parameters:
        - anchor:    The anchor to match.
        - view:      The view to match.
+       - priority:  `required`by default.
        - isActive:  `true` by default.
 
      - Returns: The created constraint. Discardable.
     */
     @discardableResult
-    func anchor(_ anchor: Anchor, to view: UIView, isActive: Bool = true) -> NSLayoutConstraint {
-        return self.anchor([anchor], to: view, activate: isActive)[0]
+    func anchor(_ anchor: Anchor, to view: UIView, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
+        return self.anchor([anchor], to: view, priority: priority, activate: isActive)[0]
     }
 
     /**
@@ -186,13 +189,14 @@ public extension UIView {
        - anchor:      The anchor to match.
        - layoutGuide: The layout guide to match.
        - view:        The view to match.
+       - priority:    `required`by default.
        - isActive:    `true` by default.
 
      - Returns: The created constraint. Discardable.
      */
     @discardableResult
-    func anchor(_ anchor: Anchor, to layoutGuide: LayoutGuide, of view: UIView, isActive: Bool = true) -> NSLayoutConstraint {
-        return self.anchor([anchor], to: layoutGuide, of: view, activate: isActive)[0]
+    func anchor(_ anchor: Anchor, to layoutGuide: LayoutGuide, of view: UIView, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
+        return self.anchor([anchor], to: layoutGuide, of: view, priority: priority, activate: isActive)[0]
     }
 
     /**
