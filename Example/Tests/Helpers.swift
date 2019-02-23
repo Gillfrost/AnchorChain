@@ -113,6 +113,8 @@ extension UIView.Anchor {
         }
     }
 
+    static let allCases = [UIView.Anchor.top, .left, .bottom, .right, .leading, .trailing, .centerX, .centerY, .width, .height]
+
     static var random: UIView.Anchor {
         return UIView.Anchor.allCases.randomElement()!
     }
@@ -127,6 +129,8 @@ extension UIView.YAnchor {
         case .centerY: return .centerY
         }
     }
+
+    static let allCases = [UIView.YAnchor.top, .bottom, .centerY]
 }
 
 extension UIView.XAnchor {
@@ -138,6 +142,8 @@ extension UIView.XAnchor {
         case .centerX: return .centerX
         }
     }
+
+    static let allCases = [UIView.XAnchor.left, .right, .centerX]
 }
 
 extension UIView.DirectionalXAnchor {
@@ -149,6 +155,8 @@ extension UIView.DirectionalXAnchor {
         case .centerX: return .centerX
         }
     }
+
+    static let allCases = [UIView.DirectionalXAnchor.leading, .trailing, .centerX]
 }
 
 extension Collection {

@@ -5,7 +5,7 @@ import UIKit
 
 public extension UIView {
 
-    enum Anchor: CaseIterable {
+    enum Anchor {
         case top, left, bottom, right
         case leading, trailing
         case centerX, centerY

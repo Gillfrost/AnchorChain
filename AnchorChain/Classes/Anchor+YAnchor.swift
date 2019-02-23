@@ -5,7 +5,7 @@ import UIKit
 
 public extension UIView {
 
-    enum YAnchor: CaseIterable { case top, bottom, centerY }
+    enum YAnchor { case top, bottom, centerY }
 
     /**
      Constrains an anchor to given anchor in given view.
