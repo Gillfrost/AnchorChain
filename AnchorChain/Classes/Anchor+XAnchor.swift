@@ -5,7 +5,7 @@ import UIKit
 
 public extension UIView {
 
-    enum XAnchor: CaseIterable { case left, right, centerX }
+    enum XAnchor { case left, right, centerX }
 
     /**
      Constrains an anchor to given anchor in given view.
