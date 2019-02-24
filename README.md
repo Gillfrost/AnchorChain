@@ -17,17 +17,6 @@ A wrapper around the NSLayoutAnchor system, driven by the following set of desig
 - Be a little pro-active with the view hierarchy. When constraining anchors to match another view, such as this: **UIActivityIndicatorView().anchor(.centerX, .centerY, to: view)**, it could be assumed that the receiver, if it is without superview, should be added as subview to the other view, and indeed it is.
   - Trade-off: it's a pretty severe side effect, but it makes sense, since creating (activated) constraints between two views with no common ancestor constitutes a programmer error anyway.
 
-## Installation
-
-### CocoaPods
-
-To integrate AnchorChain to your XCode project using [CocoaPods](https://cocoapods.org),
-add the following to your Podfile:
-
-```ruby
-pod 'AnchorChain'
-```
-
 ## Usage
 
 ### Matching attributes
@@ -63,6 +52,22 @@ view.anchor(.width, to: 100)
 view.anchor(.height, to: 100)
 // or just
 view.anchor(.size, to: 100)
+```
+## Requirements
+
+iOS 11
+XCode 10
+Swift 4.2
+
+## Installation
+
+### CocoaPods
+
+To integrate AnchorChain to your XCode project using [CocoaPods](https://cocoapods.org),
+add the following to your Podfile:
+
+```ruby
+pod 'AnchorChain'
 ```
 
 ## License
