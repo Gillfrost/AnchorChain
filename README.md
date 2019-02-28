@@ -45,6 +45,31 @@ let constraint = view.anchor(.top, isActive: false)
 view.anchor(.top, priority: .defaultLow)
 ```
 
+#### ...to other view
+
+```swift
+// All edges
+view.anchor(to: otherView)
+
+// Some edges
+view.anchor(.top, .left, .right, to: otherView)
+
+// To safe area
+view.anchor(to: .safeArea, of: otherView)
+
+// With insets
+view.anchor(to: otherView, with: UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
+
+// Save constraint for later use
+let constraint = view.anchor(.top, to: otherView)
+
+// Inactive constraint
+let constraint = view.anchor(.top, to: otherView, isActive: false)
+
+// With priority
+view.anchor(.top, to: otherView, priority: .defaultLow)
+```
+
 ### Sizing
 
 ```swift
