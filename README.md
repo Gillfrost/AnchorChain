@@ -81,7 +81,9 @@ view.anchor(.size, to: 100)
 ## Requirements
 
 iOS 11
+
 XCode 10
+
 Swift 4.2
 
 ## Installation
