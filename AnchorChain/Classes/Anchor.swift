@@ -5,6 +5,19 @@ import UIKit
 
 public extension UIView {
 
+    enum EdgeAnchor {
+        case top, left, bottom, right
+
+        var anchor: Anchor {
+            switch self {
+            case .top: return .top
+            case .left: return .left
+            case .bottom: return .bottom
+            case .right: return .right
+            }
+        }
+    }
+
     enum Anchor {
         case top, left, bottom, right
         case leading, trailing
@@ -145,6 +158,24 @@ public extension UIView {
     }
 
     /**
+     Constrains one edge to match superview with inset.
+
+     - Parameters:
+       - anchor:   The edge to match.
+       - inset:    The inset to use.
+       - priority: `required`by default.
+       - isActive: `true` by default.
+
+     - Returns: The created constraint. Discardable.
+     */
+    @discardableResult
+    func anchor(_ anchor: EdgeAnchor, inset: CGFloat, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
+        let invertInset = [.bottom, .right].contains(anchor)
+        let insets = UIEdgeInsets(common: invertInset ? -inset : inset)
+        return self.anchor([anchor.anchor], with: insets, priority: priority, activate: isActive).first ?? .init()
+    }
+
+    /**
      Constrains one anchor to match given layout guide of superview.
 
      - Parameters:
@@ -158,6 +189,25 @@ public extension UIView {
     @discardableResult
     func anchor(_ anchor: Anchor, to layoutGuide: LayoutGuide, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
         return self.anchor([anchor], to: layoutGuide, priority: priority, activate: isActive).first ?? .init()
+    }
+
+    /**
+     Constrains one edge to match given layout guide of superview with inset.
+
+     - Parameters:
+       - anchor:      The edge to match.
+       - layoutGuide: The layout guide to match.
+       - inset:       The inset to use.
+       - priority:    `required`by default.
+       - isActive:    `true` by default.
+
+     - Returns: The created constraint. Discardable.
+     */
+    @discardableResult
+    func anchor(_ anchor: EdgeAnchor, to layoutGuide: LayoutGuide, inset: CGFloat, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
+        let invertInset = [.bottom, .right].contains(anchor)
+        let insets = UIEdgeInsets(common: invertInset ? -inset : inset)
+        return self.anchor([anchor.anchor], to: layoutGuide, with: insets, priority: priority, activate: isActive).first ?? .init()
     }
 
     /**
@@ -180,6 +230,28 @@ public extension UIView {
     }
 
     /**
+     Constrains one edge to match given view with inset.
+
+     - Note:
+       **Receiver is automatically added as subview to given view, if receiver is without superview.**
+
+     - Parameters:
+       - anchor:    The edge to match.
+       - view:      The view to match.
+       - inset:     The inset to use.
+       - priority:  `required`by default.
+       - isActive:  `true` by default.
+
+     - Returns: The created constraint. Discardable.
+     */
+    @discardableResult
+    func anchor(_ anchor: EdgeAnchor, to view: UIView, inset: CGFloat, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
+        let invertInset = [.bottom, .right].contains(anchor)
+        let insets = UIEdgeInsets(common: invertInset ? -inset : inset)
+        return self.anchor([anchor.anchor], to: view, with: insets, priority: priority, activate: isActive)[0]
+    }
+
+    /**
      Constrains one anchor to match given layout guide of given view.
 
      - Note:
@@ -197,6 +269,29 @@ public extension UIView {
     @discardableResult
     func anchor(_ anchor: Anchor, to layoutGuide: LayoutGuide, of view: UIView, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
         return self.anchor([anchor], to: layoutGuide, of: view, priority: priority, activate: isActive)[0]
+    }
+
+    /**
+     Constrains one edge to match given layout guide of given view with inset.
+
+     - Note:
+       **Receiver is automatically added as subview to given view, if receiver is without superview.**
+
+     - Parameters:
+       - anchor:      The anchor to match.
+       - layoutGuide: The layout guide to match.
+       - view:        The view to match.
+       - inset:       The inset to use.
+       - priority:    `required`by default.
+       - isActive:    `true` by default.
+
+     - Returns: The created constraint. Discardable.
+     */
+    @discardableResult
+    func anchor(_ anchor: EdgeAnchor, to layoutGuide: LayoutGuide, of view: UIView, inset: CGFloat, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
+        let invertInset = [.bottom, .right].contains(anchor)
+        let insets = UIEdgeInsets(common: invertInset ? -inset : inset)
+        return self.anchor([anchor.anchor], to: layoutGuide, of: view, with: insets, priority: priority, activate: isActive)[0]
     }
 
     /**
@@ -272,6 +367,11 @@ public extension UIView {
 
 extension UIView {
 
+    enum Inset {
+        case edge(UIEdgeInsets)
+        case common(CGFloat)
+    }
+
     func anchor(_ anchors: [Anchor],
                 to layoutGuide: LayoutGuide? = nil,
                 with insets: UIEdgeInsets = .zero,
@@ -305,7 +405,7 @@ extension UIView {
         let anchorsWithConstants = anchors.isEmpty
             ? Array(zip([.top, .left, .bottom, .right],
                         [insets.top, insets.left, -insets.bottom, -insets.right]))
-            : anchors.map { ($0, CGFloat(0)) }
+            : anchors.map { ($0, insets.common) }
         let anchorable = layoutGuide.map(view.anchorable) ?? view
         let constraints = anchorsWithConstants.map { ($0, anchorable, $1) }.map(constraint)
 
@@ -391,5 +491,17 @@ extension NSLayoutConstraint {
     func isActive(_ isActive: Bool) -> Self {
         self.isActive = isActive
         return self
+    }
+}
+
+extension UIEdgeInsets {
+
+    var common: CGFloat {
+        assert([top, left, bottom, right].allSatisfy { $0 == top })
+        return top
+    }
+
+    init(common: CGFloat) {
+        self.init(top: common, left: common, bottom: common, right: common)
     }
 }
