@@ -367,11 +367,6 @@ public extension UIView {
 
 extension UIView {
 
-    enum Inset {
-        case edge(UIEdgeInsets)
-        case common(CGFloat)
-    }
-
     func anchor(_ anchors: [Anchor],
                 to layoutGuide: LayoutGuide? = nil,
                 with insets: UIEdgeInsets = .zero,
