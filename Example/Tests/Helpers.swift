@@ -114,6 +114,14 @@ extension UIView.DirectionalXAnchor {
     static let allCases = [UIView.DirectionalXAnchor.leading, .trailing, .centerX]
 }
 
+enum CollectionError: String, Error {
+
+    case noElements = "No elements"
+    case moreThanOneElement = "More than one element"
+
+    var localizedDescription: String { return rawValue }
+}
+
 extension Collection {
 
     var allCombinations: [(Element, Element)] {
@@ -122,19 +130,29 @@ extension Collection {
             map { (element, $0) }
         }
     }
+
+    func onlyElement() throws -> Element {
+        guard let first = first else {
+            throw CollectionError.noElements
+        }
+        guard count == 1 else {
+            throw CollectionError.moreThanOneElement
+        }
+        return first
+    }
 }
 
-func siblings(file: StaticString = #file, line: UInt = #line, block: (UIView, UIView) -> Void) {
+func siblings(file: StaticString = #file, line: UInt = #line, block: (UIView, UIView) throws -> Void) rethrows {
     let superview = UIView()
     let one = UIView()
     let two = UIView()
     [one, two].forEach(superview.addSubview)
-    block(one, two)
+    try block(one, two)
 }
 
-func viewAndSuperview(file: StaticString = #file, line: UInt = #line, block: (UIView, UIView) -> Void) {
+func viewAndSuperview(file: StaticString = #file, line: UInt = #line, block: (UIView, UIView) throws -> Void) rethrows {
     let view = UIView()
     let superview = UIView()
     superview.addSubview(view)
-    block(view, superview)
+    try block(view, superview)
 }

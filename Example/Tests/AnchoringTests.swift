@@ -40,13 +40,13 @@ class AnchoringTests: XCTestCase {
 
     // MARK: - Default parameters
 
-    func testRelationDefaultsToEqual() {
-        siblings { view, otherView in
+    func testRelationDefaultsToEqual() throws {
+        try siblings { view, otherView in
 
-            let defaultRelation = view.anchoring(.left, to: .right, of: otherView)
+            let defaultRelation = try view.anchoring(.left, to: .right, of: otherView)
                 .superview?
                 .constraints
-                .first?
+                .onlyElement()
                 .relation
 
             XCTAssertEqual(defaultRelation, .equal)
@@ -148,91 +148,91 @@ class AnchoringTests: XCTestCase {
 
     // MARK: - Relations
 
-    func testXAnchorWithRelation() {
-        NSLayoutConstraint.Relation.all.forEach { relation in
-            siblings { one, two in
+    func testXAnchorWithRelation() throws {
+        try NSLayoutConstraint.Relation.all.forEach { relation in
+            try siblings { one, two in
 
-                let constraint = one.anchoring(.left, relation, to: .right, of: two)
+                let constraint = try one.anchoring(.left, relation, to: .right, of: two)
                     .superview?
                     .constraints
-                    .first
+                    .onlyElement()
 
                 XCTAssertEqual(constraint?.relation, relation)
             }
         }
     }
 
-    func testYAnchorWithRelation() {
-        NSLayoutConstraint.Relation.all.forEach { relation in
-            siblings { one, two in
+    func testYAnchorWithRelation() throws {
+        try NSLayoutConstraint.Relation.all.forEach { relation in
+            try siblings { one, two in
 
-                let constraint = one.anchoring(.top, relation, to: .bottom, of: two)
+                let constraint = try one.anchoring(.top, relation, to: .bottom, of: two)
                     .superview?
                     .constraints
-                    .first
+                    .onlyElement()
 
                 XCTAssertEqual(constraint?.relation, relation)
             }
         }
     }
 
-    func testDimensionalAnchorWithRelation() {
-        NSLayoutConstraint.Relation.all.forEach { relation in
+    func testDimensionalAnchorWithRelation() throws {
+        try NSLayoutConstraint.Relation.all.forEach { relation in
 
-            let constraint = UIView().anchoring(.height, relation, to: 123)
+            let constraint = try UIView().anchoring(.height, relation, to: 123)
                 .constraints
-                .first
+                .onlyElement()
 
-            XCTAssertEqual(constraint?.relation, relation)
+            XCTAssertEqual(constraint.relation, relation)
         }
     }
 
 
     // MARK: - Priority
 
-    func testDimensionalAnchoringWithPriority() {
-        let constraint = UIView()
+    func testDimensionalAnchoringWithPriority() throws {
+        let constraint = try UIView()
             .anchoring(.width, to: 123, priority: .defaultLow)
             .constraints
-            .first
+            .onlyElement()
 
-        XCTAssertEqual(constraint?.priority, .defaultLow)
+        XCTAssertEqual(constraint.priority, .defaultLow)
     }
 
-    func testXAnchoringWithPriority() {
-        siblings { one, two in
+    func testXAnchoringWithPriority() throws {
+        try siblings { one, two in
 
-            let constraint = one
+            let constraint = try one
                 .anchoring(.left, to: .right, of: two, priority: .defaultHigh)
                 .superview?
                 .constraints
-                .first
+                .onlyElement()
 
             XCTAssertEqual(constraint?.priority, .defaultHigh)
         }
     }
 
-    func testYAnchoringWithPriority() {
-        siblings { one, two in
+    func testYAnchoringWithPriority() throws {
+        try siblings { one, two in
 
-            let constraint = one
+            let constraint = try one
                 .anchoring(.top, to: .bottom, of: two, priority: .defaultLow)
                 .superview?
                 .constraints
-                .first
+                .onlyElement()
 
             XCTAssertEqual(constraint?.priority, .defaultLow)
         }
     }
 
-    func testDirectionalXAnchoringWithPriority() {
-        siblings { one, two in
+    func testDirectionalXAnchoringWithPriority() throws {
+        try siblings { one, two in
 
-            let constraint = one
+            let constraint = try one
                 .anchoring(.leading, to: .trailing, of: two, priority: .defaultHigh)
                 .superview?
                 .constraints
-                .first
+                .onlyElement()
 
             XCTAssertEqual(constraint?.priority, .defaultHigh)
         }
