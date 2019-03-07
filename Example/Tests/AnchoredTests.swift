@@ -81,7 +81,7 @@ class AnchoredTests: XCTestCase {
     func testAnchoredToLayoutGuideWithPriority() {
         viewAndSuperview { view, superview in
 
-            let constraint = view.anchored(.left, to: .layoutMargins, priority: .defaultHigh)
+            let constraint = view.anchored(.random, to: .safeArea, priority: .defaultHigh)
                 .superview?
                 .constraints
                 .first
