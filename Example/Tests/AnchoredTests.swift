@@ -66,13 +66,13 @@ class AnchoredTests: XCTestCase {
 
     // MARK: - Priority
 
-    func testAnchoredWithPriority() {
-        viewAndSuperview { view, superview in
+    func testAnchoredWithPriority() throws {
+        try viewAndSuperview { view, superview in
 
-            let constraint = view.anchored(.random, priority: .defaultLow)
+            let constraint = try view.anchored(.random, priority: .defaultLow)
                 .superview?
                 .constraints
-                .first
+                .onlyElement()
 
             XCTAssertEqual(constraint?.priority, .defaultLow)
         }
@@ -90,24 +90,24 @@ class AnchoredTests: XCTestCase {
         }
     }
 
-    func testAnchoredToOtherWithPriority() {
-        siblings { one, two in
-            let constraint = one.anchored(.random, to: two, priority: .defaultLow)
+    func testAnchoredToOtherWithPriority() throws {
+        try siblings { one, two in
+            let constraint = try one.anchored(.random, to: two, priority: .defaultLow)
                 .superview?
                 .constraints
-                .first
+                .onlyElement()
 
             XCTAssertEqual(constraint?.priority, .defaultLow)
         }
     }
 
-    func testAnchoredToLayoutGuideOfOtherWithPriority() {
-        siblings { one, two in
+    func testAnchoredToLayoutGuideOfOtherWithPriority() throws {
+        try siblings { one, two in
 
-            let constraint = one.anchored(.random, to: .layoutMargins, of: two, priority: .defaultHigh)
+            let constraint = try one.anchored(.random, to: .layoutMargins, of: two, priority: .defaultHigh)
                 .superview?
                 .constraints
-                .first
+                .onlyElement()
 
             XCTAssertEqual(constraint?.priority, .defaultHigh)
         }

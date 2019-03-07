@@ -37,7 +37,7 @@ public extension UIView {
      - Returns: The receiver.
      */
     func anchored(_ anchor: Anchor, priority: UILayoutPriority) -> Self {
-        _ = self.anchor([], priority: priority)
+        _ = self.anchor([anchor], priority: priority)
         return self
     }
 
