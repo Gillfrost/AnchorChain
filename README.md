@@ -75,9 +75,20 @@ view.anchor(.top, to: otherView, priority: .defaultLow)
 ```swift
 view.anchor(.width, to: 100)
 view.anchor(.height, to: 100)
-// or just
+// or simply
 view.anchor(.size, to: 100)
 ```
+
+### Alignment
+
+```swift
+// Top to bottom of other view
+view.anchor(.top, to: .bottom, of: otherView)
+
+// Left greater than or equal to right of other view
+view.anchor(.left, .greaterThanOrEqual, to: .right, of: otherView)
+```
+
 ## Requirements
 
 iOS 11
