@@ -147,7 +147,7 @@ public extension UIView {
 
      - Parameters:
        - anchor:   The anchor to match.
-       - priority: `required`by default.
+       - priority: `required` by default.
        - isActive: `true` by default.
 
      - Returns: The created constraint. Discardable.
@@ -163,7 +163,7 @@ public extension UIView {
      - Parameters:
        - anchor:   The edge to match.
        - inset:    The inset to use.
-       - priority: `required`by default.
+       - priority: `required` by default.
        - isActive: `true` by default.
 
      - Returns: The created constraint. Discardable.
@@ -181,7 +181,7 @@ public extension UIView {
      - Parameters:
        - anchor:      The anchor to match.
        - layoutGuide: The layout guide to match.
-       - priority:    `required`by default.
+       - priority:    `required` by default.
        - isActive:    `true` by default.
 
      - Returns: The created constraint. Discardable.
@@ -198,7 +198,7 @@ public extension UIView {
        - anchor:      The edge to match.
        - layoutGuide: The layout guide to match.
        - inset:       The inset to use.
-       - priority:    `required`by default.
+       - priority:    `required` by default.
        - isActive:    `true` by default.
 
      - Returns: The created constraint. Discardable.
@@ -219,7 +219,7 @@ public extension UIView {
      - Parameters:
        - anchor:    The anchor to match.
        - view:      The view to match.
-       - priority:  `required`by default.
+       - priority:  `required` by default.
        - isActive:  `true` by default.
 
      - Returns: The created constraint. Discardable.
@@ -239,7 +239,7 @@ public extension UIView {
        - anchor:    The edge to match.
        - view:      The view to match.
        - inset:     The inset to use.
-       - priority:  `required`by default.
+       - priority:  `required` by default.
        - isActive:  `true` by default.
 
      - Returns: The created constraint. Discardable.
@@ -261,7 +261,7 @@ public extension UIView {
        - anchor:      The anchor to match.
        - layoutGuide: The layout guide to match.
        - view:        The view to match.
-       - priority:    `required`by default.
+       - priority:    `required` by default.
        - isActive:    `true` by default.
 
      - Returns: The created constraint. Discardable.
@@ -282,7 +282,7 @@ public extension UIView {
        - layoutGuide: The layout guide to match.
        - view:        The view to match.
        - inset:       The inset to use.
-       - priority:    `required`by default.
+       - priority:    `required` by default.
        - isActive:    `true` by default.
 
      - Returns: The created constraint. Discardable.
