@@ -31,8 +31,8 @@ public extension UIView {
      Constrains one anchor to match superview with priority.
 
      - Parameters:
-       -  anchor:   An anchor.
-       -  priority: The priority for the constraint.
+       - anchor:   An anchor.
+       - priority: The priority for the constraint.
 
      - Returns: The receiver.
      */
@@ -42,11 +42,26 @@ public extension UIView {
     }
 
     /**
+     Constrains one edge to match superview with inset.
+
+     - Parameters:
+       - anchor:   The edge to match.
+       - inset:    The inset to use.
+       - priority: `required` by default.
+
+     - Returns: The receiver.
+     */
+    func anchored(_ anchor: EdgeAnchor, inset: CGFloat, priority: UILayoutPriority = .required) -> Self {
+        self.anchor(anchor, inset: inset, priority: priority)
+        return self
+    }
+
+    /**
      Constrains a variable number of anchors to match superview.
 
      - Parameters:
-       -  a1: An anchor.
-       -  aX: More anchors.
+       - a1: An anchor.
+       - aX: More anchors.
 
      - Returns: The receiver.
     */
@@ -94,6 +109,22 @@ public extension UIView {
      */
     func anchored(_ anchor: Anchor, to layoutGuide: LayoutGuide, priority: UILayoutPriority) -> Self {
         _ = self.anchor([anchor], to: layoutGuide, priority: priority)
+        return self
+    }
+
+    /**
+     Constrains one edge to match given layout guide of superview with inset.
+
+     - Parameters:
+       - anchor:      The anchor to match.
+       - layoutGuide: The layout guide in superview to match.
+       - inset:       The inset to use.
+       - priority:    `required` by default.
+
+     - Returns: The receiver.
+     */
+    func anchored(_ anchor: EdgeAnchor, to layoutGuide: LayoutGuide, inset: CGFloat, priority: UILayoutPriority = .required) -> Self {
+        self.anchor(anchor, to: layoutGuide, inset: inset, priority: priority)
         return self
     }
 
@@ -159,6 +190,25 @@ public extension UIView {
      */
     func anchored(_ anchor: Anchor, to view: UIView, priority: UILayoutPriority) -> Self {
         _ = self.anchor([anchor], to: view, priority: priority)
+        return self
+    }
+
+    /**
+     Constrains one edge to match given view with inset.
+
+     - Note:
+       **Receiver is automatically added as subview to given view, if receiver is without superview.**
+
+     - Parameters:
+       - anchor:   The edge to match.
+       - view:     The view to match.
+       - inset:    The inset to use
+       - priority: `required` by default.
+
+     - Returns: The receiver.
+     */
+    func anchored(_ anchor: EdgeAnchor, to view: UIView, inset: CGFloat, priority: UILayoutPriority = .required) -> Self {
+        self.anchor(anchor, to: view, inset: inset, priority: priority)
         return self
     }
 
@@ -231,6 +281,31 @@ public extension UIView {
      */
     func anchored(_ anchor: Anchor, to layoutGuide: LayoutGuide, of view: UIView, priority: UILayoutPriority) -> Self {
         _ = self.anchor([anchor], to: layoutGuide, of: view, priority: priority)
+        return self
+    }
+
+    /**
+     Constrains one edge to match given layout guide of given view with inset.
+
+     - Note:
+       **Receiver is automatically added as subview to given view, if receiver is without superview.**
+
+     - Parameters:
+       - anchor:      The edge to match.
+       - layoutGuide: The layout guide to match.
+       - view:        The view to match.
+       - inset:       The inset to use.
+       - priority:    `required` by default.
+
+     - Returns: The receiver.
+     */
+    func anchored(_ anchor: EdgeAnchor,
+                  to layoutGuide: LayoutGuide,
+                  of view: UIView,
+                  inset: CGFloat,
+                  priority: UILayoutPriority = .required) -> Self {
+
+        self.anchor(anchor, to: layoutGuide, of: view, inset: inset, priority: priority)
         return self
     }
 
