@@ -476,19 +476,6 @@ extension NSLayoutAnchor {
     }
 }
 
-extension NSLayoutConstraint {
-
-    func priority(_ priority: UILayoutPriority) -> Self {
-        self.priority = priority
-        return self
-    }
-
-    func isActive(_ isActive: Bool) -> Self {
-        self.isActive = isActive
-        return self
-    }
-}
-
 extension UIEdgeInsets {
 
     var common: CGFloat {
