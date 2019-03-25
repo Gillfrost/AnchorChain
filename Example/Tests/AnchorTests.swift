@@ -220,6 +220,35 @@ class AnchorTests: XCTestCase {
         }
     }
 
+    // MARK: - Constants
+
+    func testYAnchorWithConstant() {
+        siblings { one, two in
+
+            let constraint = one.anchor(.top, to: .bottom, of: two, constant: 123)
+
+            XCTAssertEqual(constraint.constant, 123)
+        }
+    }
+
+    func testXAnchorWithConstant() {
+        siblings { one, two in
+
+            let constraint = one.anchor(.right, to: .left, of: two, constant: 231)
+
+            XCTAssertEqual(constraint.constant, 231)
+        }
+    }
+
+    func testDirectionalXAnchorWithConstant() {
+        siblings { one, two in
+
+            let constraint = one.anchor(.leading, to: .trailing, of: two, constant: 312)
+
+            XCTAssertEqual(constraint.constant, 312)
+        }
+    }
+
     // MARK: - Priority
 
     func testAnchorWithPriority() {

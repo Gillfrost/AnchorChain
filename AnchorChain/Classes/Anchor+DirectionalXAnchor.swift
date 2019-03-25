@@ -12,9 +12,9 @@ public extension UIView {
 
      - Parameters:
        - anchor:        The directional horizontal anchor in the receiver.
-       - relation:      `.equal` by default.
        - otherAnchor:   The directional horizontal anchor to align with.
        - otherView:     The view to align with.
+       - constant:      `0` by default.
        - priority:      `.required` by default.
        - isActive:      `true` by default.
 
@@ -24,13 +24,14 @@ public extension UIView {
     func anchor(_ anchor: DirectionalXAnchor,
                 to otherAnchor: DirectionalXAnchor,
                 of otherView: UIView,
+                constant: CGFloat = 0,
                 priority: UILayoutPriority = .required,
                 isActive: Bool = true) -> NSLayoutConstraint {
 
         disableAutoresizing()
 
         return self.anchor(for: anchor)
-            .constraint(equalTo: otherView.anchor(for: otherAnchor))
+            .constraint(equalTo: otherView.anchor(for: otherAnchor), constant: constant)
             .priority(priority)
             .isActive(isActive)
     }
