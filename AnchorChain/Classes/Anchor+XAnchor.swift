@@ -15,6 +15,7 @@ public extension UIView {
        - relation:      `.equal` by default.
        - otherAnchor:   The horizontal anchor to align with.
        - otherView:     The view to align with.
+       - constant:      `0` by default.
        - priority:      `.required` by default.
        - isActive:      `true` by default.
 
@@ -25,13 +26,14 @@ public extension UIView {
                 _ relation: NSLayoutConstraint.Relation = .equal,
                 to otherAnchor: XAnchor,
                 of otherView: UIView,
+                constant: CGFloat = 0,
                 priority: UILayoutPriority = .required,
                 isActive: Bool = true) -> NSLayoutConstraint {
 
         disableAutoresizing()
 
         return self.anchor(for: anchor)
-            .constraint(with: relation, to: otherView.anchor(for: otherAnchor))
+            .constraint(with: relation, to: otherView.anchor(for: otherAnchor), constant: constant)
             .priority(priority)
             .isActive(isActive)
     }
