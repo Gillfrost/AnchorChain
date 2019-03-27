@@ -249,6 +249,15 @@ class AnchorTests: XCTestCase {
         }
     }
 
+    func testDimensionalAnchorToOtherWithConstant() {
+        siblings { one, two in
+
+            let constraint = one.anchor(.width, to: .height, of: two, constant: 123)
+
+            XCTAssertEqual(constraint.constant, 123)
+        }
+    }
+
     // MARK: - Priority
 
     func testAnchorWithPriority() {

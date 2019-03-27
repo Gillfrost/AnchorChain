@@ -47,6 +47,7 @@ public extension UIView {
        - relation:    `.equal` by default.
        - otherAnchor: The dimension to match.
        - otherView:   The view to match.
+       - constant:    `0` by default.
        - priority:    `.required` by default.
        - isActive:    `true` by default.
 
@@ -57,11 +58,12 @@ public extension UIView {
                 _ relation: NSLayoutConstraint.Relation = .equal,
                 to otherAnchor: OneDimensionalAnchor,
                 of otherView: UIView,
+                constant: CGFloat = 0,
                 priority: UILayoutPriority = .required,
                 isActive: Bool = true) -> NSLayoutConstraint {
 
         return self.anchor(for: anchor)
-            .constraint(relation, to: otherView.anchor(for: otherAnchor))
+            .constraint(relation, to: otherView.anchor(for: otherAnchor), constant: constant)
             .priority(priority)
             .isActive(isActive)
     }
@@ -92,14 +94,14 @@ private extension NSLayoutDimension {
         }
     }
 
-    func constraint(_ relation: NSLayoutConstraint.Relation, to dimension: NSLayoutDimension) -> NSLayoutConstraint {
+    func constraint(_ relation: NSLayoutConstraint.Relation, to dimension: NSLayoutDimension, constant: CGFloat) -> NSLayoutConstraint {
         switch relation {
         case .equal:
-            return constraint(equalTo: dimension)
+            return constraint(equalTo: dimension, constant: constant)
         case .lessThanOrEqual:
-            return constraint(lessThanOrEqualTo: dimension)
+            return constraint(lessThanOrEqualTo: dimension, constant: constant)
         case .greaterThanOrEqual:
-            return constraint(greaterThanOrEqualTo: dimension)
+            return constraint(greaterThanOrEqualTo: dimension, constant: constant)
         }
     }
 }
