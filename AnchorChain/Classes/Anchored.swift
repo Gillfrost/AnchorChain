@@ -47,7 +47,7 @@ public extension UIView {
      - Parameters:
        - anchor:   The edge to match.
        - inset:    The inset to use.
-       - priority: `required` by default.
+       - priority: `.required` by default.
 
      - Returns: The receiver.
      */
@@ -119,7 +119,7 @@ public extension UIView {
        - anchor:      The anchor to match.
        - layoutGuide: The layout guide in superview to match.
        - inset:       The inset to use.
-       - priority:    `required` by default.
+       - priority:    `.required` by default.
 
      - Returns: The receiver.
      */
@@ -203,7 +203,7 @@ public extension UIView {
        - anchor:   The edge to match.
        - view:     The view to match.
        - inset:    The inset to use
-       - priority: `required` by default.
+       - priority: `.required` by default.
 
      - Returns: The receiver.
      */
@@ -295,7 +295,7 @@ public extension UIView {
        - layoutGuide: The layout guide to match.
        - view:        The view to match.
        - inset:       The inset to use.
-       - priority:    `required` by default.
+       - priority:    `.required` by default.
 
      - Returns: The receiver.
      */
