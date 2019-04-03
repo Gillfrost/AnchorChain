@@ -47,6 +47,7 @@ public extension UIView {
        - relation:    `.equal` by default.
        - otherAnchor: The dimension to match.
        - otherView:   The view to match.
+       - multiplier:  `1` by default.
        - constant:    `0` by default.
        - priority:    `.required` by default.
        - isActive:    `true` by default.
@@ -58,12 +59,13 @@ public extension UIView {
                 _ relation: NSLayoutConstraint.Relation = .equal,
                 to otherAnchor: OneDimensionalAnchor,
                 of otherView: UIView,
+                multiplier: CGFloat = 1,
                 constant: CGFloat = 0,
                 priority: UILayoutPriority = .required,
                 isActive: Bool = true) -> NSLayoutConstraint {
 
         return self.anchor(for: anchor)
-            .constraint(relation, to: otherView.anchor(for: otherAnchor), constant: constant)
+            .constraint(relation, to: otherView.anchor(for: otherAnchor), multiplier: multiplier, constant: constant)
             .priority(priority)
             .isActive(isActive)
     }
@@ -94,14 +96,18 @@ private extension NSLayoutDimension {
         }
     }
 
-    func constraint(_ relation: NSLayoutConstraint.Relation, to dimension: NSLayoutDimension, constant: CGFloat) -> NSLayoutConstraint {
+    func constraint(_ relation: NSLayoutConstraint.Relation,
+                    to dimension: NSLayoutDimension,
+                    multiplier: CGFloat = 1,
+                    constant: CGFloat) -> NSLayoutConstraint {
+
         switch relation {
         case .equal:
-            return constraint(equalTo: dimension, constant: constant)
+            return constraint(equalTo: dimension, multiplier: multiplier, constant: constant)
         case .lessThanOrEqual:
-            return constraint(lessThanOrEqualTo: dimension, constant: constant)
+            return constraint(lessThanOrEqualTo: dimension, multiplier: multiplier, constant: constant)
         case .greaterThanOrEqual:
-            return constraint(greaterThanOrEqualTo: dimension, constant: constant)
+            return constraint(greaterThanOrEqualTo: dimension, multiplier: multiplier, constant: constant)
         }
     }
 }
