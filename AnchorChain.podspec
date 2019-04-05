@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'AnchorChain'
-  s.version          = '0.5.0'
+  s.version          = '0.6.0'
   s.summary          = 'A fluent API for constraint-based iOS layout.'
   s.homepage         = 'https://github.com/Gillfrost/AnchorChain'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
