@@ -1,9 +1,10 @@
 # AnchorChain
 
 [![Build Status](https://travis-ci.com/Gillfrost/AnchorChain.svg?branch=master)](https://travis-ci.com/Gillfrost/AnchorChain)
+[![codecov](https://codecov.io/gh/Gillfrost/AnchorChain/branch/master/graph/badge.svg)](https://codecov.io/gh/Gillfrost/AnchorChain)
 [![Version](https://img.shields.io/cocoapods/v/AnchorChain.svg?style=flat)](https://cocoapods.org/pods/AnchorChain)
-[![License](https://img.shields.io/cocoapods/l/AnchorChain.svg?style=flat)](https://cocoapods.org/pods/AnchorChain)
 [![Platform](https://img.shields.io/cocoapods/p/AnchorChain.svg?style=flat)](https://cocoapods.org/pods/AnchorChain)
+[![License](https://img.shields.io/cocoapods/l/AnchorChain.svg?style=flat)](https://cocoapods.org/pods/AnchorChain)
 
 A wrapper around the NSLayoutAnchor system, driven by the following set of design goals / trade-offs:
 
