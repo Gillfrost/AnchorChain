@@ -220,6 +220,17 @@ class AnchorTests: XCTestCase {
         }
     }
 
+    // MARK: - Multipliers
+
+    func testDimensionalAnchorToOtherWithMultiplier() {
+        siblings { one, two in
+
+            let constraint = one.anchor(.width, to: .height, of: two, multiplier: 1.5)
+
+            XCTAssertEqual(constraint.multiplier, 1.5)
+        }
+    }
+
     // MARK: - Constants
 
     func testYAnchorWithConstant() {
