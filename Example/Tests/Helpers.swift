@@ -11,6 +11,7 @@ extension NSLayoutConstraint.Relation: CustomStringConvertible {
         case .equal: return "equal"
         case .greaterThanOrEqual: return "greaterThanOrEqual"
         case .lessThanOrEqual: return "lessThanOrEqual"
+        @unknown default: fatalError()
         }
     }
 }
@@ -47,6 +48,7 @@ extension NSLayoutConstraint.Attribute: CustomStringConvertible {
         case .width: return "width"
         case .height: return "height"
         case .notAnAttribute: return "notAnAttribute"
+        @unknown default: fatalError()
         }
     }
 }

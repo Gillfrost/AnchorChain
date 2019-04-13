@@ -15,6 +15,8 @@ extension NSLayoutAnchor {
             return constraint(greaterThanOrEqualTo: anchor, constant: constant)
         case .lessThanOrEqual:
             return constraint(lessThanOrEqualTo: anchor, constant: constant)
+        @unknown default:
+            return NSLayoutConstraint()
         }
     }
 }
