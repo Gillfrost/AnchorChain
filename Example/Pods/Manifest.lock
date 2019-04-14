@@ -1,5 +1,5 @@
 PODS:
-  - AnchorChain (0.1.0)
+  - AnchorChain (0.6.0)
 
 DEPENDENCIES:
   - AnchorChain (from `../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  AnchorChain: 6daa4026ccc0d12696e817fc20c16028b381d27f
+  AnchorChain: 7149c68dc40e8c47a9ce28cdeeefeec0991f54f4
 
 PODFILE CHECKSUM: c9ec5b3e99df528c0cfb26bd3227b5144c99fb1f
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.1

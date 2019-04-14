@@ -93,6 +93,8 @@ private extension NSLayoutDimension {
             return constraint(lessThanOrEqualToConstant: constant)
         case .greaterThanOrEqual:
             return constraint(greaterThanOrEqualToConstant: constant)
+        @unknown default:
+            return NSLayoutConstraint()
         }
     }
 
@@ -108,6 +110,8 @@ private extension NSLayoutDimension {
             return constraint(lessThanOrEqualTo: dimension, multiplier: multiplier, constant: constant)
         case .greaterThanOrEqual:
             return constraint(greaterThanOrEqualTo: dimension, multiplier: multiplier, constant: constant)
+        @unknown default:
+            return NSLayoutConstraint()
         }
     }
 }
