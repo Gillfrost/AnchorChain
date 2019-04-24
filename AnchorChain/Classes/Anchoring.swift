@@ -152,6 +152,7 @@ public extension UIView {
        - relation:      `.equal` by default.
        - otherAnchor:   The vertical anchor to align with.
        - otherView:     The view to align with.
+       - constant:      `0` by default.
        - priority:      `.required` by default.
 
      - Returns: The receiver.
@@ -160,9 +161,10 @@ public extension UIView {
                    _ relation: NSLayoutConstraint.Relation = .equal,
                    to otherAnchor: YAnchor,
                    of otherView: UIView,
+                   constant: CGFloat = 0,
                    priority: UILayoutPriority = .required) -> Self {
 
-        self.anchor(anchor, relation, to: otherAnchor, of: otherView, priority: priority)
+        self.anchor(anchor, relation, to: otherAnchor, of: otherView, constant: constant, priority: priority)
 
         return self
     }
@@ -175,6 +177,7 @@ public extension UIView {
        - relation:      `.equal` by default.
        - otherAnchor:   The horizontal anchor to align with.
        - otherView:     The view to align with.
+       - constant:      `0` by default.
        - priority:      `.required` by default.
 
      - Returns: The receiver.
@@ -183,9 +186,10 @@ public extension UIView {
                    _ relation: NSLayoutConstraint.Relation = .equal,
                    to otherAnchor: XAnchor,
                    of otherView: UIView,
+                   constant: CGFloat = 0,
                    priority: UILayoutPriority = .required) -> Self {
 
-        self.anchor(anchor, relation, to: otherAnchor, of: otherView, priority: priority)
+        self.anchor(anchor, relation, to: otherAnchor, of: otherView, constant: constant, priority: priority)
 
         return self
     }
@@ -198,6 +202,7 @@ public extension UIView {
        - relation:      `.equal` by default.
        - otherAnchor:   The directional horizontal anchor to align with.
        - otherView:     The view to align with.
+       - constant:      `0` by default.
        - priority:      `.required` by default.
 
      - Returns: The receiver.
@@ -205,9 +210,10 @@ public extension UIView {
     func anchoring(_ anchor: DirectionalXAnchor,
                    to otherAnchor: DirectionalXAnchor,
                    of otherView: UIView,
+                   constant: CGFloat = 0,
                    priority: UILayoutPriority = .required) -> Self {
 
-        self.anchor(anchor, to: otherAnchor, of: otherView, priority: priority)
+        self.anchor(anchor, to: otherAnchor, of: otherView, constant: constant, priority: priority)
 
         return self
     }
