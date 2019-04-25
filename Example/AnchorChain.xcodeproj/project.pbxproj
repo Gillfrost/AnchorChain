@@ -189,6 +189,7 @@
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
 				A8B81B23FDCDF46EBBB83E5F /* [CP] Embed Pods Frameworks */,
+				DCEDAAB4227238B6001EA9CE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -332,6 +333,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AnchorChain_Example/Pods-AnchorChain_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		DCEDAAB4227238B6001EA9CE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
