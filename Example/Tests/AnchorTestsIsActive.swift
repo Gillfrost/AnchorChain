@@ -4,7 +4,7 @@
 import XCTest
 import AnchorChain
 
-class AnchorTests_IsActive: XCTestCase {
+class AnchorTestsIsActive: XCTestCase {
 
     func testActiveDimensionalAnchor() {
         let view = UIView()
