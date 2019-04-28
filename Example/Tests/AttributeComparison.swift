@@ -5,7 +5,10 @@ import UIKit
 
 extension UIView {
 
-    func isAttribute(_ attribute: NSLayoutConstraint.Attribute, of layoutGuide: UILayoutGuide? = nil, constrainedTo view: UIView) -> Bool {
+    func isAttribute(_ attribute: NSLayoutConstraint.Attribute,
+                     of layoutGuide: UILayoutGuide? = nil,
+                     constrainedTo view: UIView) -> Bool {
+
         return constraints.contains {
             $0.firstItem === view
                 && $0.firstAttribute == attribute
@@ -38,7 +41,9 @@ extension UIView {
         }
     }
 
-    func isAttribute(_ attribute: NSLayoutConstraint.Attribute, constrainedTo otherAttribute: NSLayoutConstraint.Attribute) -> Bool {
+    func isAttribute(_ attribute: NSLayoutConstraint.Attribute,
+                     constrainedTo otherAttribute: NSLayoutConstraint.Attribute) -> Bool {
+
         return constraints.contains {
             $0.firstItem === self
                 && $0.firstAttribute == attribute

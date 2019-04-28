@@ -142,7 +142,9 @@ class AnchoredTests: XCTestCase {
         viewAndSuperview { view, superview in
             let insets = UIEdgeInsets(top: 1, left: 2, bottom: 3, right: 4)
 
-            expect(view.anchored(to: .safeArea, with: insets), toMatch: superview.safeAreaLayoutGuide, withInsets: insets)
+            expect(view.anchored(to: .safeArea, with: insets),
+                   toMatch: superview.safeAreaLayoutGuide,
+                   withInsets: insets)
         }
     }
 
@@ -159,7 +161,9 @@ class AnchoredTests: XCTestCase {
         let other = UIView()
         let insets = UIEdgeInsets(top: 11, left: 22, bottom: 33, right: 44)
 
-        expect(view.anchored(to: .layoutMargins, of: other, with: insets), toMatch: other.layoutMarginsGuide, withInsets: insets)
+        expect(view.anchored(to: .layoutMargins, of: other, with: insets),
+               toMatch: other.layoutMarginsGuide,
+               withInsets: insets)
     }
 
     // MARK: - Single anchor inset
