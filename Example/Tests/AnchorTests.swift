@@ -272,7 +272,7 @@ class AnchorTests: XCTestCase {
     // MARK: - Priority
 
     func testAnchorWithPriority() {
-        viewAndSuperview { view, superview in
+        viewAndSuperview { view, _ in
 
             let constraint = view.anchor(.random, priority: .defaultLow)
 
@@ -281,7 +281,7 @@ class AnchorTests: XCTestCase {
     }
 
     func testAnchorToLayoutGuideWithPriority() {
-        viewAndSuperview { view, superview in
+        viewAndSuperview { view, _ in
 
             let constraint = view.anchor(.random, to: .safeArea, priority: .defaultHigh)
 
@@ -462,7 +462,7 @@ class AnchorTests: XCTestCase {
     // MARK: - Single anchor inset
 
     func testAnchorTopWithInset() {
-        viewAndSuperview { view, superview in
+        viewAndSuperview { view, _ in
 
             let constraint = view.anchor(.top, inset: 1)
 
@@ -471,7 +471,7 @@ class AnchorTests: XCTestCase {
     }
 
     func testAnchorLeftToLayoutGuideWithInset() {
-        viewAndSuperview { view, superview in
+        viewAndSuperview { view, _ in
 
             let constraint = view.anchor(.left, to: .safeArea, inset: 2)
 

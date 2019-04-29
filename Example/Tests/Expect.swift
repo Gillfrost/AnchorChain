@@ -24,10 +24,10 @@ func expect(_ view: UIView, toMatch layoutGuide: UILayoutGuide, file: StaticStri
 
 func expect(_ attribute: NSLayoutConstraint.Attribute,
             _ moreAttributes: NSLayoutConstraint.Attribute...,
-    of view: UIView,
-    toMatch other: UIView,
-    file: StaticString = #file,
-    line: UInt = #line) {
+            of view: UIView,
+            toMatch other: UIView,
+            file: StaticString = #file,
+            line: UInt = #line) {
 
     let attributes = [attribute] + moreAttributes
 
@@ -46,10 +46,10 @@ func expect(_ attribute: NSLayoutConstraint.Attribute,
 
 func expect(_ attribute: NSLayoutConstraint.Attribute,
             _ moreAttributes: NSLayoutConstraint.Attribute...,
-    of view: UIView,
-    toMatch layoutGuide: UILayoutGuide,
-    file: StaticString = #file,
-    line: UInt = #line) {
+            of view: UIView,
+            toMatch layoutGuide: UILayoutGuide,
+            file: StaticString = #file,
+            line: UInt = #line) {
 
     guard let other = layoutGuide.owningView else {
         XCTFail("Layout guide has no owning view")
@@ -97,7 +97,8 @@ func expect(_ attribute: NSLayoutConstraint.Attribute,
         return
     }
 
-    XCTAssert(superview.isAttribute(attribute, of: view, constrainedTo: otherAttribute, of: other, withConstant: constant),
+    XCTAssert(superview.isAttribute(attribute, of: view,
+                                    constrainedTo: otherAttribute, of: other, withConstant: constant),
               "Attribute \(attribute) is not constrained to \(otherAttribute) with constant \(constant)",
         file: file,
         line: line)

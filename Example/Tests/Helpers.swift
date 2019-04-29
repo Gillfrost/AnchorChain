@@ -70,7 +70,12 @@ extension UIView.Anchor {
         }
     }
 
-    static let allCases = [UIView.Anchor.top, .left, .bottom, .right, .leading, .trailing, .centerX, .centerY, .width, .height]
+    static let allCases = [
+        UIView.Anchor.top, .left, .bottom, .right,
+        .leading, .trailing,
+        .centerX, .centerY,
+        .width, .height
+    ]
 
     static var random: UIView.Anchor {
         return UIView.Anchor.allCases.randomElement()!
