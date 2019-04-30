@@ -46,4 +46,26 @@ class AutomaticSubviewAdditionTests: XCTestCase {
         XCTAssertEqual(view.anchored(to: other).superview, superview)
     }
 
+    // MARK: - Anchoring API
+
+    func test_AnchoringApi_AnchoringAddsOtherToReceiver_IfOtherIsWithoutSuperview() {
+        let other = UIView()
+        let view = UIView().anchoring(other)
+
+        XCTAssertEqual(other.superview, view)
+    }
+
+    func test_AnchoringApi_AnchoringDoesNotAddOtherToReceiver_IfOtherAlreadyHasASuperview() {
+        let view = UIView()
+        let superview = UIView()
+        let other = UIView()
+
+        [view, other].forEach(superview.addSubview)
+
+        _ = view.anchoring(other)
+
+        XCTAssertEqual(view.superview, superview)
+        XCTAssertNotEqual(other.superview, view)
+    }
+
 }
