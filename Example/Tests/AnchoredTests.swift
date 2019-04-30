@@ -6,24 +6,6 @@ import AnchorChain
 
 class AnchoredTests: XCTestCase {
 
-    // MARK: - Automatic subview adding
-
-    func testViewWithoutSuperviewIsAddedToOtherViewAutomatically() {
-        let other = UIView()
-
-        XCTAssertEqual(UIView().anchored(to: other).superview, other)
-    }
-
-    func testViewWithSuperviewIsNotAddedToOtherView() {
-        let view = UIView()
-        let superview = UIView()
-        let other = UIView()
-
-        [view, other].forEach(superview.addSubview)
-
-        XCTAssertEqual(view.anchored(to: other).superview, superview)
-    }
-
     // MARK: - Translates autoresizing mask into constraints
 
     func testTranslatesAutoresizingMaskIntoConstraintsIsSetToFalse() {
