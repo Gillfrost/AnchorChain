@@ -6,16 +6,6 @@ import AnchorChain
 
 class AnchorTests: XCTestCase {
 
-    // MARK: - Translates autoresizing mask into constraints
-
-    func testTranslatesAutoresizingMaskIntoConstraintsIsSetToFalse() {
-        let view = UIView()
-
-        view.anchor(to: UIView())
-
-        XCTAssertFalse(view.translatesAutoresizingMaskIntoConstraints)
-    }
-
     // MARK: - Default parameters
 
     func testTargetDefaultsToSuperview() {
