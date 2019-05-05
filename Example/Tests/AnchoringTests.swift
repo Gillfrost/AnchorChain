@@ -21,14 +21,6 @@ class AnchoringTests: XCTestCase {
         }
     }
 
-    // MARK: - Edge anchoring
-
-    func testAnchoringOther() {
-        let other = UIView()
-
-        expect(.top, .left, .bottom, .right, of: other, toMatch: UIView().anchoring(other))
-    }
-
     // MARK: - Separate anchors
 
     func testSeparateAnchors() {
