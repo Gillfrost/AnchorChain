@@ -14,6 +14,7 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* AnchorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* AnchorTests.swift */; };
+		DC14DDA0227F13D0001AB6E9 /* EdgeAnchoringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC14DD9F227F13D0001AB6E9 /* EdgeAnchoringTests.swift */; };
 		DC1B603B222509B70041D3F1 /* Expect.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B603A222509B70041D3F1 /* Expect.swift */; };
 		DC1B603D22250AF30041D3F1 /* AttributeComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B603C22250AF30041D3F1 /* AttributeComparison.swift */; };
 		DC39730C21F5962A00418A6D /* AnchorTestsIsActive.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC39730B21F5962A00418A6D /* AnchorTestsIsActive.swift */; };
@@ -51,6 +52,7 @@
 		6D22D6759406D8D0630AAB74 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		7F62E1CCF46275001C3166C3 /* Pods_AnchorChain_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnchorChain_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD6A639EF4CBBFA91CDF7849 /* Pods-AnchorChain_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnchorChain_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnchorChain_Example/Pods-AnchorChain_Example.release.xcconfig"; sourceTree = "<group>"; };
+		DC14DD9F227F13D0001AB6E9 /* EdgeAnchoringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeAnchoringTests.swift; sourceTree = "<group>"; };
 		DC1B603A222509B70041D3F1 /* Expect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expect.swift; sourceTree = "<group>"; };
 		DC1B603C22250AF30041D3F1 /* AttributeComparison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeComparison.swift; sourceTree = "<group>"; };
 		DC39730B21F5962A00418A6D /* AnchorTestsIsActive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorTestsIsActive.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				E054854221C69640006BBFAD /* AnchoringTests.swift */,
 				DC7FF43022780138003AAE54 /* AutomaticSubviewAdditionTests.swift */,
 				DCA2C5DA227AC9C7003E45BE /* AutoresizingMaskTranslationTests.swift */,
+				DC14DD9F227F13D0001AB6E9 /* EdgeAnchoringTests.swift */,
 				DC1B603A222509B70041D3F1 /* Expect.swift */,
 				DC1B603C22250AF30041D3F1 /* AttributeComparison.swift */,
 				E064E271219E10720050D8E1 /* Helpers.swift */,
@@ -379,6 +382,7 @@
 				DCA2C5DB227AC9C7003E45BE /* AutoresizingMaskTranslationTests.swift in Sources */,
 				DC1B603D22250AF30041D3F1 /* AttributeComparison.swift in Sources */,
 				E064E273219E10D60050D8E1 /* Helpers.swift in Sources */,
+				DC14DDA0227F13D0001AB6E9 /* EdgeAnchoringTests.swift in Sources */,
 				E0B36A6321ABC19C008F0D00 /* AnchoredTests.swift in Sources */,
 				DC1B603B222509B70041D3F1 /* Expect.swift in Sources */,
 				E054854321C69640006BBFAD /* AnchoringTests.swift in Sources */,

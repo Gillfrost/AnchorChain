@@ -14,21 +14,6 @@ class AnchoredTests: XCTestCase {
         }
     }
 
-    // MARK: - Edge anchoring
-
-    func testAnchoredToImplicitSuperview() {
-        viewAndSuperview { view, superview in
-
-            expect(.top, .left, .bottom, .right, of: view.anchored(), toMatch: superview)
-        }
-    }
-
-    func testAnchoredToOther() {
-        let other = UIView()
-
-        expect(.top, .left, .bottom, .right, of: UIView().anchored(to: other), toMatch: other)
-    }
-
     // MARK: - Separate anchors
 
     func testSeparateAnchors() {
