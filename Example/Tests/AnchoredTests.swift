@@ -25,55 +25,6 @@ class AnchoredTests: XCTestCase {
         }
     }
 
-    // MARK: - Priority
-
-    func testAnchoredWithPriority() throws {
-        try viewAndSuperview { view, superview in
-
-            let constraint = try view.anchored(.random, priority: .defaultLow)
-                .superview?
-                .constraints
-                .onlyElement()
-
-            XCTAssertEqual(constraint?.priority, .defaultLow)
-        }
-    }
-
-    func testAnchoredToLayoutGuideWithPriority() {
-        viewAndSuperview { view, superview in
-
-            let constraint = view.anchored(.random, to: .safeArea, priority: .defaultHigh)
-                .superview?
-                .constraints
-                .first
-
-            XCTAssertEqual(constraint?.priority, .defaultHigh)
-        }
-    }
-
-    func testAnchoredToOtherWithPriority() throws {
-        try siblings { one, two in
-            let constraint = try one.anchored(.random, to: two, priority: .defaultLow)
-                .superview?
-                .constraints
-                .onlyElement()
-
-            XCTAssertEqual(constraint?.priority, .defaultLow)
-        }
-    }
-
-    func testAnchoredToLayoutGuideOfOtherWithPriority() throws {
-        try siblings { one, two in
-
-            let constraint = try one.anchored(.random, to: .layoutMargins, of: two, priority: .defaultHigh)
-                .superview?
-                .constraints
-                .onlyElement()
-
-            XCTAssertEqual(constraint?.priority, .defaultHigh)
-        }
-    }
-
     // MARK: - Layout guides
 
     func testAnchoredToLayoutGuide() {
