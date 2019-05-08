@@ -185,56 +185,6 @@ class AnchoringTests: XCTestCase {
         }
     }
 
-    // MARK: - Priority
-
-    func testDimensionalAnchoringWithPriority() throws {
-        let constraint = try UIView()
-            .anchoring(.width, to: 123, priority: .defaultLow)
-            .constraints
-            .onlyElement()
-
-        XCTAssertEqual(constraint.priority, .defaultLow)
-    }
-
-    func testXAnchoringWithPriority() throws {
-        try siblings { one, two in
-
-            let constraint = try one
-                .anchoring(.left, to: .right, of: two, priority: .defaultHigh)
-                .superview?
-                .constraints
-                .onlyElement()
-
-            XCTAssertEqual(constraint?.priority, .defaultHigh)
-        }
-    }
-
-    func testYAnchoringWithPriority() throws {
-        try siblings { one, two in
-
-            let constraint = try one
-                .anchoring(.top, to: .bottom, of: two, priority: .defaultLow)
-                .superview?
-                .constraints
-                .onlyElement()
-
-            XCTAssertEqual(constraint?.priority, .defaultLow)
-        }
-    }
-
-    func testDirectionalXAnchoringWithPriority() throws {
-        try siblings { one, two in
-
-            let constraint = try one
-                .anchoring(.leading, to: .trailing, of: two, priority: .defaultHigh)
-                .superview?
-                .constraints
-                .onlyElement()
-
-            XCTAssertEqual(constraint?.priority, .defaultHigh)
-        }
-    }
-
     // MARK: - Layout guides
 
     func testAnchoringViewToLayoutGuide() {
