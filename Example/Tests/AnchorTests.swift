@@ -124,50 +124,6 @@ class AnchorTests: XCTestCase {
         }
     }
 
-    // MARK: - Relations
-
-    func testXAnchorWithRelation() {
-        NSLayoutConstraint.Relation.all.forEach { relation in
-            siblings { one, two in
-
-                let constraint = one.anchor(.left, relation, to: .right, of: two)
-
-                XCTAssertEqual(constraint.relation, relation)
-            }
-        }
-    }
-
-    func testYAnchorWithRelation() {
-        NSLayoutConstraint.Relation.all.forEach { relation in
-            siblings { one, two in
-
-                let constraint = one.anchor(.top, relation, to: .bottom, of: two)
-
-                XCTAssertEqual(constraint.relation, relation)
-            }
-        }
-    }
-
-    func testDimensionalAnchorWithRelation() {
-        NSLayoutConstraint.Relation.all.forEach { relation in
-
-            let constraint = UIView().anchor(.height, relation, to: 123)
-
-            XCTAssertEqual(constraint.relation, relation)
-        }
-    }
-
-    func testDimensionalAnchorToOtherWithRelation() {
-        NSLayoutConstraint.Relation.all.forEach { relation in
-            siblings { one, two in
-
-                let constraint = one.anchor(.width, relation, to: .height, of: two)
-
-                XCTAssertEqual(constraint.relation, relation)
-            }
-        }
-    }
-
     // MARK: - Multipliers
 
     func testDimensionalAnchorToOtherWithMultiplier() {

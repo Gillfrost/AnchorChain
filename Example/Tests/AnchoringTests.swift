@@ -106,47 +106,6 @@ class AnchoringTests: XCTestCase {
         expect(.width, toMatch: .height, of: view)
     }
 
-    // MARK: - Relations
-
-    func testXAnchorWithRelation() throws {
-        try NSLayoutConstraint.Relation.all.forEach { relation in
-            try siblings { one, two in
-
-                let constraint = try one.anchoring(.left, relation, to: .right, of: two)
-                    .superview?
-                    .constraints
-                    .onlyElement()
-
-                XCTAssertEqual(constraint?.relation, relation)
-            }
-        }
-    }
-
-    func testYAnchorWithRelation() throws {
-        try NSLayoutConstraint.Relation.all.forEach { relation in
-            try siblings { one, two in
-
-                let constraint = try one.anchoring(.top, relation, to: .bottom, of: two)
-                    .superview?
-                    .constraints
-                    .onlyElement()
-
-                XCTAssertEqual(constraint?.relation, relation)
-            }
-        }
-    }
-
-    func testDimensionalAnchorWithRelation() throws {
-        try NSLayoutConstraint.Relation.all.forEach { relation in
-
-            let constraint = try UIView().anchoring(.height, relation, to: 123)
-                .constraints
-                .onlyElement()
-
-            XCTAssertEqual(constraint.relation, relation)
-        }
-    }
-
     // MARK: - Constants
 
     func testYAnchorWithConstant() throws {
