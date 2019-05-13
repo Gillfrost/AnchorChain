@@ -106,44 +106,6 @@ class AnchoringTests: XCTestCase {
         expect(.width, toMatch: .height, of: view)
     }
 
-    // MARK: - Constants
-
-    func testYAnchorWithConstant() throws {
-        try siblings { one, two in
-
-            let constraint = try one.anchoring(.top, to: .bottom, of: two, constant: 123)
-                .superview?
-                .constraints
-                .onlyElement()
-
-            XCTAssertEqual(constraint?.constant, 123)
-        }
-    }
-
-    func testXAnchorWithConstant() throws {
-        try siblings { one, two in
-
-            let constraint = try one.anchoring(.right, to: .left, of: two, constant: 231)
-                .superview?
-                .constraints
-                .onlyElement()
-
-            XCTAssertEqual(constraint?.constant, 231)
-        }
-    }
-
-    func testDirectionalXAnchorWithConstant() throws {
-        try siblings { one, two in
-
-            let constraint = try one.anchoring(.leading, to: .trailing, of: two, constant: 312)
-                .superview?
-                .constraints
-                .onlyElement()
-
-            XCTAssertEqual(constraint?.constant, 312)
-        }
-    }
-
     // MARK: - Layout guides
 
     func testAnchoringViewToLayoutGuide() {
