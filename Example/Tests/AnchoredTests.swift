@@ -25,21 +25,6 @@ class AnchoredTests: XCTestCase {
         }
     }
 
-    // MARK: - Layout guides
-
-    func testAnchoredToLayoutGuide() {
-        viewAndSuperview { view, superview in
-            expect(view.anchored(to: .safeArea), toMatch: superview.safeAreaLayoutGuide)
-        }
-    }
-
-    func testAnchoredToLayoutGuideOfOther() {
-        let other = UIView()
-        let view = UIView().anchored(to: .layoutMargins, of: other)
-
-        expect(view, toMatch: other.layoutMarginsGuide)
-    }
-
     // MARK: - Edge anchoring insets
 
     func testAnchoredToImplicitSuperviewWithInsets() {
