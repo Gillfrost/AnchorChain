@@ -176,36 +176,4 @@ class AnchorTests: XCTestCase {
 
         expect(view, toMatch: other.layoutMarginsGuide, withInsets: insets)
     }
-
-    // MARK: - Single anchor inset
-
-    func testAnchorTopWithInset() {
-        viewAndSuperview { view, _ in
-
-            let constraint = view.anchor(.top, inset: 1)
-
-            XCTAssertEqual(constraint.constant, 1)
-        }
-    }
-
-    func testAnchorLeftToLayoutGuideWithInset() {
-        viewAndSuperview { view, _ in
-
-            let constraint = view.anchor(.left, to: .safeArea, inset: 2)
-
-            XCTAssertEqual(constraint.constant, 2)
-        }
-    }
-
-    func testAnchorBottomToOtherWithInset() {
-        let constraint = UIView().anchor(.bottom, to: UIView(), inset: 3)
-
-        XCTAssertEqual(constraint.constant, -3)
-    }
-
-    func testAnchorRightToLayoutGuideOfOtherWithInset() {
-        let constraint = UIView().anchor(.right, to: .layoutMargins, of: UIView(), inset: 4)
-
-        XCTAssertEqual(constraint.constant, -4)
-    }
 }
