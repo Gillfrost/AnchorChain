@@ -78,7 +78,7 @@ extension UIView.Anchor {
     ]
 
     static var random: UIView.Anchor {
-        return UIView.Anchor.allCases.randomElement()!
+        return allCases.randomElement()!
     }
 }
 

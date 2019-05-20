@@ -1,4 +1,4 @@
-//  Copyright (c) 2018 André Gillfrost
+//  Copyright (c) 2019 André Gillfrost
 //  Licensed under the MIT license
 
 import XCTest
