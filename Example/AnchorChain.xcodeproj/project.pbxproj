@@ -18,6 +18,7 @@
 		DC1B603B222509B70041D3F1 /* Expect.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B603A222509B70041D3F1 /* Expect.swift */; };
 		DC1B603D22250AF30041D3F1 /* AttributeComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B603C22250AF30041D3F1 /* AttributeComparison.swift */; };
 		DC2BDE48228E6D8200EAD6AE /* SingleAnchorInsetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2BDE47228E6D8200EAD6AE /* SingleAnchorInsetTests.swift */; };
+		DC31A744229658E200E52802 /* MultiplierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC31A743229658E200E52802 /* MultiplierTests.swift */; };
 		DC39730C21F5962A00418A6D /* AnchorTestsIsActive.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC39730B21F5962A00418A6D /* AnchorTestsIsActive.swift */; };
 		DC603A1F2293B9FE0023993A /* EdgeInsetsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC603A1E2293B9FE0023993A /* EdgeInsetsTests.swift */; };
 		DC75327B2289278E001F766D /* ConstantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC75327A2289278E001F766D /* ConstantTests.swift */; };
@@ -62,6 +63,7 @@
 		DC1B603A222509B70041D3F1 /* Expect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expect.swift; sourceTree = "<group>"; };
 		DC1B603C22250AF30041D3F1 /* AttributeComparison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeComparison.swift; sourceTree = "<group>"; };
 		DC2BDE47228E6D8200EAD6AE /* SingleAnchorInsetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleAnchorInsetTests.swift; sourceTree = "<group>"; };
+		DC31A743229658E200E52802 /* MultiplierTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplierTests.swift; sourceTree = "<group>"; };
 		DC39730B21F5962A00418A6D /* AnchorTestsIsActive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorTestsIsActive.swift; sourceTree = "<group>"; };
 		DC603A1E2293B9FE0023993A /* EdgeInsetsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsetsTests.swift; sourceTree = "<group>"; };
 		DC75327A2289278E001F766D /* ConstantTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantTests.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				DCCF3514228BC7A80034EC70 /* LayoutGuideTests.swift */,
 				DC2BDE47228E6D8200EAD6AE /* SingleAnchorInsetTests.swift */,
 				DC603A1E2293B9FE0023993A /* EdgeInsetsTests.swift */,
+				DC31A743229658E200E52802 /* MultiplierTests.swift */,
 				DC1B603A222509B70041D3F1 /* Expect.swift */,
 				DC1B603C22250AF30041D3F1 /* AttributeComparison.swift */,
 				E064E271219E10720050D8E1 /* Helpers.swift */,
@@ -407,6 +410,7 @@
 				DC75327B2289278E001F766D /* ConstantTests.swift in Sources */,
 				DC1B603B222509B70041D3F1 /* Expect.swift in Sources */,
 				E054854321C69640006BBFAD /* AnchoringTests.swift in Sources */,
+				DC31A744229658E200E52802 /* MultiplierTests.swift in Sources */,
 				DCCF3515228BC7A80034EC70 /* LayoutGuideTests.swift in Sources */,
 				DC603A1F2293B9FE0023993A /* EdgeInsetsTests.swift in Sources */,
 				DCE4C32C2283E37C00E15A1D /* RelationTests.swift in Sources */,
