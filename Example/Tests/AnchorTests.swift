@@ -70,18 +70,4 @@ class AnchorTests: XCTestCase {
                 }
         }
     }
-
-    func testAnchorAllCombinationsOfDirectionalHorizontalAnchors() {
-        UIView.DirectionalXAnchor
-            .allCases
-            .allCombinations
-            .forEach { anchor, otherAnchor in
-                siblings { view, otherView in
-
-                    view.anchor(anchor, to: otherAnchor, of: otherView)
-
-                    expect(anchor.layoutAttribute, of: view, toMatch: otherAnchor.layoutAttribute, of: otherView)
-                }
-        }
-    }
 }

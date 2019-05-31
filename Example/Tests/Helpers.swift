@@ -108,7 +108,7 @@ extension UIView.XAnchor {
     static let allCases = [UIView.XAnchor.left, .right, .centerX]
 }
 
-extension UIView.DirectionalXAnchor {
+extension UIView.DirectionalXAnchor: CaseIterable {
 
     var layoutAttribute: NSLayoutConstraint.Attribute {
         switch self {
@@ -118,7 +118,7 @@ extension UIView.DirectionalXAnchor {
         }
     }
 
-    static let allCases = [UIView.DirectionalXAnchor.leading, .trailing, .centerX]
+    public static let allCases = [UIView.DirectionalXAnchor.leading, .trailing, .centerX]
 }
 
 enum CollectionError: String, Error {
@@ -146,6 +146,13 @@ extension Collection {
             throw CollectionError.moreThanOneElement
         }
         return first
+    }
+}
+
+extension CaseIterable {
+
+    static func allCombinations(block: (Self, Self) -> Void) {
+        allCases.allCombinations.forEach(block)
     }
 }
 
