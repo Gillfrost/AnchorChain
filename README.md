@@ -1,3 +1,5 @@
+# ⚠️ This repository is no longer maintained
+
 # AnchorChain
 
 [![Build Status](https://travis-ci.com/Gillfrost/AnchorChain.svg?branch=master)](https://travis-ci.com/Gillfrost/AnchorChain)
